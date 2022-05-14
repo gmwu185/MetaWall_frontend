@@ -1,11 +1,9 @@
 // scss-docs-start import-stack
 // Configuration
 @import "bootstrap/scss/functions";
-// @import "vendors/bs5/variables";
-@import "bootstrap/scss/variables";
+@import "vendors/bs5/variables";
 @import "bootstrap/scss/mixins";
-// @import "vendors/bs5/utilities";
-@import "bootstrap/scss/utilities";
+@import "vendors/bs5/utilities";
 
 // Layout & components
 @import "bootstrap/scss/root";

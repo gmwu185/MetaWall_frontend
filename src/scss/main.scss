@@ -7,10 +7,15 @@ body {
   min-height: 100vh;
 }
 .logo {
-  font-family: 'Paytone One', sans-serif;
-  font-size: 26px;
-  color: #000400;
+  display: inline-block;
   text-decoration: none;
+  &::before {
+    content: 'MetaWall';
+    font-family: 'Paytone One', sans-serif;
+    font-size: 26px;
+    color: #000400;
+    line-height: 36px;
+  }
 }
 /* /base --------------------------------------------------------------------- */
 
@@ -22,6 +27,8 @@ body {
 /* /pages -------------------------------------------------------------------- */
 
 /* components --------------------------------------------------------------- */
+@import 'components/c-pseudoPhoto';
+
 /* /components --------------------------------------------------------------- */
 
 .u-ff-- {
@@ -30,5 +37,8 @@ body {
   }
   &AzeretMono {
     font-family: 'Azeret Mono', monospace;
+  }
+  &NotoSansTC {
+    font-family: 'Noto Sans TC', sans-serif;
   }
 }

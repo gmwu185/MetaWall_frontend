@@ -6,8 +6,30 @@ head
   title index
 
 body
-  main.container(id="app")
-    h1 index
-    a.logo.h3(href="index.html", title="logo") MetaWall
-    div
-      a.u-ff--AzeretMono.fw-bold.text-dark.text-decoration-none(href="#") Member
+  nav.border.border-3.border-top-0.border-start-0.border-end-0.border-dark
+    .container
+      .row
+        .navbar.navbar-expand-lg.navbar-light.bg-white.justify-content-between.py-3
+          a.logo(href="index.html", title="MetaWall logo")
+          a.text-decoration-none.d-flex.align-items-center(href="#")
+            .c-pseudoPhoto.c-pseudoPhoto--s.me-2(
+              style=`background-image: url(assets/static-images/user.png)`
+            )
+            .u-ff--AzeretMono.fw-bold.text-dark.lh-19.px-1.pb-1.border-dark.border-bottom
+              | Member
+  main.py-5
+    .container
+      .row
+        //- .col-12.bg-dark
+        //-   .bg-white 
+        //-     a(href="#") .bg-white
+        .col-md-8
+          .bg-light
+            h1 index
+            p.u-ff--NotoSansTC
+              | 外面看起來就超冷....
+              br 
+              | 我決定回被窩繼續睡....#{`>.<`}
+        .col-md
+          .bg-info
+            | .col-auto

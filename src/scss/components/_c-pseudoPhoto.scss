@@ -1,0 +1,26 @@
+.c-pseudoPhoto {
+  &::after {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+  background-color: $gray-600;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 50%;
+  border: $dark 2px solid;
+
+  width: 45px;
+  height: 45px;
+
+  &--s {
+    width: 30px;
+    height: 30px;
+  }
+  &--m {
+    width: 50px;
+    height: 50px;
+  }
+}
