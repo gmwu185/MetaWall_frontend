@@ -1,6 +1,6 @@
-console.log('bootstrap-Obj', bootstrap);
-console.log('jQuery-Obj', jQuery, 'jQuery -> $', $);
-console.log('index.js');
+// console.log('bootstrap-Obj', bootstrap);
+// console.log('jQuery-Obj', jQuery, 'jQuery -> $', $);
+// console.log('index.js');
 
 let app = new Vue({
   el: '#app',
@@ -14,8 +14,8 @@ let app = new Vue({
       method: 'GET',
       dataType: 'json',
       success: function (res) {
-        console.log('$.ajax -> res -> data', res.result.records);
-        console.log('$.ajax this', this);
+        // console.log('$.ajax -> res -> data', res.result.records);
+        // console.log('$.ajax this', this);
         vm.ajaxData = res.result.records;
       },
       error: function (err) {

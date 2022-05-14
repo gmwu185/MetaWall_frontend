@@ -11,6 +11,15 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 console.log(`webServer => http://${process.env.HOST}:${process.env.PORT}`);
 const NODE_ENV = process.env.NODE_ENV;
 
+const HtmlWebpackPluginMinifySets = {
+  collapseWhitespace: false, // true HTML 壓成單行
+  removeComments: true, // 刪除註解
+  removeRedundantAttributes: true, // 刪除多餘的屬性
+  removeScriptTypeAttributes: true, // 刪除腳本類型屬性
+  removeStyleLinkTypeAttributes: true, // 刪除樣式鏈接類型屬性
+  useShortDoctype: true, // 使用簡短的文檔類型
+};
+
 module.exports = {
   mode: NODE_ENV,
   context: path.resolve(__dirname, './src'),
@@ -212,42 +221,15 @@ module.exports = {
     /* HTML 樣版 ------------------------------------------------------------------ */
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'htmlTemplate/template_1.html',
+      template: 'jand/index.jade',
       chunks: ['vendor', 'main', 'p_index'],
-      minify: {
-        collapseWhitespace: false, // true HTML 壓成單行
-        removeComments: true, // 刪除註解
-        removeRedundantAttributes: true, // 刪除多餘的屬性
-        removeScriptTypeAttributes: true, // 刪除腳本類型屬性
-        removeStyleLinkTypeAttributes: true, // 刪除樣式鏈接類型屬性
-        useShortDoctype: true, // 使用簡短的文檔類型
-      },
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'card.html',
-      template: 'htmlTemplate/template_2.html',
-      chunks: ['vendor', 'main', 'p_card'],
-      minify: {
-        collapseWhitespace: false, // true HTML 壓成單行
-        removeComments: true, // 刪除註解
-        removeRedundantAttributes: true, // 刪除多餘的屬性
-        removeScriptTypeAttributes: true, // 刪除腳本類型屬性
-        removeStyleLinkTypeAttributes: true, // 刪除樣式鏈接類型屬性
-        useShortDoctype: true, // 使用簡短的文檔類型
-      },
+      minify: HtmlWebpackPluginMinifySets,
     }),
     new HtmlWebpackPlugin({
       filename: 'product.html',
       template: 'jand/product.jade',
       chunks: ['vendor', 'main'],
-      minify: {
-        collapseWhitespace: false, // true HTML 壓成單行
-        removeComments: true, // 刪除註解
-        removeRedundantAttributes: true, // 刪除多餘的屬性
-        removeScriptTypeAttributes: true, // 刪除腳本類型屬性
-        removeStyleLinkTypeAttributes: true, // 刪除樣式鏈接類型屬性
-        useShortDoctype: true, // 使用簡短的文檔類型
-      },
+      minify: HtmlWebpackPluginMinifySets,
     }),
     /* /HTML 樣版 ------------------------------------------------------------------ */
   ],

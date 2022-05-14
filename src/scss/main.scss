@@ -1,9 +1,13 @@
 /* base --------------------------------------------------------------------- */
+@import 'base/_fontSet.scss';
 body {
   background-image: url(~images/logo.png);
   background-position: center center;
   background-repeat: no-repeat;
   min-height: 100vh;
+}
+.logo {
+  font-family: 'Paytone One', sans-serif;
 }
 /* /base --------------------------------------------------------------------- */
 
