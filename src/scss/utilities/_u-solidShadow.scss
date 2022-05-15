@@ -6,4 +6,7 @@
   &--rightBottom {
     box-shadow: 4px 4px 0 $dark;
   }
+  &Doub {
+    box-shadow: 5px 5px 0 -2px $white, 5px 5px 0 0 $dark;
+  }
 }

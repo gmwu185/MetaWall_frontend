@@ -16,12 +16,23 @@ html(lang='zh-Hant-TW' class='no-js')
         .row
           .navbar.navbar-expand-lg.navbar-light.justify-content-between.py-3
             a.logo(href="index.html", title="MetaWall logo")
-            a.text-decoration-none.d-flex.align-items-center(href="#")
-              .c-pseudoPhoto.c-pseudoPhoto--s.c-pseudoPhoto--user.me-2(
-                style=`background-image: url(../assets/static-images/user.png)`
+            .btn-group
+              a.text-decoration-none.d-flex.align-items-center(
+                href="#" data-bs-toggle='dropdown' data-bs-display='static' aria-expanded='false'
               )
-              .u-ff--AzeretMono.fw-bold.text-dark.lh-19.px-1.pb-1.border-dark.border-bottom
-                | Member
+                span.c-pseudoRound.c-pseudoRound--s.c-pseudoRound--user.me-2(
+                  style=`background-image: url(../assets/static-images/user.png)`
+                )
+                span.u-ff--AzeretMono.fw-bold.text-dark.lh-19.px-1.pb-1.border-dark.border-bottom
+                  | Member
+              ul.dropdown-menu.dropdown-menu-end.dropdown-menu-lg-start.text-center.u-solidShadowDoub
+                li.border.border-dark.border-2.border-top-0.border-start-0.border-end-0
+                  button.dropdown-item.py-2(type='button') 我的貼文牆
+                li.border.border-dark.border-2.border-top-0.border-start-0.border-end-0
+                  button.dropdown-item.py-2(type='button') 修改個人資料
+                li.border.border-dark.border-0
+                  button.dropdown-item.py-2(type='button') 登出
+            
     main.pt-5.pb-5.py-lg-15
       .container
         .row.g-0
