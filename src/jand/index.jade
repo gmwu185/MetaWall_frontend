@@ -1,8 +1,8 @@
 extends extends/_layoutTemplate_innerPage.jade
 block bodyMainPush
-  .col-md.me-7
+  .col-lg.me-7
     .row.g-3.mb-4
-      .w-md-35
+      .w-lg-30
         select.form-select.form-select(aria-label='.form-select-lg example')
           option(selected='') 最新貼文
           option(value='1') 最舊貼文
@@ -10,25 +10,52 @@ block bodyMainPush
         .input-group
           input.form-control(type='text' placeholder="搜尋貼文")
           button#button-addon2.btn.btn-primary(type='button') Button
-    .card.mb-4
-      .card-body
-        .row.g-4.mb-4
-          .col-auto
-            .c-pseudoPhoto.c-pseudoPhoto--m.c-pseudoPhoto--user(
-              style=`background-image: url(assets/static-images/user.png)`
-            )
-          .col
+    ul.list-unstyled.row.gy-4.mb-0
+      li.col-12
+        .card
+          .card-body
+            .row.g-4.mb-4
+              .col-auto
+                .c-pseudoPhoto.c-pseudoPhoto--m.c-pseudoPhoto--user(
+                  style=`background-image: url(assets/static-images/user.png)`
+                )
+              .col
+                p.mb-0 邊緣小杰
+                small.text-pastel 2022/1/10 12:00
+            p
+              | 外面看起來就超冷....
+              br 
+              | 我決定回被窩繼續睡....#{`>.<`}
+            .border.border-dark.rounded-2
+              img.img-fluid(src="~assets/images/image.png")
+      li.col-12
+        .card
+          .card-body
+            .row.g-4.mb-4
+              .col-auto
+                .c-pseudoPhoto.c-pseudoPhoto--m.c-pseudoPhoto--user(
+                  style=`background-image: url(assets/static-images/user6.png)`
+                )
+              .col
+                p.mb-0 波吉
+                small.text-pastel 2022/1/10 12:00
             p.mb-0
-              a(href="#") 邊緣小杰
-            small.text-pastel 2022/1/10 12:00
-        p
-          | 外面看起來就超冷....
-          br 
-          | 我決定回被窩繼續睡....#{`>.<`}
-        .border.border-dark.rounded-2
-          img.img-fluid(src="~assets/images/image.png")
+              | 我一定要成為很棒棒的國王！
+      li.col-12
+        .card
+          .card-body
+            .row.g-4.mb-4
+              .col-auto
+                .c-pseudoPhoto.c-pseudoPhoto--m.c-pseudoPhoto--user(
+                  style=`background-image: url(assets/static-images/user6.png)`
+                )
+              .col
+                p.mb-0 阿爾敏
+                small.text-pastel 2022/1/10 12:00
+            p.mb-0
+              | 各位我有一個作戰計畫
 
-  .col-md-auto.w-md-35
+  .col-lg-auto.w-lg-35
     .bg-primaryLight
       .card.rounded-0
         .card-body.py-8
