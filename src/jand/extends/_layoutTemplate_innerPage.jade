@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+html(lang='zh-Hant-TW' class='no-js')
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="format-detection", content="telephone=no") 
+    link(rel='icon' href='data:;base64,iVBORw0KGgo=')
+    title index
+    // block localHand j-template
+    block localHand
+    // /block localHand j-template
+  body
+    nav.border.border-3.border-top-0.border-start-0.border-end-0.border-dark
+      .container
+        .row
+          .navbar.navbar-expand-lg.navbar-light.bg-white.justify-content-between.py-3
+            a.logo(href="index.html", title="MetaWall logo")
+            a.text-decoration-none.d-flex.align-items-center(href="#")
+              .c-pseudoPhoto.c-pseudoPhoto--s.c-pseudoPhoto--user.me-2(
+                style=`background-image: url(../assets/static-images/user.png)`
+              )
+              .u-ff--AzeretMono.fw-bold.text-dark.lh-19.px-1.pb-1.border-dark.border-bottom
+                | Member
+    main.py-5
+      .container
+        .row.g-0
+            // block bodyMainPush j-template 
+            block bodyMainPush
+            // /block bodyMainPush j-template 

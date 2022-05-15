@@ -1,41 +1,37 @@
-<!DOCTYPE html>
-html(lang='zh-Hant-TW' class='no-js')
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    meta(name="format-detection", content="telephone=no") 
-    link(rel='icon' href='data:;base64,iVBORw0KGgo=')
-    title index
-  body
-    nav.border.border-3.border-top-0.border-start-0.border-end-0.border-dark
-      .container
-        .row
-          .navbar.navbar-expand-lg.navbar-light.bg-white.justify-content-between.py-3
-            a.logo(href="index.html", title="MetaWall logo")
-            a.text-decoration-none.d-flex.align-items-center(href="#")
-              .c-pseudoPhoto.c-pseudoPhoto--s.c-pseudoPhoto--user.me-2(
-                style=`background-image: url(assets/static-images/user.png)`
-              )
-              .u-ff--AzeretMono.fw-bold.text-dark.lh-19.px-1.pb-1.border-dark.border-bottom
-                | Member
-    main.py-5
-      .container
-        .row
-          //- .col-12.bg-dark
-          //-   .bg-white 
-          //-     a(href="#") .bg-white
-          .col-md-8
-            .bg-light
-              h1 index
-              p
-                | 外面看起來就超冷....
-                br 
-                | 我決定回被窩繼續睡....#{`>.<`}
-          .col-md
-            .bg-primaryLight
-              .card
-                .card-body
-                  a.btn.btn-primary.btn-lg.d-block
-                    | 張貼動態
-                  
+extends extends/_layoutTemplate_innerPage.jade
+block bodyMainPush
+  .col-md.me-7
+    .row.g-3.mb-4
+      .w-md-35
+        select.form-select.form-select(aria-label='.form-select-lg example')
+          option(selected='') 最新貼文
+          option(value='1') 最舊貼文
+      .col
+        .input-group
+          input.form-control(type='text' placeholder="搜尋貼文")
+          button#button-addon2.btn.btn-primary(type='button') Button
+    .card.mb-4
+      .card-body
+        .row.g-4.mb-4
+          .col-auto
+            .c-pseudoPhoto.c-pseudoPhoto--m.c-pseudoPhoto--user(
+              style=`background-image: url(assets/static-images/user.png)`
+            )
+          .col
+            p.mb-0
+              a(href="#") 邊緣小杰
+            small.text-pastel 2022/1/10 12:00
+        p
+          | 外面看起來就超冷....
+          br 
+          | 我決定回被窩繼續睡....#{`>.<`}
+        .border.border-dark.rounded-2
+          img.img-fluid(src="~assets/images/image.png")
+
+  .col-md-auto.w-md-35
+    .bg-primaryLight
+      .card.rounded-0
+        .card-body.py-8
+          a.btn.btn-primary.btn-lg.d-block
+            | 張貼動態
+                

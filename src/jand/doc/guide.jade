@@ -1,0 +1,95 @@
+extends ../extends/_layoutTemplate_innerPage.jade
+block bodyMainPush
+  .col-12
+    .card.mb-4
+      .card-body
+        h2.mb-5
+          a#colors.text-dark(href="#colors")
+            | colors
+        h3.mb-5
+          a#Background.text-dark(href="#Background")
+            | Background
+        .row.g-0
+          .col-md-4
+            .p-3.mb-2.bg-primary.text-white
+              | .bg-primary ($c-blue)
+          .col-md-4
+            .p-3.mb-2.bg-primaryLight
+              | .bg-primaryLight ($c-blueLight)
+          .col-md-4
+            .p-3.mb-2.bg-secondary.text-white
+              | .bg-secondary
+          .col-md-4
+            .p-3.mb-2.bg-success.text-white
+              | .bg-success
+          .col-md-4
+            .p-3.mb-2.bg-danger.text-white
+              | .bg-danger ($c-danger)
+          .col-md-4
+            .p-3.mb-2.bg-warning.text-dark
+              | .bg-warning ($c-yellow)
+          .col-md-4
+            .p-3.mb-2.bg-pastel.text-white
+              | .bg-pastel ($c-pastel)
+          .col-md-4
+            .p-3.mb-2.bg-info.text-dark
+              | .bg-info
+          .col-md-4
+            .p-3.mb-2.bg-light.text-dark
+              | .bg-light ($c-light)
+          .col-md-4
+            .p-3.mb-2.bg-dark.text-white
+              | .bg-dark ($c-dark)
+          .col-md-4
+            .p-3.mb-2.bg-body.text-dark
+              | .bg-body
+          .col-md-4
+            .p-3.mb-2.bg-white.text-dark
+              | .bg-white
+          .col-md-4
+            .p-3.mb-2.bg-transparent.text-dark
+              | .bg-transparent
+        h3.mb-5
+          a#color.text-dark(href="#color")
+            | color (text)
+        .row.g-0
+          .col
+            span.d-inline-block.me-3.text-primary .text-primary
+            span.d-inline-block.me-3.text-primaryLight.bg-dark .text-primaryLight
+            span.d-inline-block.me-3.text-secondary .text-secondary
+            span.d-inline-block.me-3.text-success .text-success
+            span.d-inline-block.me-3.text-danger .text-danger
+            span.d-inline-block.me-3.text-warning.bg-dark .text-warning
+            span.d-inline-block.me-3.text-pastel .text-pastel
+            span.d-inline-block.me-3.text-info.bg-dark .text-info
+            span.d-inline-block.me-3.text-light.bg-dark .text-light
+            span.d-inline-block.me-3.text-dark .text-dark
+            span.d-inline-block.me-3.text-body .text-body
+            span.d-inline-block.me-3.text-muted .text-muted
+            span.d-inline-block.me-3.text-white.bg-dark .text-white
+            span.d-inline-block.me-3.text-black-50 .text-black-50
+            span.d-inline-block.me-3.text-white-50.bg-dark .text-white-50
+
+    .card.mb-4
+      .card-body
+        h2.mb-5 
+          a#Forms.text-dark(href="#Forms")
+            | Forms
+        .input-group.input-group-sm.mb-3
+          span#inputGroup-sizing-sm.input-group-text Small
+          input.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
+        .input-group.mb-3
+          span#inputGroup-sizing-default.input-group-text Default
+          input.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-default')
+        .input-group.input-group-lg.mb-3
+          span#inputGroup-sizing-lg.input-group-text Large
+          input.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-lg')
+        .row.g-3
+          .w-md-35
+            select.form-select.form-select(aria-label='.form-select-lg example')
+              option(selected='') 最新貼文
+              option(value='1') 最舊貼文
+          .col
+            .input-group
+              input.form-control(type='text' placeholder="搜尋貼文")
+              button#button-addon2.btn.btn-primary(type='button') Button
