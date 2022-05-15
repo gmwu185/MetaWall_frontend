@@ -478,10 +478,10 @@ $utilities-bg-colors: map-loop($utilities-bg, rgba-css-var, "$key", "bg") !defau
 //
 // Style anchor elements.
 
-$link-color:                              $primary !default;
+$link-color:                              $dark !default;  // $primary !default;
 $link-decoration:                         none !default; // underline !default;
 $link-shade-percentage:                   20% !default;
-$link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-color:                        shift-color($primary, $link-shade-percentage) !default; // shift-color($link-color, $link-shade-percentage) !default;
 $link-hover-decoration:                   underline !default;  // null !default;
 
 $stretched-link-pseudo-element:           after !default;
@@ -1295,7 +1295,7 @@ $card-border-color:                 $dark !default;  // rgba($black, .125) !defa
 $card-border-radius:                .5rem !default;  // $border-radius !default;
 $card-box-shadow:                   null !default;
 $card-inner-border-radius:          subtract($card-border-radius, $card-border-width) !default;
-$card-cap-padding-y:                $card-spacer-y * .5 !default;
+$card-cap-padding-y:                $card-spacer-y !default;  // $card-spacer-y * .5 !default;
 $card-cap-padding-x:                $card-spacer-x !default;
 $card-cap-bg:                       rgba($black, .03) !default;
 $card-cap-color:                    null !default;

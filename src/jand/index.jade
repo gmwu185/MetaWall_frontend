@@ -1,6 +1,6 @@
 extends extends/_layoutTemplate_innerPage.jade
 block bodyMainPush
-  .col-lg.me-7
+  .col-lg.me-lg-7
     .row.g-3.mb-4
       .w-lg-30
         select.form-select.form-select(aria-label='.form-select-lg example')
@@ -10,55 +10,86 @@ block bodyMainPush
         .input-group
           input.form-control(type='text' placeholder="搜尋貼文")
           button#button-addon2.btn.btn-primary(type='button') Button
-    ul.list-unstyled.row.gy-4.mb-0
-      li.col-12
-        .card
-          .card-body
-            .row.g-4.mb-4
+    ul.list-unstyled.row.gy-4.mb-lg-0
+      li.col.col-lg-12
+        .card.bg-white.u-solidShadow
+          .card-header.pb-0.border-bottom-0.bg-white
+            .row.g-4
               .col-auto
-                .c-pseudoPhoto.c-pseudoPhoto--m.c-pseudoPhoto--user(
-                  style=`background-image: url(assets/static-images/user.png)`
-                )
+                a(href="#")
+                  .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user(
+                    style=`background-image: url(assets/static-images/user.png)`
+                  )
               .col
-                p.mb-0 邊緣小杰
-                small.text-pastel 2022/1/10 12:00
+                p.fw-bold.mb-0
+                  a(href="#") 邊緣小杰
+                small.text-pastel.u-fontFamily--BalooDa2 2022/1/10 12:00
+          .card-body.pt-4
             p
               | 外面看起來就超冷....
               br 
               | 我決定回被窩繼續睡....#{`>.<`}
-            .border.border-dark.rounded-2
-              img.img-fluid(src="~assets/images/image.png")
+            .c-minHightPhoto
+              img.c-minHightPhoto__img(src="~assets/images/image.png")
       li.col-12
-        .card
-          .card-body
-            .row.g-4.mb-4
+        .card.bg-white.u-solidShadow
+          .card-header.pb-0.border-bottom-0.bg-white
+            .row.g-4
               .col-auto
-                .c-pseudoPhoto.c-pseudoPhoto--m.c-pseudoPhoto--user(
-                  style=`background-image: url(assets/static-images/user6.png)`
-                )
+                a(href="#")
+                  .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user(
+                    style=`background-image: url(assets/static-images/user6.png)`
+                  )
               .col
-                p.mb-0 波吉
-                small.text-pastel 2022/1/10 12:00
+                p.fw-bold.mb-0
+                  a(href="#") 波吉
+                small.text-pastel.u-fontFamily--BalooDa2 2022/1/10 12:00
+          .card-body.pt-4
             p.mb-0
               | 我一定要成為很棒棒的國王！
       li.col-12
-        .card
-          .card-body
-            .row.g-4.mb-4
+        .card.bg-white.u-solidShadow
+          .card-header.pb-0.border-bottom-0.bg-white
+            .row.g-4
               .col-auto
-                .c-pseudoPhoto.c-pseudoPhoto--m.c-pseudoPhoto--user(
-                  style=`background-image: url(assets/static-images/user6.png)`
-                )
+                a(href="#")
+                  .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user(
+                    style=`background-image: url(assets/static-images/user7.jpg)`
+                  )
               .col
-                p.mb-0 阿爾敏
-                small.text-pastel 2022/1/10 12:00
+                p.fw-bold.mb-0
+                  a(href="#") 阿爾敏
+                small.text-pastel.u-fontFamily--BalooDa2 2022/1/10 12:00
+          .card-body.pt-4
             p.mb-0
               | 各位我有一個作戰計畫
 
-  .col-lg-auto.w-lg-35
-    .bg-primaryLight
-      .card.rounded-0
-        .card-body.py-8
-          a.btn.btn-primary.btn-lg.d-block
-            | 張貼動態
-                
+  .col-lg-auto.w-lg-35.p-stickyNav
+    .card.p-stickyNav__inner
+      .card-body.py-2.py-lg-8
+        a.btn.btn-primary.btn-lg.d-none.d-lg-block.u-solidShadow--leftBottom.mb-6
+          | 張貼動態
+        ul.list-unstyled.row.gy-lg-4.mb-0.justify-content-center
+          li.col-auto.col-lg-12
+            a.w-100.d-flex.align-items-center.p-stickyNavBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user.p-stickyNavBtns__icon.me-lg-4(
+                style=`background-image: url(assets/static-images/user.png)`
+              )
+              p.fw-bold.p-stickyNavBtns__title.mb-0 邊緣小杰
+          li.col-auto.col-lg-12
+            a.w-100.d-flex.align-items-center.p-stickyNavBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.p-stickyNavBtns__icon.me-lg-4(
+                style=`background-image: url()`
+              )
+              p.fw-bold.p-stickyNavBtns__title.mb-0 追蹤名單
+          li.col-auto.col-lg-12
+            a.w-100.d-flex.align-items-center.p-stickyNavBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.p-stickyNavBtns__icon.me-lg-4(
+                style=`background-image: url()`
+              )
+              p.fw-bold.p-stickyNavBtns__title.mb-0 我按讚的文章
+          li.col-auto.col-lg-12.d-lg-none
+            a.w-100.d-flex.align-items-center.p-stickyNavBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.p-stickyNavBtns__icon.p-stickyNavBtns__icon--addPost.me-lg-4
+              p.fw-bold.p-stickyNavBtns__title.mb-0 張貼動態
+

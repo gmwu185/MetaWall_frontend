@@ -1,0 +1,9 @@
+.u-solidShadow {
+  box-shadow: 0px 4px 0 $dark;
+  &--leftBottom {
+    box-shadow: -4px 4px 0 $dark;
+  }
+  &--rightBottom {
+    box-shadow: 4px 4px 0 $dark;
+  }
+}
