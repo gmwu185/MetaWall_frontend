@@ -9,7 +9,9 @@ block bodyMainPush
       .col
         .input-group
           input.form-control(type='text' placeholder="搜尋貼文")
-          button#button-addon2.btn.btn-primary(type='button') Button
+          button#button-addon2.btn.btn-primary.px-3.py-2(type='button')
+            span.h5.lh-sm.mb-0
+              i.fas.fa-search(aria-hidden='true')
     ul.list-unstyled.row.gy-4.mb-lg-0
       li.col.col-lg-12
         .card.bg-white.u-solidShadow
@@ -23,7 +25,8 @@ block bodyMainPush
               .col
                 p.mb-0
                   a.fw-bold(href="#") 邊緣小杰
-                  small.d-block.text-pastel.u-fontFamily--BalooDa2.fw-light 2022/1/10 12:00
+                  small.d-block.text-pastel.u-fontFamily--BalooDa2.fw-light
+                    | 2022/1/10 12:00
           .card-body.pt-4
             p
               | 外面看起來就超冷....
@@ -64,31 +67,38 @@ block bodyMainPush
             p.mb-0
               | 各位我有一個作戰計畫
 
-  .col-lg-auto.w-lg-35.p-stickyNav
-    .card.p-stickyNav__inner
+  .col-lg-auto.w-lg-35.p-stickyNavSub
+    .card.p-stickyNavSub__inner
       .card-body.py-2.py-lg-8
         a.btn.btn-primary.btn-lg.d-none.d-lg-block.u-solidShadow--leftBottom.mb-6
           | 張貼動態
-        ul.list-unstyled.row.gy-lg-4.mb-0.justify-content-center
-          li.col-auto.col-lg-12
-            a.w-100.d-flex.align-items-center.p-stickyNavBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user.p-stickyNavBtns__icon.me-lg-4(
+        ul.p-stickyNavSubMenu.list-unstyled.ps-lg-2.mb-0
+          li.p-stickyNavSubMenu__item.d-lg-none.order-1
+            a.w-100.p-stickyNavSubBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.p-stickyNavSubBtns__icon.p-stickyNavSubBtns__icon--primary.me-lg-4
+                i.fas.fa-plus
+              p.fw-bold.p-stickyNavSubBtns__title.mb-0 張貼動態
+          li.p-stickyNavSubMenu__item.d-none.d-lg-block
+            a.w-100.p-stickyNavSubBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user.me-lg-4(
                 style=`background-image: url(assets/static-images/user.png)`
               )
-              p.fw-bold.p-stickyNavBtns__title.mb-0 邊緣小杰
-          li.col-auto.col-lg-12
-            a.w-100.d-flex.align-items-center.p-stickyNavBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.p-stickyNavBtns__icon.me-lg-4(
-                style=`background-image: url()`
+              p.fw-bold.p-stickyNavSubBtns__title.mb-0 邊緣小杰
+          li.p-stickyNavSubMenu__item.d-block.d-lg-none
+            a.w-100.p-stickyNavSubBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user.p-stickyNavSubBtns__icon.p-stickyNavSubBtns__icon--home.fas.me-lg-4(
+                style=`background-image: url(assets/static-images/user.png)`
               )
-              p.fw-bold.p-stickyNavBtns__title.mb-0 追蹤名單
-          li.col-auto.col-lg-12
-            a.w-100.d-flex.align-items-center.p-stickyNavBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.p-stickyNavBtns__icon.me-lg-4(
-                style=`background-image: url()`
-              )
-              p.fw-bold.p-stickyNavBtns__title.mb-0 我按讚的文章
-          li.col-auto.col-lg-12.d-lg-none
-            a.w-100.d-flex.align-items-center.p-stickyNavBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.p-stickyNavBtns__icon.p-stickyNavBtns__icon--addPost.me-lg-4
-              p.fw-bold.p-stickyNavBtns__title.mb-0 張貼動態
+                i.fas.fa-home
+              p.fw-bold.p-stickyNavSubBtns__title.mb-0 回首頁
+          li.p-stickyNavSubMenu__item
+            a.w-100.p-stickyNavSubBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.p-stickyNavSubBtns__icon.me-lg-4
+                i.far.fa-bell
+              p.fw-bold.p-stickyNavSubBtns__title.mb-0 追蹤名單
+          li.p-stickyNavSubMenu__item
+            a.w-100.p-stickyNavSubBtns(href="#")
+              .c-pseudoRound.c-pseudoRound--m.p-stickyNavSubBtns__icon.me-lg-4
+                i.far.fa-thumbs-up
+              p.fw-bold.p-stickyNavSubBtns__title.mb-0 我按讚的文章
+          

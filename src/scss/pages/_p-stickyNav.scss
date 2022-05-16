@@ -1,4 +1,9 @@
-.p-stickyNav {
+.p-stickyNavMain {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.p-stickyNavSub {
   @include media-breakpoint-down(lg) {
     position: sticky;
     bottom: 8px;
@@ -16,24 +21,45 @@
     @include media-breakpoint-up(lg) {
       background-color: $white;
       position: sticky;
-      top: 16px;
+      top: 70px;
+    }
+  }
+  &Menu {
+    @include media-breakpoint-down(lg) {
+      display: flex;
+      justify-content: space-around;
+    }
+    &__item {
+      @include media-breakpoint-up(lg) {
+        margin-bottom: 22px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
     }
   }
   &Btns {
+    display: flex;
+    align-items: center;
     &__icon {
-      @include media-breakpoint-down(lg) {
-        background-color: $white;
-        background-image: none !important;
-        border-width: 3px;
+      background-color: $white;
+      background-image: none !important;
+      border-width: 3px;
+      color: $dark;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      &:hover {
+        color: $white;
       }
       @include media-breakpoint-up(lg) {
         background-color: $primaryLight;
-        
       }
-      &--addPost {
-        @include media-breakpoint-down(lg) {
-          background-color: $primary;
-        }
+      &--primary {
+        background-color: $primary;
+        color: $white;
       }
     }
     &__title {
@@ -43,8 +69,9 @@
     }
     &:hover {
       text-decoration: none;
-      & .p-stickyNavBtns__icon {
+      & .p-stickyNavSubBtns__icon {
         background-color: $primary;
+        color: $white;
       }
     }
   }
