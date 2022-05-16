@@ -1,0 +1,51 @@
+.p-stickyNav {
+  @include media-breakpoint-down(lg) {
+    position: sticky;
+    bottom: 8px;
+  }
+  @include media-breakpoint-up(lg) {
+    position: relative;
+  }
+  &__inner {
+    @include media-breakpoint-down(lg) {
+      background-color: $c-light;
+      border: 3px solid $dark;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+    @include media-breakpoint-up(lg) {
+      background-color: $white;
+      position: sticky;
+      top: 16px;
+    }
+  }
+  &Btns {
+    &__icon {
+      @include media-breakpoint-down(lg) {
+        background-color: $white;
+        background-image: none !important;
+        border-width: 3px;
+      }
+      @include media-breakpoint-up(lg) {
+        background-color: $primaryLight;
+        
+      }
+      &--addPost {
+        @include media-breakpoint-down(lg) {
+          background-color: $primary;
+        }
+      }
+    }
+    &__title {
+      @include media-breakpoint-down(lg) {
+        display: none;
+      }
+    }
+    &:hover {
+      text-decoration: none;
+      & .p-stickyNavBtns__icon {
+        background-color: $primary;
+      }
+    }
+  }
+}
