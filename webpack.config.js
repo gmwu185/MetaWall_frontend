@@ -8,8 +8,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // console.log('__dirname', __dirname);
 // console.log('resolve:', path.resolve(__dirname, './src'));
-console.log(`webServer => http://${process.env.HOST}:${process.env.PORT}`);
 const NODE_ENV = process.env.NODE_ENV;
+NODE_ENV === 'development' ? console.log(`webServer => http://${process.env.HOST}:${process.env.PORT}`) : ''
 
 const HtmlWebpackPluginMinifySets = {
   collapseWhitespace: false, // true HTML 壓成單行
@@ -177,7 +177,7 @@ module.exports = {
                 enabled: false,
               },
               pngquant: {
-                quality: '65-90',
+                quality: [0.65, 0.90],
                 speed: 4,
               },
               gifsicle: {
