@@ -236,15 +236,22 @@ module.exports = {
 
     /* HTML 樣版 ------------------------------------------------------------------ */
     new HtmlWebpackPlugin({
-      filename: 'doc/guide.html',
-      template: 'jand/doc/guide.jade',
+      filename: 'index.html',
+      template: 'jand/index.jade',
+      chunks: ['vendor', 'main', 'p_index'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 3.全體動態牆 / allDynamicWall
+    new HtmlWebpackPlugin({
+      filename: 'allDynamicWall.html',
+      template: 'jand/allDynamicWall.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'jand/index.jade',
-      chunks: ['vendor', 'main', 'p_index'],
+      filename: 'doc-guide.html',
+      template: 'jand/doc-guide.jade',
+      chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     new HtmlWebpackPlugin({
