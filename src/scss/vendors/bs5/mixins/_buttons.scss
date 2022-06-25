@@ -20,7 +20,7 @@
 ) {
   color: $color;
   @include gradient-bg($background);
-  border-color: $border;
+  border-color: $dark; // $border;
   @include box-shadow($btn-box-shadow);
 
   &:hover {

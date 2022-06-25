@@ -76,6 +76,7 @@ $c-dark: #000400 !default;
 $c-pastel: #9B9893 !default; // (淡字提示文字)
 // #A8B0B9 (禁按按鈕背景色)
 // #808080 (禁按按鈕外框色)
+// rgba(112, 112, 112, 24) (背景圖上的線)
 
 // scss-docs-start theme-color-variables
 $primary:       $c-blue !default; // $blue !default;
@@ -564,9 +565,9 @@ $border-color:                $dark !default;  // $gray-300 !default;
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
-$border-radius:               .8rem !default;  // .25rem !default;
-$border-radius-sm:            .8rem !default;  // .2rem !default;
-$border-radius-lg:            .8rem !default;  // .3rem !default;
+$border-radius:               .5rem !default; // 8px  // .25rem !default;
+$border-radius-sm:            .25rem !default; // 4px // .2rem !default;
+$border-radius-lg:            .8rem !default; // 12.8px // .3rem !default;
 $border-radius-pill:          50rem !default;
 // scss-docs-end border-radius-variables
 
@@ -836,8 +837,8 @@ $btn-link-disabled-color:     $gray-600 !default;
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius:           $border-radius !default;
-$btn-border-radius-sm:        $border-radius-sm !default;
-$btn-border-radius-lg:        .5rem !default;  // $border-radius-lg !default;
+$btn-border-radius-sm:        $border-radius !default; // $border-radius-sm !default;
+$btn-border-radius-lg:        $border-radius !default;  // $border-radius-lg !default;
 
 $btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
 

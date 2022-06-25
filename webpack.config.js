@@ -241,6 +241,13 @@ module.exports = {
       chunks: ['vendor', 'main', 'p_index'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 1.登入 / login
+    new HtmlWebpackPlugin({
+      filename: 'login.html',
+      template: 'jand/login.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     // 3.全體動態牆 / allDynamicWall
     new HtmlWebpackPlugin({
       filename: 'allDynamicWall.html',
