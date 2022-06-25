@@ -50,7 +50,9 @@ body {
   max-width: 870px;
   margin: auto;
   &MainImg {
-    max-width: 55vw;
+    @include media-breakpoint-down(lg) {
+      max-width: 45vw;
+    }
   }
 }
 /* /pages -------------------------------------------------------------------- */

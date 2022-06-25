@@ -59,10 +59,12 @@
 @each $color, $value in $theme-colors {
   .btn-#{$color} {
     @include button-variant($value, $value);
+    box-shadow: -4px 4px 0 $dark;
     &:disabled,
     &.disabled {
       background-color: #A8B0B9;
       border: #808080 2px solid;
+      box-shadow: none;
     }
   }
 }
