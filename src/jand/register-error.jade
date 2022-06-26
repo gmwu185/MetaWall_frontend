@@ -1,0 +1,28 @@
+extends extends/_layoutTemplate_into.jade
+block bodyMainPush
+  main.container-fluid
+    .p-login.border.border-dark.border-2.bg-light.u-solidShadowOpacity--15.u-solidShadowOpacity--15--leftBottom.px-md-9.py-6.py-md-17.my-4
+      .container
+        .row.gx-md-12
+          .col-md-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
+            img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
+          .col-md
+            h1.text-primary.text-center.mb-0(title="MetaWall logo")
+              span.logo.logo--xl MetaWall
+            // /** 使用 webServer 回錯誤錯
+                * https://bootstrap5.hexschool.com/docs/5.1/forms/validation/#how-it-works
+                * .is-invalid 直接操作 .form-control 表單元素，用於 伺服器端驗證 的偽類，不需要在父層加入 .was-validated 類別。
+               */
+            form.mb-8(action="")
+              h2.h4.text-center.mb-6.mb-md-9 註冊
+              .mb-4
+                input.form-control.is-invalid(type="text", name="", placeholder="暱稱", required='required', value="波")
+                .invalid-feedback 暱稱至少 2 個字元以上
+              .mb-4
+                input.form-control.is-invalid(type="email", name="", placeholder="Email", required='required',  value="pogi@gmail.com")
+                .invalid-feedback 帳號已被註冊，請替換新的 Email！
+              .mb-4
+                input.form-control.is-invalid(type="password", name="", placeholder="Password", required='required')
+                .invalid-feedback 密碼需至少 8 碼以上，並中英混合
+            a.btn.btn-primary.d-block.disabled.btn-lg.mb-4(href="#") 註冊帳號
+            a.btn.btn-link.py-0.d-block(href="#") 登入

@@ -248,6 +248,34 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 1.登入 – 1
+    new HtmlWebpackPlugin({
+      filename: 'login-1.html',
+      template: 'jand/login-1.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 1-2.登入（錯誤訊息）
+    new HtmlWebpackPlugin({
+      filename: 'login-error.html',
+      template: 'jand/login-error.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 2.註冊
+    new HtmlWebpackPlugin({
+      filename: 'register.html',
+      template: 'jand/register.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 2-2.註冊（錯誤訊息）
+    new HtmlWebpackPlugin({
+      filename: 'register-error.html',
+      template: 'jand/register-error.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     // 3.全體動態牆 / allDynamicWall
     new HtmlWebpackPlugin({
       filename: 'allDynamicWall.html',
