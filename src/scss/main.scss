@@ -1,9 +1,7 @@
 /* base --------------------------------------------------------------------- */
 @import 'base/_fontSet.scss';
 body {
-  // background-image: url(~images/logo.png);
   background-position: center center;
-  // background-repeat: no-repeat;
   min-height: 100vh;
 }
 /* /base --------------------------------------------------------------------- */
@@ -41,6 +39,7 @@ body {
 }
 @import 'components/c-minHightPhoto';
 @import 'components/c-pseudoRound';
+@import 'components/c-like';
 /* /components --------------------------------------------------------------- */
 
 

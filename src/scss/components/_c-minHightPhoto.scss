@@ -4,6 +4,11 @@
   overflow: hidden !important;
   border: $dark solid 2px;
   border-radius: 8px;
+  max-height: 157px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
   &__img {
     min-height: 157px;
     object-fit: cover;

@@ -1,0 +1,13 @@
+.c-like {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  &__icon {
+    font-size: 20px;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+  &__content {
+    line-height: 27px;
+  }
+}

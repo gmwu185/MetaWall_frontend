@@ -283,6 +283,13 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 3-2.全體動態牆-有留言 / allDynamicWall-message
+    new HtmlWebpackPlugin({
+      filename: 'allDynamicWall-message.html',
+      template: 'jand/allDynamicWall-message.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     new HtmlWebpackPlugin({
       filename: 'doc-guide.html',
       template: 'jand/doc-guide.jade',
