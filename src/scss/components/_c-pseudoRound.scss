@@ -4,6 +4,7 @@
     display: block;
     padding-top: 100%;
   }
+
   // background-color: $primaryLight;
   background-position: center center;
   background-repeat: no-repeat;
@@ -11,9 +12,9 @@
   overflow: hidden;
   border-radius: 50%;
   border: $dark 2px solid;
-
   width: 45px;
   height: 45px;
+  display: inline-block;
 
   &--xs {
     width: 30px;

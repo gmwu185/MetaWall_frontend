@@ -2,12 +2,13 @@ extends extends/_layoutTemplate_innerPage.jade
 block bodyMainPush
   .col-12
     .card.mb-4
-      .card-body
-        h2.mb-5
-          a#colors.text-dark(href="#colors")
+      .card-header
+        h2.mb-0
+          a#colors.text-dark(href="#typography")
             | Typography
-        h3.mb-5
-          a#color.text-dark(href="#color")
+      .card-body
+        h3.border-bottom.pb-2.mb-3
+          a#color.text-dark(href="#headings")
             | Headings
         .row.g-0
           .col
@@ -20,11 +21,12 @@ block bodyMainPush
 
   .col-12
     .card.mb-4
-      .card-body
-        h2.mb-5
+      .card-header
+        h2.mb-0
           a#colors.text-dark(href="#colors")
             | colors
-        h3.mb-5
+      .card-body
+        h3.border-bottom.pb-2.mb-3
           a#Background.text-dark(href="#Background")
             | Background
         .row.g-0
@@ -99,7 +101,7 @@ block bodyMainPush
           .col-md-4
             .p-3.h-100.bg-transparent.text-dark
               | .bg-transparent
-        h3.mb-5
+        h3.border-bottom.pb-2.mb-3
           a#color.text-dark(href="#color")
             | color (text)
         .row.g-0
@@ -120,11 +122,13 @@ block bodyMainPush
             span.d-inline-block.me-3.text-black-50 .text-black-50
             span.d-inline-block.me-3.text-white-50.bg-dark .text-white-50
 
+  .col-12
     .card.mb-4
-      .card-body
-        h2.mb-5 
+      .card-header
+        h2.mb-0
           a#Forms.text-dark(href="#Forms")
             | Forms
+      .card-body
         .input-group.input-group-sm.mb-3
           span#inputGroup-sizing-sm.input-group-text Small
           input.form-control(type='text' aria-label='Sizing example input' aria-describedby='inputGroup-sizing-sm')
@@ -143,3 +147,49 @@ block bodyMainPush
             .input-group
               input.form-control(type='text' placeholder="搜尋貼文")
               button#button-addon2.btn.btn-primary(type='button') Button
+
+  .col-12
+    .card.mb-4
+      .card-header
+        h2.mb-0
+          a#components.text-dark(href="#components")
+            | components
+      .card-body
+        h3.border-bottom.pb-2.mb-3
+          a#logo.text-dark(href="#logo")
+            | logo
+        .mb-4
+          h1.c-logo.c-logo--xl.me-4.mb-0(href="#", title="MetaWall logo") MetaWall
+          span.c-logo.me-2(href="#", title="MetaWall logo") MetaWall
+        
+        h3.border-bottom.pb-2.mb-3
+          a#minHightPhoto.text-dark(href="#minHightPhoto")
+            | minHightPhoto
+        .mb-4
+          .c-minHightPhoto
+            img.c-minHightPhoto__img(src="~assets/images/post--01.png")
+        
+        h3.border-bottom.pb-2.mb-3
+          a#pseudoRound.text-dark(href="#pseudoRound")
+            | pseudoRound
+        .mb-4
+          span.c-pseudoRound.c-pseudoRound--xs.c-pseudoRound--user.me-2(
+            style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
+          )
+          span.c-pseudoRound.c-pseudoRound--s.c-pseudoRound--user.me-2(
+            style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
+          )
+          span.c-pseudoRound.c-pseudoRound--user.me-2(
+            style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
+          )
+          span.c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user.me-2(
+            style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
+          )
+        
+        h3.border-bottom.pb-2.mb-3
+          a#like.text-dark(href="#like")
+            | like
+        .mb-4
+          .c-like.mb-0
+            i.c-like__icon.far.fa-thumbs-up.text-primary(aria-hidden='true')
+            .c-like__content.u-fontFamily--BalooDa2 12
