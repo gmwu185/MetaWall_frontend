@@ -1,0 +1,10 @@
+// 四方連續方格線
+.u-bg--QuartetContinuousPattern {
+  /* 參考資料 
+   * 多重背景與 CSS：background 線條：https://ithelp.ithome.com.tw/articles/10191042
+   * SCSS RGB顏色函數-RGBA()函數：https://changtsuiling.gitbooks.io/sass/content/chapter9/4-2-rgbyan-se-han-6578-rgba-han-shu.html
+  */
+  background-image: linear-gradient(rgba(#707070, 0.24) 1px, transparent 0), linear-gradient(90deg,rgba(#707070, 0.24) 1px, transparent 0);
+  background-size: 60px 60px, 60px 60px;
+  background-position-y: 0;
+}

@@ -1,0 +1,14 @@
+.c-logo {
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Paytone One', sans-serif;
+  font-size: 26px;
+  line-height: 36px;   
+  &--xl {
+    font-size: 36px;
+    @include media-breakpoint-up(lg) {
+      line-height: 84px;
+      font-size: 60px;
+    }
+  }
+}
