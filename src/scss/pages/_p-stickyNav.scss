@@ -7,6 +7,7 @@
   @include media-breakpoint-down(lg) {
     position: sticky;
     bottom: 8px;
+    z-index: 100;
   }
   @include media-breakpoint-up(lg) {
     position: relative;

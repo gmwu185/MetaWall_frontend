@@ -11,28 +11,8 @@ html(lang='zh-Hant-TW')
     block localHand
     // /block localHand j-template
   body.bg-light.u-bg--QuartetContinuousPattern.position-relative
-    nav.p-stickyNavMain.border.border-3.border-top-0.border-start-0.border-end-0.border-dark.bg-white
-      .container
-        .row
-          .navbar.navbar-expand-lg.navbar-light.justify-content-between.py-3
-            a.c-logo(href="index.html", title="MetaWall logo") MetaWall
-            .btn-group
-              a.text-decoration-none.d-flex.align-items-center(
-                href="#" data-bs-toggle='dropdown' data-bs-display='static' aria-expanded='false'
-              )
-                span.c-pseudoRound.c-pseudoRound--xs.c-pseudoRound--user.me-2(
-                  style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
-                )
-                span.u-fontFamily--AzeretMono.fw-bold.text-dark.lh-19.px-1.pb-1.border-dark.border-bottom
-                  | Member
-              ul.dropdown-menu.dropdown-menu-end.dropdown-menu-lg-start.text-center.u-solidShadowDoub
-                li.border.border-dark.border-2.border-top-0.border-start-0.border-end-0
-                  button.dropdown-item.py-2(type='button') 我的貼文牆
-                li.border.border-dark.border-2.border-top-0.border-start-0.border-end-0
-                  button.dropdown-item.py-2(type='button') 修改個人資料
-                li.border.border-dark.border-0
-                  button.dropdown-item.py-2(type='button') 登出
-            
+    include ../components/_stickyNavMain.jade
+
     main.pt-5.pb-5.py-lg-15
       .container
         .row.g-0

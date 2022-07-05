@@ -13,7 +13,7 @@ NODE_ENV === 'development' ? console.log(`webServer => http://${process.env.HOST
 
 const HtmlWebpackPluginMinifySets = {
   collapseWhitespace: false, // true HTML 壓成單行
-  removeComments: true, // 刪除註解
+  removeComments: false, // 刪除註解
   removeRedundantAttributes: true, // 刪除多餘的屬性
   removeScriptTypeAttributes: true, // 刪除腳本類型屬性
   removeStyleLinkTypeAttributes: true, // 刪除樣式鏈接類型屬性
