@@ -37,6 +37,39 @@ block bodyMainPush
             .c-like
               i.c-like__icon.far.fa-thumbs-up.text-primary(aria-hidden='true')
               .c-like__content.u-fontFamily--BalooDa2 12
+            .w-100.d-flex.mb-4
+              span.c-pseudoRound.c-pseudoRound--s.c-pseudoRound--user.me-2(
+                style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
+              )
+              .input-group.input-group-sm
+                input.form-control(value="", placeholder='留言...')
+                button.btn.btn-primary.py-2.px-6.px-md-12 留言
+            ul.list-unstyled
+              li.card.bg-light.border-0.mb-4
+                .row.g-2.card-body.p-4
+                  .col-auto
+                    .c-pseudoRound.c-pseudoRound--s.c-pseudoRound--user(
+                      style=`background-image: url(assets/static-images/post--01__user--希琳.png)`
+                    )
+                  .col
+                    p.mb-0
+                      a.fw-bold(href="#") 希琳
+                      small.d-block.text-pastel.u-fontFamily--BalooDa2.lh-19.fw-light
+                        | 2022/1/10 12:00
+                    p.mb-0 真的～我已經準備冬眠了
+              li.card.bg-light.border-0.mb-4
+                .row.g-2.card-body.p-4
+                  .col-auto
+                    .c-pseudoRound.c-pseudoRound--s.c-pseudoRound--user(
+                      style=`background-image: url(assets/static-images/post--01__user--波吉.png)`
+                    )
+                  .col
+                    p.mb-0
+                      a.fw-bold(href="#") 波吉
+                      small.d-block.text-pastel.u-fontFamily--BalooDa2.lh-19.fw-light
+                        | 2022/1/10 12:00
+                    p.mb-0 會嗎？我沒穿衣服都不覺得冷
+                  
       li.col-12
         .card.bg-white.u-solidShadow
           .card-header.pb-0.border-bottom-0.bg-white
@@ -63,7 +96,7 @@ block bodyMainPush
                 style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
               )
               .input-group.input-group-sm
-                input.form-control(value="好羨慕ㄛ！！")
-                button.btn.btn-warning.px-12.py-2 留言
+                input.form-control(value="好羨慕ㄛ！！", placeholder='留言...')
+                button.btn.btn-warning.py-2.px-6.px-md-12 留言
   
   include ./components/_stickyNavSub.jade
