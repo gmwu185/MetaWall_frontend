@@ -25,7 +25,7 @@ block bodyMainPush
               .col
                 p.mb-0
                   a.fw-bold(href="#") 邊緣小杰
-                  small.d-block.text-pastel.u-fontFamily--BalooDa2.fw-light
+                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2.fw-light
                     | 2022/1/10 12:00
           .card-body.pt-4
             p
@@ -46,7 +46,7 @@ block bodyMainPush
               .col
                 p.mb-0
                   a.fw-bold(href="#") 波吉
-                  small.d-block.text-pastel.u-fontFamily--BalooDa2 2022/1/10 12:00
+                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2 2022/1/10 12:00
           .card-body.pt-4
             p.mb-0
               | 我一定要成為很棒棒的國王！
@@ -62,43 +62,9 @@ block bodyMainPush
               .col
                 p.mb-0
                   a.fw-bold(href="#") 阿爾敏
-                  small.d-block.text-pastel.u-fontFamily--BalooDa2 2022/1/10 12:00
+                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2 2022/1/10 12:00
           .card-body.pt-4
             p.mb-0
               | 各位我有一個作戰計畫
 
-  .col-lg-auto.w-lg-35.p-stickyNavSub
-    .card.p-stickyNavSub__inner
-      .card-body.py-2.py-lg-8
-        a.btn.btn-primary.btn-lg.d-none.d-lg-block.u-solidShadow--leftBottom.mb-6
-          | 張貼動態
-        ul.p-stickyNavSubMenu.list-unstyled.ps-lg-2.mb-0
-          li.p-stickyNavSubMenu__item.d-lg-none.order-1
-            a.w-100.p-stickyNavSubBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.p-stickyNavSubBtns__icon.p-stickyNavSubBtns__icon--primary.me-lg-4
-                i.fas.fa-plus
-              p.fw-bold.p-stickyNavSubBtns__title.mb-0 張貼動態
-          li.p-stickyNavSubMenu__item.d-none.d-lg-block
-            a.w-100.p-stickyNavSubBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user.me-lg-4(
-                style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
-              )
-              p.fw-bold.p-stickyNavSubBtns__title.mb-0 邊緣小杰
-          li.p-stickyNavSubMenu__item.d-block.d-lg-none
-            a.w-100.p-stickyNavSubBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.c-pseudoRound--user.p-stickyNavSubBtns__icon.p-stickyNavSubBtns__icon--home.fas.me-lg-4(
-                style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
-              )
-                i.fas.fa-home
-              p.fw-bold.p-stickyNavSubBtns__title.mb-0 回首頁
-          li.p-stickyNavSubMenu__item
-            a.w-100.p-stickyNavSubBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.p-stickyNavSubBtns__icon.me-lg-4
-                i.far.fa-bell
-              p.fw-bold.p-stickyNavSubBtns__title.mb-0 追蹤名單
-          li.p-stickyNavSubMenu__item
-            a.w-100.p-stickyNavSubBtns(href="#")
-              .c-pseudoRound.c-pseudoRound--m.p-stickyNavSubBtns__icon.me-lg-4
-                i.far.fa-thumbs-up
-              p.fw-bold.p-stickyNavSubBtns__title.mb-0 我按讚的文章
-          
+  include ./components/_stickyNavSub.jade
