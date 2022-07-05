@@ -43,7 +43,9 @@ block bodyMainPush
               )
               .input-group.input-group-sm
                 input.form-control(value="", placeholder='留言...')
-                button.btn.btn-primary.py-2.px-6.px-md-12 留言
+                button.btn.btn-primary.py-2.px-4.px-md-12
+                  span.position-relative
+                    span 留言
             ul.list-unstyled
               li.card.bg-light.border-0.mb-4
                 .row.g-2.card-body.p-4
@@ -97,6 +99,10 @@ block bodyMainPush
               )
               .input-group.input-group-sm
                 input.form-control(value="好羨慕ㄛ！！", placeholder='留言...')
-                button.btn.btn-warning.py-2.px-6.px-md-12 留言
+                button.btn.btn-warning.py-2.px-4.px-md-12
+                  span.position-relative
+                    span 留言
+                    span.position-md-absolute.start-md-100.top-md-50.translate-middle-md-y.ms-md-1
+                      i.fas.fa-spinner.u-spinner--radiation
   
   include ./components/_stickyNavSub.jade

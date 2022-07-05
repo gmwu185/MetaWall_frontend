@@ -95,6 +95,7 @@ $utilities: map-merge(
     "translate-middle": (
       property: transform,
       class: translate-middle,
+      responsive: true,
       values: (
         null: translate(-50%, -50%),
         x: translateX(-50%),
