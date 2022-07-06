@@ -305,6 +305,13 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 8.我按讚的貼文 / myLike
+    new HtmlWebpackPlugin({
+      filename: 'myLike.html',
+      template: 'jand/myLike.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     new HtmlWebpackPlugin({
       filename: 'doc-guide.html',
       template: 'jand/doc-guide.jade',
