@@ -16,5 +16,8 @@
   
   &Doub {
     box-shadow: 5px 5px 0 -2px $white, 5px 5px 0 0 $dark;
+    &--leftBottom {
+      box-shadow: -5px 5px 0 -2px $white, -5px 5px 0 0 $dark;
+    }
   }
 }

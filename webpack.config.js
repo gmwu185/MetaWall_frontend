@@ -298,6 +298,13 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 4.追蹤名單 / followList
+    new HtmlWebpackPlugin({
+      filename: 'followList.html',
+      template: 'jand/followList.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     new HtmlWebpackPlugin({
       filename: 'doc-guide.html',
       template: 'jand/doc-guide.jade',
