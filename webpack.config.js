@@ -1,15 +1,17 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractCSS = new ExtractTextPlugin('[name].css');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractCSS = new ExtractTextPlugin('[name].css');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // console.log('__dirname', __dirname);
 // console.log('resolve:', path.resolve(__dirname, './src'));
 const NODE_ENV = process.env.NODE_ENV;
-NODE_ENV === 'development' ? console.log(`webServer => http://${process.env.HOST}:${process.env.PORT}`) : ''
+if (NODE_ENV === 'development') {
+  console.log(`webServer => http://${process.env.HOST}:${process.env.PORT}`);
+}
 
 const HtmlWebpackPluginMinifySets = {
   collapseWhitespace: false, // true HTML 壓成單行
@@ -82,18 +84,17 @@ module.exports = {
      * https://www.jianshu.com/p/85c0eb8f3b0f
      * https://andyyou.github.io/2015/07/23/webpack/
      */
-    open:
-      false,
-      // {
-      //   app: [
-      //     // 指定開啟瀏覽器 only one
-      //     // 'Google Chrome',
-      //     // 'Firefox',
-      //     'Firefox Developer Edition',
-      //     // '--incognito', // 無痕模式
-      //     '--other-flag',
-      //   ],
-      // },
+    open: false,
+    // {
+    //   app: [
+    //     // 指定開啟瀏覽器 only one
+    //     // 'Google Chrome',
+    //     // 'Firefox',
+    //     'Firefox Developer Edition',
+    //     // '--incognito', // 無痕模式
+    //     '--other-flag',
+    //   ],
+    // },
     overlay: {
       warnings: true,
       errors: true,
@@ -177,7 +178,7 @@ module.exports = {
                 enabled: false,
               },
               pngquant: {
-                quality: [0.65, 0.90],
+                quality: [0.65, 0.9],
                 speed: 4,
               },
               gifsicle: {
@@ -287,6 +288,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'allDynamicWall-message.html',
       template: 'jand/allDynamicWall-message.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 3-3.全體動態牆-沒有動態 / allDynamicWall-empty
+    new HtmlWebpackPlugin({
+      filename: 'allDynamicWall-empty.html',
+      template: 'jand/allDynamicWall-empty.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),

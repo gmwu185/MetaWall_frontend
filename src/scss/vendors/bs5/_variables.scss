@@ -74,6 +74,8 @@ $c-danger: #F57375 !default;
 $c-light: #EFECE7 !default; // (nav hover)
 $c-dark: #000400 !default;
 $c-pastel: #9B9893 !default; // (淡字提示文字)
+$c-pasteltTrbidity: #707070 !default;
+$c-green: #83C51D !default;
 // #A8B0B9 (禁按按鈕背景色)
 // #808080 (禁按按鈕外框色)
 // rgba(112, 112, 112, 24) (背景圖上的線)
@@ -82,11 +84,12 @@ $c-pastel: #9B9893 !default; // (淡字提示文字)
 $primary:       $c-blue !default; // $blue !default;
 $primaryLight:  $c-blueLight !default;
 $secondary:     $gray-600 !default;
-$success:       $green !default;
+$success:       $c-green !default; // $green !default;
 $info:          $cyan !default;
 $warning:       $c-yellow !default;  // $yellow !default;
 $danger:        $c-danger !default; // $red !default;
 $pastel:        $c-pastel !default;
+$pasteltTrbidity:        $c-pasteltTrbidity !default;
 $light:         $c-light !default; // $gray-100 !default;
 $dark:          $c-dark !default; // $gray-900 !default;
 // scss-docs-end theme-color-variables
@@ -101,6 +104,7 @@ $theme-colors: (
   "warning":    $warning,
   "danger":     $danger,
   "pastel":     $pastel,
+  "pasteltTrbidity":     $pasteltTrbidity,
   "light":      $light,
   "dark":       $dark
 ) !default;

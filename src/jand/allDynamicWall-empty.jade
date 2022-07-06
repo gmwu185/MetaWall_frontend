@@ -1,0 +1,17 @@
+extends extends/_layoutTemplate_innerPage.jade
+block bodyMainPush
+  .col-lg.me-lg-7
+    include ./components/_postSearchBar.jade
+    ul.list-unstyled.row.gy-4.mb-lg-0
+      li.col.col-lg-12
+        .card.bg-white.u-solidShadow
+          .card-header.bg-white.p-4
+            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-danger
+            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-warning.ms-1
+            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-success.ms-1
+          .card-body.pt-4.pb-2
+            p.text-center.text-pastel
+              span.d-inline-block 目前尚無動態，
+              span.d-inline-block 新增一則貼文吧！
+
+  include ./components/_stickyNavSub.jade

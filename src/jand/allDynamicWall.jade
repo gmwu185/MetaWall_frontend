@@ -1,17 +1,7 @@
 extends extends/_layoutTemplate_innerPage.jade
 block bodyMainPush
   .col-lg.me-lg-7
-    .row.g-3.mb-4
-      .w-lg-30
-        select.form-select.form-select(aria-label='.form-select-lg example')
-          option(selected='') 最新貼文
-          option(value='1') 最舊貼文
-      .col
-        .input-group
-          input.form-control(type='text' placeholder="搜尋貼文")
-          button#button-addon2.btn.btn-primary.px-3.py-2(type='button')
-            span.h5.lh-sm.mb-0
-              i.fas.fa-search(aria-hidden='true')
+    include ./components/_postSearchBar.jade
     ul.list-unstyled.row.gy-4.mb-lg-0
       li.col.col-lg-12
         .card.bg-white.u-solidShadow
