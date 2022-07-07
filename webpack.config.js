@@ -319,6 +319,13 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 5-2.修改個人資料-暱稱修改（錯誤訊息） / 
+    new HtmlWebpackPlugin({
+      filename: 'editProfile-name-error.html',
+      template: 'jand/editProfile-name-error.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     new HtmlWebpackPlugin({
       filename: 'doc-guide.html',
       template: 'jand/doc-guide.jade',
