@@ -1,0 +1,19 @@
+/** input file btn
+ * 需相依在容器與樣式分離的樣式管理模組
+ * 資料來源 Bootstrap File Input Demo (https://codepen.io/gscard/pen/grZEoW)
+ * input[type="file"] 在 btn 模組下層
+ */
+.c-btnFile {
+  position: relative;
+  overflow: hidden;
+  & > input[type="file"].c-btnFile__input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: inherit;
+    display: block;
+  }
+}

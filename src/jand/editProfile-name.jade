@@ -18,31 +18,15 @@ block bodyMainPush
         role='tab'
       ) 重設密碼
     #nav-tabContent.tab-content.bg-white.card
-      #nav-profile.tab-pane.card-body.p-4.py-md-8.px-md-26.fade.show.active(role='tabpanel' aria-labelledby='nav-profile-tab')
-        .mb-8
-          .d-flex.flex-wrap.justify-content-center.mb-3
-            .c-pseudoRound.c-pseudoRound--l.c-pseudoRound--user.mx-auto.mb-4
-            .w-100.text-center
-              button.btn.btn-sm.bg-dark.text-white.rounded-0.px-6.py-1(type="button") 上傳大頭照
-              //- .input-group.input-group-sm
-              //-   //- input.btn.btn-dark.px-6.py-1(type="file")
-          .mb-3
-            label.form-label.mb-1(for='profile_name') 暱稱
-            input#profile_name.form-control.form-control-lg.px-6(type='text' placeholder='請輸入暱稱', value='邊緣小杰')
-          .mb-3
-            label.form-label.mb-1(for='profile_gender') 性別
-            div
-              .form-check.form-check-inline
-                input#profile_gender_male.form-check-input(type='radio' name='profile_gender' value='male')
-                label.form-check-label(for='profile_gender_male') 男性
-              .form-check.form-check-inline
-                input#profile_gender_woman.form-check-input(type='radio' name='profile_gender' value='woman')
-                label.form-check-label(for='profile_gender_woman') 女性
-              //- .form-check.form-check-inline
-              //-   input#profile_gender_unknown.form-check-input(type='radio' name='profile_gender' value='')
-              //-   label.form-check-label(for='profile_gender_unknown') 未知
+      #nav-profile.tab-pane.card-body.p-4.py-md-8.px-md-26.fade.show.active(
+        role='tabpanel',
+        aria-labelledby='nav-profile-tab'
+      )
+        include ./components/_edit_profile_inner.jade
         button.btn.btn-warning.btn-lg.d-block.w-100.fw-bold(type="button") 送出更新
-      #nav-changePassword.tab-pane.card-body.fade(role='tabpanel' aria-labelledby='nav-changePassword-tab')
-        | 重設密碼內容
-
+      #nav-changePassword.tab-pane.card-body.p-4.py-md-8.px-md-26.fade(
+        role='tabpanel',
+        aria-labelledby='nav-changePassword-tab'
+      )
+        include ./components/_new_password_inner.jade
   include ./components/_stickyNavSub.jade

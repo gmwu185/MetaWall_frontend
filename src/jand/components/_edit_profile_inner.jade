@@ -1,0 +1,20 @@
+// components__edit_profile_inner
+.d-flex.flex-wrap.justify-content-center.mb-3
+  .c-pseudoRound.c-pseudoRound--l.c-pseudoRound--user.mx-auto.mb-4
+  .w-100.text-center
+    .btn.btn-dark.c-btnFile.rounded-0.px-6.py-1.shadow-none
+      span 上傳大頭照
+      input.c-btnFile__input(type="file")
+.mb-4
+  label.form-label.mb-1(for='profile_name') 暱稱
+  input#profile_name.form-control.form-control-lg.px-6(type='text' placeholder='請輸入暱稱', value='邊緣小杰')
+.mb-8
+  label.form-label.mb-1(for='profile_gender') 性別
+  div
+    .form-check.form-check-inline
+      input#profile_gender_male.form-check-input(type='radio' name='profile_gender' value='male')
+      label.form-check-label(for='profile_gender_male') 男性
+    .form-check.form-check-inline
+      input#profile_gender_woman.form-check-input(type='radio' name='profile_gender' value='woman' checked)
+      label.form-check-label(for='profile_gender_woman') 女性
+// /components__edit_profile_inner
