@@ -326,6 +326,13 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 7.張貼動態 / postNews
+    new HtmlWebpackPlugin({
+      filename: 'postNews.html',
+      template: 'jand/postNews.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     // 8.我按讚的貼文 / myLike
     new HtmlWebpackPlugin({
       filename: 'myLike.html',
