@@ -305,13 +305,6 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
-    // 8.我按讚的貼文 / myLike
-    new HtmlWebpackPlugin({
-      filename: 'myLike.html',
-      template: 'jand/myLike.jade',
-      chunks: ['vendor', 'main'],
-      minify: HtmlWebpackPluginMinifySets,
-    }),
     // 5.修改個人資料-暱稱修改 / editProfile-name
     new HtmlWebpackPlugin({
       filename: 'editProfile-name.html',
@@ -319,10 +312,24 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
-    // 5-2.修改個人資料-暱稱修改（錯誤訊息） / 
+    // 5-2.修改個人資料-暱稱修改（錯誤訊息） / editProfile-name-error
     new HtmlWebpackPlugin({
       filename: 'editProfile-name-error.html',
       template: 'jand/editProfile-name-error.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 6.修改個人資料-重設密碼 / changePassword
+    new HtmlWebpackPlugin({
+      filename: 'changePassword.html',
+      template: 'jand/changePassword.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 8.我按讚的貼文 / myLike
+    new HtmlWebpackPlugin({
+      filename: 'myLike.html',
+      template: 'jand/myLike.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
