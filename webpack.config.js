@@ -312,6 +312,13 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 5.修改個人資料-暱稱修改 / editProfile-name
+    new HtmlWebpackPlugin({
+      filename: 'editProfile-name.html',
+      template: 'jand/editProfile-name.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     new HtmlWebpackPlugin({
       filename: 'doc-guide.html',
       template: 'jand/doc-guide.jade',

@@ -415,6 +415,16 @@ $spacers: (
   18: $spacer * 4.5, // 72 px
   19: $spacer * 4.75, // 76 px
   20: $spacer * 5, // 80 px
+  21: $spacer * 5.25, // 84 px
+  22: $spacer * 5.5, // 88 px
+  23: $spacer * 5.75, // 92 px
+  24: $spacer * 6, // 96 px
+  25: $spacer * 6.25, // 100 px
+  26: $spacer * 6.5, // 104 px
+  27: $spacer * 6.75, // 108 px
+  28: $spacer * 7, // 112 px
+  29: $spacer * 7.25, // 116 px
+  30: $spacer * 7.5, // 120 px
 
   // 1: $spacer * .25,
   // 2: $spacer * .5,
@@ -929,9 +939,9 @@ $form-color-width:                      3rem !default;
 // scss-docs-end form-input-variables
 
 // scss-docs-start form-check-variables
-$form-check-input-width:                  1em !default;
+$form-check-input-width:                  1.5em !default;  // 1em !default;
 $form-check-min-height:                   $font-size-base * $line-height-base !default;
-$form-check-padding-start:                $form-check-input-width + .5em !default;
+$form-check-padding-start:                $form-check-input-width + .75em !default;  // $form-check-input-width + .5em !default;
 $form-check-margin-bottom:                .125rem !default;
 $form-check-label-color:                  null !default;
 $form-check-label-cursor:                 null !default;
@@ -940,7 +950,7 @@ $form-check-transition:                   null !default;
 $form-check-input-active-filter:          brightness(90%) !default;
 
 $form-check-input-bg:                     $input-bg !default;
-$form-check-input-border:                 1px solid rgba($black, .25) !default;
+$form-check-input-border:                 2px solid rgba($black, 1) !default;  // 1px solid rgba($black, .25) !default;
 $form-check-input-border-radius:          .25em !default;
 $form-check-radio-border-radius:          50% !default;
 $form-check-input-focus-border:           $input-focus-border-color !default;
@@ -961,7 +971,7 @@ $form-check-input-disabled-opacity:        .5 !default;
 $form-check-label-disabled-opacity:        $form-check-input-disabled-opacity !default;
 $form-check-btn-check-disabled-opacity:    $btn-disabled-opacity !default;
 
-$form-check-inline-margin-end:    1rem !default;
+$form-check-inline-margin-end:    1.5rem !default;  // 1rem !default;
 // scss-docs-end form-check-variables
 
 // scss-docs-start form-switch-variables
@@ -1122,7 +1132,7 @@ $zindex-tooltip:                    1080 !default;
 
 // scss-docs-start nav-variables
 $nav-link-padding-y:                .5rem !default;
-$nav-link-padding-x:                1rem !default;
+$nav-link-padding-x:                1.5rem !default;  // 1rem !default;
 $nav-link-font-size:                null !default;
 $nav-link-font-weight:              null !default;
 $nav-link-color:                    $link-color !default;
@@ -1130,13 +1140,13 @@ $nav-link-hover-color:              $link-hover-color !default;
 $nav-link-transition:               color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out !default;
 $nav-link-disabled-color:           $gray-600 !default;
 
-$nav-tabs-border-color:             $gray-300 !default;
+$nav-tabs-border-color:             $dark !default; // $gray-300 !default;
 $nav-tabs-border-width:             $border-width !default;
 $nav-tabs-border-radius:            $border-radius !default;
-$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;
-$nav-tabs-link-active-color:        $gray-700 !default;
-$nav-tabs-link-active-bg:           $body-bg !default;
-$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
+$nav-tabs-link-hover-border-color:  $primary $primary $nav-tabs-border-color !default;  // $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color:        $white !default; // $gray-700 !default;
+$nav-tabs-link-active-bg:           $dark !default;  // $body-bg !default;
+$nav-tabs-link-active-border-color: $dark $dark $nav-tabs-link-active-bg !default; // $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
 $nav-pills-border-radius:           $border-radius !default;
 $nav-pills-link-active-color:       $component-active-color !default;
