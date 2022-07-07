@@ -32,4 +32,9 @@ body {
 @import 'utilities/u-solidShadow';
 @import 'utilities/u-background';
 @import 'utilities/u-spinners';
+.u-form-control {
+  &--textareaResizeNone {
+    resize: none;
+  }
+}
 /* /utilities ---------------------------------------------------------------- */

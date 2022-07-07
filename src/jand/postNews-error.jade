@@ -9,17 +9,20 @@ block bodyMainPush
           label.form-label.mb-1(for='exampleFormControlTextarea1') 貼文內容
           textarea#exampleFormControlTextarea1.form-control.u-form-control--textareaResizeNone(
             rows='4',
-            placeholder="輸入您的貼文內容"
-          )
+            placeholder="輸入您的貼文內容",
+          ) 今天竟然下雪哩！
         .mb-4
           .btn.btn-dark.c-btnFile.rounded-1.px-8.py-1.shadow-none
             span 上傳圖片
             input.c-btnFile__input(type='file')
         .c-minHightPhoto.mb-8
           img.c-minHightPhoto__img(src="~assets/images/post--01.png")
+        p.h6.text-center.text-danger.fw-normal.lh-20.mb-4
+          | 圖片檔案過大，僅限 1mb 以下檔案
+          br
+          | 圖片格式錯誤，僅限 JPG、PNG 圖片
         .mx-md-18
           button.btn.btn-warning.border.d-block.w-100(
-            type="button",
-            disabled
+            type="button"
           ) 送出貼文
   include ./components/_stickyNavSub.jade

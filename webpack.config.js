@@ -333,6 +333,13 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 7-2.張貼動態（錯誤訊息） / postNews-error
+    new HtmlWebpackPlugin({
+      filename: 'postNews-error.html',
+      template: 'jand/postNews-error.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     // 8.我按讚的貼文 / myLike
     new HtmlWebpackPlugin({
       filename: 'myLike.html',
