@@ -1,19 +1,17 @@
-.c-pseudoRound {
+.c-pseudoOneToOne {
   &::after {
     content: "";
     display: block;
     padding-top: 100%;
   }
-
+  
   // background-color: $primaryLight;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  overflow: hidden;
-  border-radius: 50%;
-  border: $dark 2px solid;
   width: 45px;
   height: 45px;
+  vertical-align: middle;
   display: inline-block;
 
   &--xs {
@@ -29,8 +27,18 @@
     height: 50px;
   }
   &--l {
+    width: 82px;
+    height: 82px;
+  }
+  &--xl {
     width: 127px;
     height: 127px;
+  }
+
+  &--round {
+    overflow: hidden;
+    border-radius: 50%;
+    border: $dark 2px solid;
   }
 
   &--user {

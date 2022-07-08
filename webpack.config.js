@@ -347,6 +347,20 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 9.個人牆 / personalPosts
+    new HtmlWebpackPlugin({
+      filename: 'personalPosts.html',
+      template: 'jand/personalPosts.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 9-2.個人牆-取消追蹤 / personalPosts-cancelFollow
+    new HtmlWebpackPlugin({
+      filename: 'personalPosts-cancelFollow.html',
+      template: 'jand/personalPosts-cancelFollow.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     new HtmlWebpackPlugin({
       filename: 'doc-guide.html',
       template: 'jand/doc-guide.jade',

@@ -1,0 +1,58 @@
+extends extends/_layoutTemplate_innerPage.jade
+block bodyMainPush
+  .col-lg.me-lg-7
+    .bg-white.border.border-2.border-dark.rounded-2.overflow-hidden.u-solidShadowDoub--leftBottom.mb-4
+      .row.g-0
+        .col-auto
+          a.h-100.d-flex.align-items-center.border.border-2.border-dark.border-top-0.border-start-0.border-bottom-0(href="#")
+            .c-pseudoOneToOne.c-pseudoOneToOne--l.c-pseudoOneToOne--user.border-top-0.border-start-0.border-bottom-0(
+              style=`background-image: url(assets/static-images/user--阿爾敏.png)`
+            )
+        .col
+          .h-100.p-4.d-flex.justify-content-between.align-items-center
+            p.mb-0
+              span.d-block.fw-bold 阿爾敏
+              span.d-block 
+                span.d-inline-block.u-fontFamily--Lato.me-1 987,987
+                span.d-inline-block.me-1 人追蹤
+            button.btn.btn-warning.btn-sm.fw-bold.text-nowrap.u-solidShadow.py-1.px-md-8(type="button") 追蹤
+    include ./components/_postSearchBar.jade
+    ul.list-unstyled.row.gy-4.mb-lg-0
+      li.col.col-lg-12
+        .card.bg-white.u-solidShadow
+          .card-header.pb-0.border-bottom-0.bg-white
+            .row.g-4
+              .col-auto
+                a(href="#")
+                  .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user(
+                    style=`background-image: url(assets/static-images/user--阿爾敏.png)`
+                  )
+              .col
+                p.mb-0
+                  a.fw-bold(href="#") 阿爾敏
+                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2 2022/1/10 12:00
+          .card-body.pt-4.pb-2
+            p
+              | 今天找到一張大海的照片
+              br 
+              | 太美拉～～～
+            .c-minHightPhoto.mh-190px
+              img.c-minHightPhoto__img(src="~assets/images/post--03.png")
+      li.col-12
+        .card.bg-white.u-solidShadow
+          .card-header.pb-0.border-bottom-0.bg-white
+            .row.g-4
+              .col-auto
+                a(href="#")
+                  .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user(
+                    style=`background-image: url(assets/static-images/user--阿爾敏.png)`
+                  )
+              .col
+                p.mb-0
+                  a.fw-bold(href="#") 阿爾敏
+                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2 2022/1/10 12:00
+          .card-body.pt-4.pb-2
+            p
+              | 各位我有一個作戰計畫
+
+  include ./components/_stickyNavSub.jade

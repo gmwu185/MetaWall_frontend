@@ -1,17 +1,17 @@
 .c-minHightPhoto {
-  min-height: 157px;
-  overflow: hidden !important;
+  overflow: hidden;
   border: $dark solid 2px;
   border-radius: 8px;
-  max-height: 157px;
+  min-height: 150px;
+  max-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 16px;
   &__img {
-    min-height: 157px;
     object-fit: cover;
     object-position: center;
+    min-height: 150px;
     max-width: 100%;
     height: auto;
   }
