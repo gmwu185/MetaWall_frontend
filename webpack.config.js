@@ -367,12 +367,6 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
-    new HtmlWebpackPlugin({
-      filename: 'product.html',
-      template: 'jand/product.jade',
-      chunks: ['vendor', 'main'],
-      minify: HtmlWebpackPluginMinifySets,
-    }),
     /* /HTML 樣版 ------------------------------------------------------------------ */
   ],
 };
