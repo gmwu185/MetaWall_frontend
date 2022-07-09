@@ -1,7 +1,7 @@
 extends extends/_layoutTemplate_innerPage.jade
 block bodyMainPush
   .col-lg.me-lg-7
-    .bg-white.border.border-2.border-dark.rounded-2.overflow-hidden.u-solidShadowDoub--leftBottom.mb-4
+    .bg-white.border.border-2.border-dark.rounded-2.overflow-hidden.u-solidDoubShadow-lb.mb-4
       .row.g-0
         .col-auto
           a.h-100.d-flex.align-items-center.border.border-2.border-dark.border-top-0.border-start-0.border-bottom-0(href="#")
@@ -15,11 +15,11 @@ block bodyMainPush
               span.d-block 
                 span.d-inline-block.u-fontFamily--Lato.me-1 987,987
                 span.d-inline-block.me-1 人追蹤
-            button.btn.btn-light.btn-sm.fw-bold.text-nowrap.u-solidShadow.py-1.px-md-8(type="button") 取消追蹤
+            button.btn.btn-light.btn-sm.fw-bold.text-nowrap.u-solidShadow-b.py-1.px-md-8(type="button") 取消追蹤
     include ./components/_postSearchBar.jade
     ul.list-unstyled.row.gy-4.mb-lg-0
       li.col.col-lg-12
-        .card.bg-white.u-solidShadow
+        .card.bg-white.u-solidShadow-b
           .card-header.pb-0.border-bottom-0.bg-white
             .row.g-4
               .col-auto
@@ -39,7 +39,7 @@ block bodyMainPush
             .c-minHightPhoto.mh-190px
               img.c-minHightPhoto__img(src="~assets/images/post--03.png")
       li.col-12
-        .card.bg-white.u-solidShadow
+        .card.bg-white.u-solidShadow-b
           .card-header.pb-0.border-bottom-0.bg-white
             .row.g-4
               .col-auto
