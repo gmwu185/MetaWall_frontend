@@ -18,6 +18,7 @@ body {
 @import 'components/c-pseudoOneToOne';
 @import 'components/c-like';
 @import 'components/c-btnFile';
+@import 'components/c-spinners';
 /* /components --------------------------------------------------------------- */
 
 
@@ -31,10 +32,5 @@ body {
 @import 'utilities/u-fontFamily';
 @import 'utilities/u-solidShadow';
 @import 'utilities/u-background';
-@import 'utilities/u-spinners';
-.u-form-control {
-  &--textareaResizeNone {
-    resize: none;
-  }
-}
+@import 'utilities/u-form';
 /* /utilities ---------------------------------------------------------------- */
