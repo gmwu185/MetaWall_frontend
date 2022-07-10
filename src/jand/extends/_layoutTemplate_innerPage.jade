@@ -11,11 +11,12 @@ html(lang='zh-Hant-TW')
     block localHand
     // /block localHand j-template
   body.bg-light.u-bg--QuartetContinuousPattern.position-relative
-    include ../components/_stickyNavMain.jade
+    #app
+      include ../components/_stickyNavMain.jade
 
-    main.pt-5.pb-24.py-lg-12
-      .container
-        .row.g-0
-            // block bodyMainPush j-template 
-            block bodyMainPush
-            // /block bodyMainPush j-template 
+      main.pt-5.pb-24.py-lg-12
+        .container
+          .row.g-0
+              // block bodyMainPush j-template 
+              block bodyMainPush
+              // /block bodyMainPush j-template 
