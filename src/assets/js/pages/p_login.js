@@ -1,10 +1,10 @@
-// console.log('bootstrap-Obj', bootstrap);
-// console.log('jQuery-Obj', jQuery, 'jQuery -> $', $);
+import vue_public_funs from '../vue_public_funs.js';
 
 const VueAPP = new Vue({
   el: '#app',
   data: {
     apiUrl: '//damp-shore-91853.herokuapp.com/',
+    // apiUrl: 'http://127.0.0.1:3000/',
     isLoading: false,
     cookieToken: '',
     longInData: {
@@ -14,9 +14,12 @@ const VueAPP = new Vue({
       // password: 'a12345678',
     },
     userData: {},
-    errorMessage: ''
+    errorMessage: '',
   },
   methods: {
+    getCookieToken: vue_public_funs.getCookieToken,
+    checkLogIn: vue_public_funs.checkLogIn,
+    signout: vue_public_funs. signout,
     sign_in() {
       const sign_inApi = `${this.apiUrl}user/sign-in`;
 
@@ -31,11 +34,13 @@ const VueAPP = new Vue({
             let theDay = new Date(); // 建立時間物件
             let changeDay = 1; // 設定要往前或往後幾天
             let expiredTimeStamp = theDay.setDate(theDay.getDate() + changeDay);
-            
-            document.cookie = `token=${token}; expires=${new Date(expiredTimeStamp * 1000)}; path=/`;
+
+            document.cookie = `token=${token}; expires=${new Date(
+              expiredTimeStamp * 1000
+            )}; path=/`;
             this.longInData.password = ''; // 確任項目點按後清空密碼輸入框
             if (this.cookieToken) {
-              alert('先前已登入過')
+              alert('先前已登入過');
             }
             this.isLoading = false;
             const gotoFirstPath = 'allDynamicWall.html';
@@ -46,51 +51,31 @@ const VueAPP = new Vue({
         })
         .catch((error) => {
           // console.log('error', error);
-          let jsonParseResponseStr = JSON.parse(error.response.request.response);
+          let jsonParseResponseStr = JSON.parse(
+            error.response.request.response
+          );
           console.log(jsonParseResponseStr.message);
           this.errorMessage = jsonParseResponseStr.message;
           this.isLoading = false;
         });
     },
-    getCookieToken() {
-      this.cookieToken = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    },
-    getData() {
+    getProfileApiData() {
       const profileApi = `${this.apiUrl}user/profile`;
       if (this.cookieToken) {
         axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
-        axios.get(profileApi)
+        axios
+          .get(profileApi)
           .then((response) => {
             this.userData = response.data.data;
             console.log('profileApi -> response', this.userData);
           })
           .catch((error) => {
-            console.log('error.request', error.request)
-            const errorObj = JSON.parse(error.request.response)
-            console.log('profileApi error.request.response', errorObj)
-          })
+            console.log('error.request', error.request);
+            const errorObj = JSON.parse(error.request.response);
+            console.log('profileApi error.request.response', errorObj);
+          });
       } else {
         alert('沒登入過會登入不成功');
-      }
-    },
-    signout() {
-      document.cookie = `token=; expires=; path=/`;
-      this.cookieToken = '';
-      alert('完成登出');
-      this.checkLogIn();
-    },
-    checkLogIn() {
-      const noTokenKickPatch = 'login.html';
-      const isHaveCokieToken = this.cookieToken;
-      const isKick = document.location.pathname == `/${noTokenKickPatch}`;
-      const isLayoutList = document.location.pathname == `/index.html`;
-      const isRegister = document.location.pathname == `/register.html`;
-      if (isKick || isLayoutList || isRegister) {
-        return
-      } else {
-        if (isHaveCokieToken == '') {
-          document.location.href = noTokenKickPatch;
-        }
       }
     },
   },
@@ -106,5 +91,3 @@ const VueAPP = new Vue({
   //   $("input[type='number']").inputSpinner();
   // }
 });
-// window.VueAPP = VueAPP;
-// console.log('vue VueAPP', VueAPP);

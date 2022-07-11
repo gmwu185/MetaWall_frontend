@@ -12,6 +12,7 @@ html(lang='zh-Hant-TW')
     // /block localHand j-template
   body.bg-light.u-bg--QuartetContinuousPattern.position-relative
     #app
+      Loading(:active.sync="isLoading")
       include ../components/_stickyNavMain.jade
 
       main.pt-5.pb-24.py-lg-12

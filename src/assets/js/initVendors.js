@@ -29,7 +29,9 @@ const set_bootstrap = () => {
 const set_jQ_vendors = () => {
   window.jQuery = window.$ = $; // 將 jQuery 物件透過連續賦值到全域 window 下
 
-  /**
+  /** bootstrap-input-spinner
+   * DEOM (https://shaack.com/projekte/bootstrap-input-spinner/)
+   * NPM (https://www.npmjs.com/package/bootstrap-input-spinner)
    * 確定有 jQuery 時引入套件 (IIEF)，無法使用 ES 6 模組引入方式，但在 node 環境下可用 require() 方法引入模組
    * Vue 於 mounted 生命週期時引入，才能不受 Vue 操作 value 時畫面渲染影響
    * 以下註解啟用後直接以全域的方式掛載 bootstrapInputSpinners 插件，與 Vue 整合不需啟用，只需引入至 webpack 打包的模組中待啟用
