@@ -13,5 +13,10 @@ block bodyMainPush
               input.form-control.mb-4(type="text", name="", placeholder="暱稱")
               input.form-control.mb-4(type="email", name="", placeholder="Email")
               input.form-control.mb-4(type="password", name="", placeholder="Password")
-            a.btn.btn-primary.d-block.disabled.btn-lg.mb-4(href="#") 註冊帳號
-            a.btn.btn-link.py-0.d-block(href="#") 登入
+            button.w-100.btn.btn-primary.d-block.disabled.btn-lg.mb-4(
+              type="button",
+            ) 註冊帳號
+            button.w-100.btn.btn-link.py-0.d-block(
+              type="button",
+              onClick='document.location.href = "login.html"'
+            ) 登入

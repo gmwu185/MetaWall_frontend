@@ -2,8 +2,10 @@
 .col-lg-auto.w-lg-35.p-stickyNavSub
   .card.p-stickyNavSub__inner
     .card-body.py-2.py-lg-8
-      a.btn.btn-primary.btn-lg.d-none.d-lg-block.u-solidShadow--leftBottom.mb-6
-        | 張貼動態
+      button.w-100.btn.btn-primary.btn-lg.d-none.d-lg-block.mb-6(
+        type="button",
+        onClick='document.location.href = "postNews.html"'
+      ) 張貼動態
       ul.p-stickyNavSubMenu.list-unstyled.ps-lg-2.mb-0
         li.p-stickyNavSubMenu__item.d-lg-none.order-1
           a.w-100.p-stickyNavSubBtns(href="#")

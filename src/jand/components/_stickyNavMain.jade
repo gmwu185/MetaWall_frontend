@@ -15,9 +15,15 @@ nav.p-stickyNavMain.border.border-3.border-top-0.border-start-0.border-end-0.bor
               | Member
           ul.dropdown-menu.dropdown-menu-end.dropdown-menu-lg-start.text-center.u-solidDoubShadow-rb
             li.border.border-dark.border-2.border-top-0.border-start-0.border-end-0
-              button.dropdown-item.py-2(type='button') 我的貼文牆
+              button.dropdown-item.py-2(
+                type='button',
+                onClick='document.location.href = "personalPosts.html"'
+              ) 我的貼文牆
             li.border.border-dark.border-2.border-top-0.border-start-0.border-end-0
-              button.dropdown-item.py-2(type='button') 修改個人資料
+              button.dropdown-item.py-2(
+                type='button',
+                onClick='document.location.href = "editProfile.html"'
+              ) 修改個人資料
             li.border.border-dark.border-0
-              button.dropdown-item.py-2(type='button') 登出
+              button.dropdown-item.py-2(type='button', @click='signout') 登出
 // /components__stickyNavMain

@@ -1,0 +1,71 @@
+extends extends/_layoutTemplate_innerPage.jade
+block bodyMainPush
+  .col-lg.me-lg-7
+    h1.h5.text-center.fw-bold.bg-white.border.border-2.border-dark.rounded-0.u-solidDoubShadow-lb.py-4.mb-8
+      | 修改個人資料
+    .nav.nav-tabs.border-bottom-0.mx-4
+      button.nav-link.active(
+        data-bs-toggle='tab',
+        data-bs-target='#nav-profile',
+        type='button',
+        role='tab'
+      ) 暱稱修改
+      button.nav-link(
+        data-bs-toggle='tab',
+        data-bs-target='#nav-changePassword',
+        type='button',
+        role='tab'
+      ) 重設密碼
+    #nav-tabContent.tab-content.bg-white.card.u-solidShadow-b
+      #nav-profile.tab-pane.card-body.p-4.py-md-8.px-md-26.fade.show.active(
+        role='tabpanel',
+        aria-labelledby='nav-profile-tab'
+      )
+        //- include ./components/_edit_profile_inner.jade
+        // edit_profile_inner
+        .d-flex.flex-wrap.justify-content-center.mb-3
+          .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--xl.c-pseudoOneToOne--user.mx-auto.mb-4( 
+            v-if="!userData.avatarUrl",
+            c-pseudoOneToOne--user="!userData.avatarUrl"
+          )
+          .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--xl.mx-auto.mb-4(
+            v-else,
+            :style='{ backgroundImage: `url(${ userData.avatarUrl })` }'
+          )
+          .w-100.text-center
+            .btn.btn-dark.c-btnFile.rounded-0.px-6.py-1.shadow-none
+              span 上傳大頭照
+              input.c-btnFile__input(type='file')
+        .mb-4
+          label.form-label.mb-1(for='profile_name') 暱稱
+          input#profile_name.form-control.px-6(
+            type='text',
+            placeholder='請輸入暱稱',
+            v-model='userData.userName'
+          )
+        .mb-8
+          label.form-label.mb-1(for='profile_gender') 性別
+          div
+            .form-check.form-check-inline
+              input#profile_gender_male.form-check-input(
+                type='radio',
+                name='profile_gender',
+                value='male'
+              )
+              label.form-check-label(for='profile_gender_male') 男性
+            .form-check.form-check-inline
+              input#profile_gender_woman.form-check-input(
+                type='radio',
+                name='profile_gender',
+                value='woman',
+                checked
+              )
+              label.form-check-label(for='profile_gender_woman') 女性
+        // /edit_profile_inner
+        button.btn.btn-warning.btn-lg.d-block.w-100.fw-bold(type='button') 送出更新
+      #nav-changePassword.tab-pane.card-body.p-4.py-md-8.px-md-26.fade(
+        role='tabpanel',
+        aria-labelledby='nav-changePassword-tab'
+      )
+        include ./components/_new_password_inner.jade
+  include ./components/_stickyNavSub.jade

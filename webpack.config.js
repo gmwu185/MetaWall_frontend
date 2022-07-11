@@ -27,8 +27,9 @@ module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
     main: 'main',
-    p_index: 'assets/js/p_index',
-    p_card: 'assets/js/p_card',
+    p_index: 'assets/js/pages/p_index',
+    p_login: 'assets/js/pages/p_login',
+    p_editProfile: 'assets/js/pages/p_editProfile',
   },
   devtool: NODE_ENV === 'development' ? 'cheap-module-source-map' : 'false',
   output: {
@@ -246,7 +247,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'login.html',
       template: 'jand/login.jade',
-      chunks: ['vendor', 'main'],
+      chunks: ['vendor', 'main', 'p_login'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 1.登入 – 1
@@ -303,6 +304,13 @@ module.exports = {
       filename: 'followList.html',
       template: 'jand/followList.jade',
       chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 5.修改個人資料 / editProfile
+    new HtmlWebpackPlugin({
+      filename: 'editProfile.html',
+      template: 'jand/editProfile.jade',
+      chunks: ['vendor', 'main', 'p_editProfile'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 5.修改個人資料-暱稱修改 / editProfile-name
