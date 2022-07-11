@@ -10,9 +10,14 @@ const getCookieToken = function () {
 const checkLogIn = function () {
   const noTokenKickPatch = 'login.html';
   const isHaveCokieToken = this.cookieToken;
-  const isKick = document.location.pathname == `/${noTokenKickPatch}`;
-  const isLayoutList = document.location.pathname == `/index.html`;
-  const isRegister = document.location.pathname == `/register.html`;
+  const locationPathnameSplit = location.pathname.split('/');
+  const isKick =
+    locationPathnameSplit[locationPathnameSplit.length - 1] ==
+    `${noTokenKickPatch}`;
+  const isLayoutList =
+    locationPathnameSplit[locationPathnameSplit.length - 1] == `index.html`;
+  const isRegister =
+    locationPathnameSplit[locationPathnameSplit.length - 1] == `register.html`;
   if (isKick || isLayoutList || isRegister) {
     return;
   } else {
