@@ -3,8 +3,7 @@ import vue_public_funs from '../vue_public_funs.js';
 const VueAPP = new Vue({
   el: '#app',
   data: {
-    apiUrl: '//damp-shore-91853.herokuapp.com/',
-    // apiUrl: 'http://127.0.0.1:3000/',
+    apiUrl: vue_public_funs.apiUrl,
     isLoading: false,
     cookieToken: '',
     userData: {},
@@ -15,7 +14,7 @@ const VueAPP = new Vue({
     checkLogIn: vue_public_funs.checkLogIn,
     signout: vue_public_funs.signout,
     getProfileApiData() {
-      const profileApi = `${this.apiUrl}user/profile`;
+      const profileApi = `${this.apiUrl}/user/profile`;
       axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
       axios
         .get(profileApi)

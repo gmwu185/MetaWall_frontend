@@ -16,32 +16,34 @@ block bodyMainPush
               form(@submit.prevent="sign_in")
                 .row.mb-4
                   .col-12
-                    validation-provider.mb-4(
-                      tag="div",
-                      rules="required|email",
-                      v-slot="{ errors, classes, passed }"
-                      )
-                        input.form-control(
-                          type="email",
-                          name="Email"
-                          placeholder="Email",
-                          v-model='longInData.email',
-                          :class="classes"
+                    .mb-4
+                      validation-provider(
+                        tag="div",
+                        rules="required|email",
+                        v-slot="{ errors, classes, passed }"
                         )
-                        .w-100.invalid-feedback {{ errors[0] }}
+                          input.form-control(
+                            type="email",
+                            name="Email"
+                            placeholder="Email",
+                            v-model='longInData.email',
+                            :class="classes"
+                          )
+                          .w-100.invalid-feedback {{ errors[0] }}
                   .col-12
-                    validation-provider.mb-4(
-                      tag="div",
-                      rules="required|min:9",
-                      v-slot="{ errors, classes, passed }")
-                        input.form-control(
-                          type="password",
-                          placeholder="Password",
-                          name="password",
-                          v-model='longInData.password',
-                          :class="classes"
-                        )
-                        .w-100.invalid-feedback {{ errors[0] }}
+                    .mb-4
+                      validation-provider(
+                        tag="div",
+                        rules="required|min:9",
+                        v-slot="{ errors, classes, passed }")
+                          input.form-control(
+                            type="password",
+                            placeholder="Password",
+                            name="password",
+                            v-model='longInData.password',
+                            :class="classes"
+                          )
+                          .w-100.invalid-feedback {{ errors[0] }}
                   .col-12(v-if='errorMessage')
                     p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage }}
                 button.w-100.btn.btn-primary.btn-lg.mb-4.d-block(

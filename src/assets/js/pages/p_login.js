@@ -3,15 +3,12 @@ import vue_public_funs from '../vue_public_funs.js';
 const VueAPP = new Vue({
   el: '#app',
   data: {
-    apiUrl: '//damp-shore-91853.herokuapp.com/',
-    // apiUrl: 'http://127.0.0.1:3000/',
+    apiUrl: vue_public_funs.apiUrl,
     isLoading: false,
     cookieToken: '',
     longInData: {
       email: '',
-      // email: 'aa@mail.com',
       password: '',
-      // password: 'a12345678',
     },
     userData: {},
     errorMessage: '',
@@ -21,7 +18,7 @@ const VueAPP = new Vue({
     checkLogIn: vue_public_funs.checkLogIn,
     signout: vue_public_funs. signout,
     sign_in() {
-      const sign_inApi = `${this.apiUrl}user/sign-in`;
+      const sign_inApi = `${this.apiUrl}/user/sign-in`;
 
       this.isLoading = true;
       axios

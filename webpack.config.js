@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // console.log('resolve:', path.resolve(__dirname, './src'));
 const NODE_ENV = process.env.NODE_ENV;
 if (NODE_ENV === 'development') {
-  console.log(`webServer => http://${process.env.HOST}:${process.env.PORT}`);
+  console.log(`browser webServer => http://${process.env.HOST}:${process.env.PORT}`);
 }
 
 const HtmlWebpackPluginMinifySets = {

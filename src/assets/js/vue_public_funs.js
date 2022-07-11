@@ -1,3 +1,5 @@
+const apiUrl = '//damp-shore-91853.herokuapp.com';
+
 const getCookieToken = function () {
   this.cookieToken = document.cookie.replace(
     /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
@@ -27,4 +29,4 @@ const signout = function () {
   this.checkLogIn();
 };
 
-export default { getCookieToken, checkLogIn, signout };
+export default { apiUrl, getCookieToken, checkLogIn, signout };
