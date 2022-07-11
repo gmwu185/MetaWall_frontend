@@ -30,6 +30,7 @@ module.exports = {
     p_index: 'assets/js/pages/p_index',
     p_login: 'assets/js/pages/p_login',
     p_editProfile: 'assets/js/pages/p_editProfile',
+    p_register: 'assets/js/pages/p_register',
   },
   devtool: NODE_ENV === 'development' ? 'cheap-module-source-map' : 'false',
   output: {
@@ -268,7 +269,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'register.html',
       template: 'jand/register.jade',
-      chunks: ['vendor', 'main'],
+      chunks: ['vendor', 'main', 'p_register'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 2-2.註冊（錯誤訊息）
