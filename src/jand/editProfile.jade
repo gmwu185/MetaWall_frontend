@@ -25,12 +25,7 @@ block bodyMainPush
         // edit_profile_inner
         .d-flex.flex-wrap.justify-content-center.mb-3
           .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--xl.c-pseudoOneToOne--user.mx-auto.mb-4( 
-            v-if="!userData.avatarUrl",
-            c-pseudoOneToOne--user="!userData.avatarUrl"
-          )
-          .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--xl.mx-auto.mb-4(
-            v-else,
-            :style='{ backgroundImage: `url(${ userData.avatarUrl })` }'
+            :style='{ backgroundImage: userData.avatarUrl ? `url(${ userData.avatarUrl })` : "" }',
           )
           .w-100.text-center
             .btn.btn-dark.c-btnFile.rounded-0.px-6.py-1.shadow-none
