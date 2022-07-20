@@ -20,4 +20,7 @@ set_VueAxios();
 set_Loading();
 set_veeValidate();
 
+// vue 自定義全域元件
+import userAvatar from 'assets/js/vue_components/userAvatar';
+
 import 'scss/main.scss';

@@ -14,9 +14,13 @@
             p.fw-bold.p-stickyNavSubBtns__title.mb-0 張貼動態
         li.p-stickyNavSubMenu__item.d-none.d-lg-block
           a.w-100.p-stickyNavSubBtns(href="#")
-            .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user.me-lg-4(
-              style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
+            user-avatar.me-lg-4(
+              :img-url='userData.avatarUrl',
+              :incom-class='"c-pseudoOneToOne--m"'
             )
+            //- .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user.me-lg-4(
+            //-   style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
+            //- )
             p.fw-bold.p-stickyNavSubBtns__title.mb-0 邊緣小杰
         li.p-stickyNavSubMenu__item.d-block.d-lg-none
           a.w-100.p-stickyNavSubBtns(href="#")
