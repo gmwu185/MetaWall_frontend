@@ -13,7 +13,7 @@ const VueAPP = new Vue({
     getCookieToken: vue_public_funs.getCookieToken,
     checkLogIn: vue_public_funs.checkLogIn,
     signout: vue_public_funs.signout,
-    getProfileApiData() {
+    getProfile() {
       const profileApi = `${this.apiUrl}/user/profile`;
       axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
       axios
@@ -28,11 +28,27 @@ const VueAPP = new Vue({
           console.log('profileApi error.request.response', errorObj);
         });
     },
+    patchProfile() {
+      const profileApi = `${this.apiUrl}/user/profile`;
+      console.log('patchProfile this.userData', this.userData);
+      axios.patch(profileApi, this.userData, {
+        Authorization: `Bearer ${this.cookieToken}`,
+      })
+        .then(function (res) {
+          console.log('axios ajax res.data', res.data);
+        })
+        .catch(function (error) {
+          console.log(
+            'axios ajax error.response.data',
+            error.response.data
+          );
+        });
+    },
   },
   created() {
     this.isLoading = true;
     this.getCookieToken();
     this.checkLogIn();
-    this.getProfileApiData();
+    this.getProfile();
   },
 });

@@ -49,7 +49,8 @@ block bodyMainPush
               input#profile_gender_male.form-check-input(
                 type='radio',
                 name='profile_gender',
-                value='male'
+                value='male',
+                v-model="userData.gender"
               )
               label.form-check-label(for='profile_gender_male') 男性
             .form-check.form-check-inline
@@ -57,11 +58,22 @@ block bodyMainPush
                 type='radio',
                 name='profile_gender',
                 value='woman',
-                checked
+                v-model="userData.gender"
               )
               label.form-check-label(for='profile_gender_woman') 女性
+            .form-check.form-check-inline
+              input#profile_gender_unknown.form-check-input(
+                type='radio',
+                name='profile_gender',
+                value='',
+                v-model="userData.gender"
+              )
+              label.form-check-label(for='profile_gender_unknown') 未知
         // /edit_profile_inner
-        button.btn.btn-warning.btn-lg.d-block.w-100.fw-bold(type='button') 送出更新
+        button.btn.btn-warning.btn-lg.d-block.w-100.fw-bold(
+          type='button',
+          @click='patchProfile',
+        ) 送出更新
       #nav-changePassword.tab-pane.card-body.p-4.py-md-8.px-md-26.fade(
         role='tabpanel',
         aria-labelledby='nav-changePassword-tab'
