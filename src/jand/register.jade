@@ -4,83 +4,70 @@ block app_inner
   Loading(:active.sync="isLoading")
 
 block bodyMainPush
-  main.container-fluid
-    .p-login.border.border-dark.border-2.bg-light.u-opacityShadow-lb.px-md-9.py-6.py-md-17.my-4
-      .container
-        .row.gx-md-12
-          .col-md-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
-            img.p-loginMainImg.img-fluid(src='~images/MetaWall_img.svg')
-          .col-md
-            .text-center
-              h1.c-logo.c-logo--xl.text-primary.mb-0(title='MetaWall logo') MetaWall
-              h2.h4.mb-6.mb-md-9 註冊
-            validation-observer(v-slot='{ invalid }')
-              form.row.mb-4(@submit.prevent='sign_up')
-                .col-12.mb-4
-                  validation-provider(
-                    tag='div',
-                    rules='required|min:2',
-                    v-slot='{ errors, classes, passed }'
-                  )
-                    input.form-control(
-                      type='text',
-                      placeholder='暱稱',
-                      name='暱稱',
-                      v-model='userData.userName',
-                      :class='classes'
-                    )
-                    .w-100.invalid-feedback {{ errors[0] }}
-                .col-12.mb-4
-                  validation-provider(
-                    tag='div',
-                    rules='required|email',
-                    v-slot='{ errors, classes, passed }'
-                  )
-                    input.form-control(
-                      type='email',
-                      placeholder='Email',
-                      name='帳號',
-                      v-model='userData.email',
-                      :class='classes'
-                    )
-                    .w-100.invalid-feedback {{ errors[0] }}
-                .col-12.mb-4
-                  validation-provider(
-                    tag='div',
-                    rules='required|min:9|confirmed:userData.confirmPassword',
-                    v-slot='{ errors, classes, passed }'
-                  )
-                    input.form-control(
-                      type='password',
-                      placeholder='Password',
-                      name='密碼',
-                      v-model='userData.password',
-                      :class='classes'
-                    )
-                    .w-100.invalid-feedback {{ errors[0] }}
-                .col-12.mb-4
-                  validation-provider(
-                    tag='div',
-                    rules='required|min:9',
-                    vid="userData.confirmPassword",
-                    v-slot='{ errors, classes, passed }'
-                  )
-                    input.form-control(
-                      type='password',
-                      placeholder='Confirm Password',
-                      name='再次確任密碼',
-                      v-model='userData.confirmPassword',
-                      :class='classes'
-                    )
-                    .w-100.invalid-feedback {{ errors[0] }}
-                .col-12(v-if='errorMessage')
-                  p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage }}
-              button.w-100.btn.btn-primary.d-block.btn-lg.mb-4(
-                type='button',
-                :disabled='invalid'
-                @click='sign_up'
-              ) 註冊帳號
-              button.w-100.btn.btn-link.py-0.d-block(
-                type='button',
-                onClick='document.location.href = "login.html"'
-              ) 登入
+  main.row
+    .container
+      .row
+        .col
+          .card.p-login.rounded-0.border.border-dark.border-2.bg-light.u-opacityShadow-lb.my-4
+            .card-body.px-4.px-md-9.px-lg-12.pt-12.pb-8.pt-lg-17.pb-lg-13
+              .row.gx-md-12
+                .col-md-6.col-lg-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
+                  img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
+                .col-md
+                  .text-center.mb-9
+                    h1.c-logo.c-logo--xl.text-primary.mb-0(title="MetaWall logo") MetaWall
+                    h2.h4.mb-0
+                      span.d-inline-block 註冊
+                  validation-observer(v-slot="{ invalid }", slim)
+                    form(@submit.prevent='sign_up')
+                      .row.mb-4
+                        validation-provider.col-12.mb-4(
+                          tag='div',
+                          rules='required|min:2',
+                          v-slot='{ errors, classes, passed }'
+                        )
+                          input.form-control(
+                            type='text',
+                            placeholder='暱稱',
+                            name='暱稱',
+                            v-model='userData.userName',
+                            :class='classes'
+                          )
+                          .w-100.invalid-invalid {{ errors[0] }}
+                        validation-provider.col-12.mb-4(
+                          tag='div',
+                          rules='required|email',
+                          v-slot='{ errors, classes, passed }'
+                        )
+                          input.form-control(
+                            type='email',
+                            placeholder='Email',
+                            name='帳號',
+                            v-model='userData.email',
+                            :class='classes'
+                          )
+                          .w-100.invalid-feedback {{ errors[0] }}
+                        validation-provider.col-12.mb-4(
+                          tag='div',
+                          rules='required|min:9',
+                          v-slot='{ errors, classes, passed }'
+                        )
+                          input.form-control(
+                            type='password',
+                            placeholder='Password',
+                            name='密碼',
+                            v-model='userData.password',
+                            :class='classes'
+                          )
+                          .w-100.invalid-feedback {{ errors[0] }}
+                        .col-12(v-if='errorMessage')
+                          p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage }}
+                      button.w-100.btn.btn-primary.d-block.btn-lg(
+                        type='button',
+                        :disabled='invalid'
+                        @click='sign_up'
+                      ) 註冊帳號
+                      button.w-100.btn.btn-link.btn-lg.d-block(
+                        type='button',
+                        onClick='document.location.href = "login.html"'
+                      ) 登入

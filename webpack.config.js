@@ -272,17 +272,24 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
-    // 2.註冊
+    // 2.註冊 (Vue)
     new HtmlWebpackPlugin({
       filename: 'register.html',
       template: 'jand/register.jade',
       chunks: ['vendor', 'main', 'p_register'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 2.註冊
+    new HtmlWebpackPlugin({
+      filename: 'register-layout.html',
+      template: 'jand/register-layout.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     // 2-2.註冊（錯誤訊息）
     new HtmlWebpackPlugin({
-      filename: 'register-error.html',
-      template: 'jand/register-error.jade',
+      filename: 'register-error-layout.html',
+      template: 'jand/register-error-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),

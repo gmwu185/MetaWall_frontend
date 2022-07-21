@@ -83,5 +83,44 @@ block bodyMainPush
         role='tabpanel',
         aria-labelledby='nav-changePassword-tab'
       )
-        include ./components/_new_password_inner.jade
+        //- include ./components/_new_password_inner.jade
+        validation-observer(v-slot="{ invalid }", slim)
+          form(@submit.prevent='update_password')
+            .row.mb-4
+              validation-provider.col-12.mb-4(
+                tag='div',
+                rules='required|min:9|confirmed:updatePassword.confirmNewPassword',
+                v-slot='{ errors, classes, passed }'
+              )
+                label.form-label.mb-1(for='new_password') 輸入新密碼
+                input#new_password.form-control.px-6(
+                  type='password',
+                  placeholder='請輸入新密碼',
+                  name='新密碼',
+                  v-model='updatePassword.newPassword',
+                  :class='classes'
+                )
+                .w-100.invalid-feedback {{ errors[0] }}
+              validation-provider.col-12.mb-4(
+                tag='div',
+                rules='required|min:9',
+                vid="updatePassword.confirmNewPassword",
+                v-slot='{ errors, classes, passed }'
+              )
+                label.form-label.mb-1(for='confirm_new_password') 再次輸入
+                input#confirm_new_password.form-control.px-6(
+                  type='password',
+                  placeholder='再次輸入新密碼',
+                  name='再次輸入新密碼',
+                  v-model='updatePassword.confirmNewPassword',
+                  :class='classes'
+                )
+                .w-100.invalid-feedback {{ errors[0] }}
+              .col-12(v-if='errorMessage.updatePassword')
+                p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage.updatePassword }}
+            button.btn.btn-primary.btn-lg.d-block.w-100.fw-bold(
+              type="button",
+              :disabled='invalid'
+              @click='update_password'
+            ) 重設密碼
   include ./components/_stickyNavSub.jade

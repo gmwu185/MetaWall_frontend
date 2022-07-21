@@ -1,0 +1,51 @@
+extends extends/_layoutTemplate_into.jade
+
+block bodyMainPush
+  main.row
+    .container
+      .row
+        .col
+          .card.p-login.rounded-0.border.border-dark.border-2.bg-light.u-opacityShadow-lb.my-4
+            .card-body.px-4.px-md-9.px-lg-12.pt-12.pb-8.pt-lg-17.pb-lg-13
+              .row.gx-md-12
+                .col-md-6.col-lg-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
+                  img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
+                .col-md
+                  .text-center.mb-9
+                    h1.c-logo.c-logo--xl.text-primary.mb-0(title="MetaWall logo") MetaWall
+                    h2.h4.mb-0
+                      span.d-inline-block 註冊
+                  // /** 使用 webServer 回錯誤錯
+                    * https://bootstrap5.hexschool.com/docs/5.1/forms/validation/#how-it-works
+                    * .is-invalid 直接操作 .form-control 表單元素，用於 伺服器端驗證 的偽類，不需要在父層加入 .was-validated 類別。
+                   */
+                  form
+                    .row.mb-4
+                      .col-12.mb-4
+                        input.form-control.is-invalid(
+                          type='text',
+                          placeholder='暱稱',
+                          name='暱稱',
+                        )
+                        .w-100.invalid-feedback 暱稱至少 2 個字元以上
+                      .col-12.mb-4
+                        input.form-control.is-invalid(
+                          type='email',
+                          placeholder='Email',
+                          name='帳號',
+                        )
+                        .invalid-feedback 帳號已被註冊，請替換新的 Email！
+                      .col-12.mb-4
+                        input.form-control.is-invalid(
+                          type='password',
+                          placeholder='Password',
+                          name='密碼',
+                        )
+                        .invalid-feedback 密碼需至少 8 碼以上，並中英混合
+                    button.w-100.btn.btn-primary.d-block.btn-lg.disabled(
+                      type='button',
+                    ) 註冊帳號
+                    button.w-100.btn.btn-link.btn-lg.d-block(
+                      type='button',
+                      onClick='document.location.href = "login.html"'
+                    ) 登入

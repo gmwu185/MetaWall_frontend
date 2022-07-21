@@ -20,8 +20,19 @@ const VueAPP = new Vue({
     sign_up() {
       const profileApi = `${this.apiUrl}/user/sign-up`;
       this.isLoading = true;
+      const { confirmPassword, email, password, userName } = this.userData
+      // console.log('this.userData', this.userData);
+      // API 有開 password 與 confirmPassword 欄位要相等，這裡為配合畫面直接使用賦值方式處理。
       axios
-        .post(profileApi, this.userData)
+        .post(
+          profileApi,
+          {
+            password,
+            confirmPassword: password,
+            email,
+            userName,
+          }
+        )
         .then((response) => {
           console.log('sign_up response', response);
           const token = response.data.data.token;
@@ -38,7 +49,10 @@ const VueAPP = new Vue({
             if (this.cookieToken) {
               console.log('先前已登入過');
             }
+
+            alert(`註冊成功，點按裡入站台`);
             this.isLoading = false;
+            
             const gotoFirstPath = 'allDynamicWall.html';
             if (document.location.pathname !== `/${gotoFirstPath}`) {
               document.location.href = 'allDynamicWall.html';
