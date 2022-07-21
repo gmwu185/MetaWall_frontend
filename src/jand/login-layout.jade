@@ -1,0 +1,39 @@
+extends extends/_layoutTemplate_into.jade
+
+block bodyMainPush
+  main.row
+    .container
+      .row
+        .col
+          .card.p-login.rounded-0.border.border-dark.border-2.bg-light.u-opacityShadow-lb.my-4
+            .card-body.px-4.px-md-9.px-lg-12.py-12.py-lg-17
+              .row.gx-md-12
+                .col-md-6.col-lg-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
+                  img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
+                .col-md
+                  .text-center.mb-9
+                    h1.c-logo.c-logo--xl.text-primary.mb-0(title="MetaWall logo") MetaWall
+                    h2.h4.mb-0
+                      span.d-inline-block 到元宇宙
+                      span.d-inline-block 展開全新社交圈
+                  form
+                    .row.mb-4
+                      .col-12.mb-4
+                        input.form-control(
+                          type="email",
+                          name="Email"
+                          placeholder="Email",
+                        )
+                      .col-12.mb-4
+                        input.form-control(
+                          type="password",
+                          placeholder="Password",
+                          name="password",
+                        )
+                    button.w-100.btn.btn-primary.btn-lg.mb-4.d-block(
+                      type="submit",
+                    ) 登入
+                    button.w-100.btn.btn-link.d-block.py-0(
+                      type="button",
+                      onClick='document.location.href = "register.html"'
+                    ) 註冊帳號

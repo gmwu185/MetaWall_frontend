@@ -244,11 +244,18 @@ module.exports = {
       chunks: ['vendor', 'main', 'p_index'],
       minify: HtmlWebpackPluginMinifySets,
     }),
-    // 1.登入 / login
+    // 1.登入 / login (vue)
     new HtmlWebpackPlugin({
       filename: 'login.html',
       template: 'jand/login.jade',
       chunks: ['vendor', 'main', 'p_login'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 1.登入 / login
+    new HtmlWebpackPlugin({
+      filename: 'login-layout.html',
+      template: 'jand/login-layout.jade',
+      chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 1.登入 – 1
