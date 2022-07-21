@@ -260,15 +260,15 @@ module.exports = {
     }),
     // 1.登入 – 1
     new HtmlWebpackPlugin({
-      filename: 'login-1.html',
-      template: 'jand/login-1.jade',
+      filename: 'login-1-layout.html',
+      template: 'jand/login-1-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 1-2.登入（錯誤訊息）
     new HtmlWebpackPlugin({
-      filename: 'login-error.html',
-      template: 'jand/login-error.jade',
+      filename: 'login-error-layout.html',
+      template: 'jand/login-error-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),

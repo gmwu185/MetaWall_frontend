@@ -9,7 +9,7 @@ block bodyMainPush
       .row
         .col
           .card.p-login.rounded-0.border.border-dark.border-2.bg-light.u-opacityShadow-lb.my-4
-            .card-body.px-4.px-md-9.px-lg-12.py-12.py-lg-17
+            .card-body.px-4.px-md-9.px-lg-12.pt-12.pb-8.pt-lg-17.pb-lg-13
               .row.gx-md-12
                 .col-md-6.col-lg-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
                   img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
@@ -50,11 +50,11 @@ block bodyMainPush
                           .w-100.invalid-feedback {{ errors[0] }}
                         .col-12(v-if='errorMessage')
                           p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage }}
-                      button.w-100.btn.btn-primary.btn-lg.mb-4.d-block(
+                      button.w-100.btn.btn-primary.btn-lg.d-block(
                         type="submit",
                         :disabled="invalid"
                       ) 登入
-                      button.w-100.btn.btn-link.d-block.py-0(
+                      button.w-100.btn.btn-link.btn-lg.d-block(
                         type="button",
                         onClick='document.location.href = "register.html"'
                       ) 註冊帳號

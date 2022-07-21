@@ -1,5 +1,4 @@
 extends extends/_layoutTemplate_into.jade
-
 block bodyMainPush
   main.row
     .container
@@ -17,21 +16,30 @@ block bodyMainPush
                       span.d-inline-block 到元宇宙
                       span.d-inline-block 展開全新社交圈
                   form
+                    // /** vee 表單驗証套件，由 :class="classes" 屬性傳入下面樣式
+                        * 動態加入 touched pristine validated required failed 相關驗証套件樣式
+                        * 操作 is-invalid，為 Bootstrap input .form-control 回應錯誤配合樣式
+                        */
                     .row.mb-4
                       .col-12.mb-4
-                        input.form-control(
+                        input.form-control.is-invalid(
                           type="email",
                           name="Email"
                           placeholder="Email",
+                          value='pogiQQ@gmail.com',
+                          required='required',
                         )
                       .col-12.mb-4
-                        input.form-control(
+                        input.form-control.is-invalid(
                           type="password",
                           placeholder="Password",
                           name="password",
+                          required='required'
                         )
+                      .col-12(v-if='errorMessage')
+                        p.small.text-center.text-danger.mt-4.mb-0 帳號或密碼錯誤，請重新輸入！
                     button.w-100.btn.btn-primary.btn-lg.d-block(
-                      type="submit",
+                      type="submit", disabled
                     ) 登入
                     button.w-100.btn.btn-link.btn-lg.d-block(
                       type="button",
