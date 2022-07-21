@@ -8,48 +8,46 @@ block bodyMainPush
     .container
       .row
         .col
-          .card.p-login.border.border-dark.border-2.bg-light.u-opacityShadow-lb.my-4
-            .card-body.px-4.px-md-9.px-lg-12.py-9.py-lg-17
+          .card.p-login.rounded-0.border.border-dark.border-2.bg-light.u-opacityShadow-lb.my-4
+            .card-body.px-4.px-md-9.px-lg-12.py-12.py-lg-17
               .row.gx-md-12
                 .col-md-6.col-lg-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
                   img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
                 .col-md
-                  .text-center
+                  .text-center.mb-9
                     h1.c-logo.c-logo--xl.text-primary.mb-0(title="MetaWall logo") MetaWall
-                    h2.h4.mb-6.mb-md-9
+                    h2.h4.mb-0
                       span.d-inline-block 到元宇宙
                       span.d-inline-block 展開全新社交圈
                   validation-observer(v-slot="{ invalid }" slim)
                     form(@submit.prevent="sign_in")
                       .row.mb-4
-                        .col-12
-                          validation-provider.mb-4(
-                            tag="div",
-                            rules="required|email",
-                            v-slot="{ errors, classes, passed }"
+                        validation-provider.col-12.mb-4(
+                          tag="div",
+                          rules="required|email",
+                          v-slot="{ errors, classes, passed }"
+                        )
+                          input.form-control(
+                            type="email",
+                            name="Email"
+                            placeholder="Email",
+                            v-model='longInData.email',
+                            :class="classes"
                           )
-                            input.form-control(
-                              type="email",
-                              name="Email"
-                              placeholder="Email",
-                              v-model='longInData.email',
-                              :class="classes"
-                            )
-                            .w-100.invalid-feedback {{ errors[0] }}
-                        .col-12
-                          validation-provider.mb-4(
-                            tag="div",
-                            rules="required|min:9",
-                            v-slot="{ errors, classes, passed }"
+                          .w-100.invalid-feedback {{ errors[0] }}
+                        validation-provider.col-12.mb-4(
+                          tag="div",
+                          rules="required|min:9",
+                          v-slot="{ errors, classes, passed }"
+                        )
+                          input.form-control(
+                            type="password",
+                            placeholder="Password",
+                            name="password",
+                            v-model='longInData.password',
+                            :class="classes"
                           )
-                            input.form-control(
-                              type="password",
-                              placeholder="Password",
-                              name="password",
-                              v-model='longInData.password',
-                              :class="classes"
-                            )
-                            .w-100.invalid-feedback {{ errors[0] }}
+                          .w-100.invalid-feedback {{ errors[0] }}
                         .col-12(v-if='errorMessage')
                           p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage }}
                       button.w-100.btn.btn-primary.btn-lg.mb-4.d-block(
