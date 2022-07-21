@@ -1,4 +1,8 @@
 extends extends/_layoutTemplate_into.jade
+
+block app_inner
+  Loading(:active.sync="isLoading")
+
 block bodyMainPush
   main.container-fluid
     .p-login.border.border-dark.border-2.bg-light.u-opacityShadow-lb.px-md-9.py-6.py-md-17.my-4

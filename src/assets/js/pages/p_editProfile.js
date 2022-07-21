@@ -30,18 +30,18 @@ const VueAPP = new Vue({
     },
     patchProfile() {
       const profileApi = `${this.apiUrl}/user/profile`;
-      console.log('patchProfile this.userData', this.userData);
-      axios.patch(profileApi, this.userData, {
-        Authorization: `Bearer ${this.cookieToken}`,
-      })
+      let vm = this;
+      vm.isLoading = true;
+      axios
+        .patch(profileApi, this.userData, {
+          Authorization: `Bearer ${this.cookieToken}`,
+        })
         .then(function (res) {
           console.log('axios ajax res.data', res.data);
+          vm.isLoading = false;
         })
         .catch(function (error) {
-          console.log(
-            'axios ajax error.response.data',
-            error.response.data
-          );
+          console.log('axios ajax error', error);
         });
     },
   },

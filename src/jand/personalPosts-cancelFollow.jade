@@ -1,4 +1,8 @@
 extends extends/_layoutTemplate_innerPage.jade
+
+block app_inner
+  include ./components/_stickyNavMain.jade
+
 block bodyMainPush
   .col-lg.me-lg-7
     .bg-white.border.border-2.border-dark.rounded-2.overflow-hidden.u-solidDoubShadow-lb.mb-4

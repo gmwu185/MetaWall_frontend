@@ -6,12 +6,17 @@ html(lang='zh-Hant-TW')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     meta(name="format-detection", content="telephone=no") 
     link(rel='icon' href='data:;base64,iVBORw0KGgo=')
-    title index
+    title MetaWall
     // block localHand j-template
     block localHand
     // /block localHand j-template
   body.bg-light.u-bg--QuartetContinuousPattern.position-relative.d-flex.align-items-center.justify-content-center
-    #app
-      Loading(:active.sync="isLoading")
+    #app.container-fluid
+      // block app_inner
+      block app_inner
+      // /block app_inner
+      
+      // block bodyMainPush
       block bodyMainPush
+      // /block bodyMainPush
     

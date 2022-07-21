@@ -1,9 +1,12 @@
 .p-login {
-  max-width: 870px;
   margin: auto;
+  max-width: 870px;
+  @include media-breakpoint-down(md) {
+    max-width: 95%;
+  }
   &MainImg {
-    @include media-breakpoint-down(lg) {
-      max-width: 45vw;
+    @include media-breakpoint-down(md) {
+      max-width: 60%;
     }
   }
 }

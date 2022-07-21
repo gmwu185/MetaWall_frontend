@@ -6,18 +6,20 @@ html(lang='zh-Hant-TW')
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     meta(name="format-detection", content="telephone=no") 
     link(rel='icon' href='data:;base64,iVBORw0KGgo=')
-    title index
+    title MetaWall
     // block localHand j-template
     block localHand
     // /block localHand j-template
   body.bg-light.u-bg--QuartetContinuousPattern.position-relative
     #app
-      Loading(:active.sync="isLoading")
-      include ../components/_stickyNavMain.jade
+      // block app_inner
+      //- include ../components/_stickyNavMain.jade
+      block app_inner
+      // /block app_inner
 
       main.pt-5.pb-24.py-lg-12
         .container
           .row.g-0
-              // block bodyMainPush j-template 
-              block bodyMainPush
-              // /block bodyMainPush j-template 
+            // block bodyMainPush j-template 
+            block bodyMainPush
+            // /block bodyMainPush j-template 
