@@ -295,92 +295,99 @@ module.exports = {
     }),
     // 3.全體動態牆 / allDynamicWall
     new HtmlWebpackPlugin({
-      filename: 'allDynamicWall.html',
-      template: 'jand/allDynamicWall.jade',
+      filename: 'allDynamicWall-layout.html',
+      template: 'jand/allDynamicWall-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 3-2.全體動態牆-有留言 / allDynamicWall-message
     new HtmlWebpackPlugin({
-      filename: 'allDynamicWall-message.html',
-      template: 'jand/allDynamicWall-message.jade',
+      filename: 'allDynamicWall-message-layout.html',
+      template: 'jand/allDynamicWall-message-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 3-3.全體動態牆-沒有動態 / allDynamicWall-empty
     new HtmlWebpackPlugin({
-      filename: 'allDynamicWall-empty.html',
-      template: 'jand/allDynamicWall-empty.jade',
+      filename: 'allDynamicWall-empty-layout.html',
+      template: 'jand/allDynamicWall-empty-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 4.追蹤名單 / followList
     new HtmlWebpackPlugin({
-      filename: 'followList.html',
-      template: 'jand/followList.jade',
+      filename: 'followList-layout.html',
+      template: 'jand/followList-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
-    // 5.修改個人資料 / editProfile
+    // 5.修改個人資料 / editProfile (vue)
     new HtmlWebpackPlugin({
       filename: 'editProfile.html',
       template: 'jand/editProfile.jade',
       chunks: ['vendor', 'main', 'p_editProfile'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 5.修改個人資料 / editProfile
+    new HtmlWebpackPlugin({
+      filename: 'editProfile-layout.html',
+      template: 'jand/editProfile-layout.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     // 5.修改個人資料-暱稱修改 / editProfile-name
     new HtmlWebpackPlugin({
-      filename: 'editProfile-name.html',
-      template: 'jand/editProfile-name.jade',
+      filename: 'editProfile-name-layout.html',
+      template: 'jand/editProfile-name-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 5-2.修改個人資料-暱稱修改（錯誤訊息） / editProfile-name-error
     new HtmlWebpackPlugin({
-      filename: 'editProfile-name-error.html',
-      template: 'jand/editProfile-name-error.jade',
+      filename: 'editProfile-name-error-layout.html',
+      template: 'jand/editProfile-name-error-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 6.修改個人資料-重設密碼 / changePassword
     new HtmlWebpackPlugin({
-      filename: 'changePassword.html',
-      template: 'jand/changePassword.jade',
+      filename: 'changePassword-layout.html',
+      template: 'jand/changePassword-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 7.張貼動態 / postNews
     new HtmlWebpackPlugin({
-      filename: 'postNews.html',
-      template: 'jand/postNews.jade',
+      filename: 'postNews-layout.html',
+      template: 'jand/postNews-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 7-2.張貼動態（錯誤訊息） / postNews-error
     new HtmlWebpackPlugin({
-      filename: 'postNews-error.html',
-      template: 'jand/postNews-error.jade',
+      filename: 'postNews-error-layout.html',
+      template: 'jand/postNews-error-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 8.我按讚的貼文 / myLike
     new HtmlWebpackPlugin({
-      filename: 'myLike.html',
-      template: 'jand/myLike.jade',
+      filename: 'myLike-layout.html',
+      template: 'jand/myLike-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 9.個人牆 / personalPosts
     new HtmlWebpackPlugin({
-      filename: 'personalPosts.html',
-      template: 'jand/personalPosts.jade',
+      filename: 'personalPosts-layout.html',
+      template: 'jand/personalPosts-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 9-2.個人牆-取消追蹤 / personalPosts-cancelFollow
     new HtmlWebpackPlugin({
-      filename: 'personalPosts-cancelFollow.html',
-      template: 'jand/personalPosts-cancelFollow.jade',
+      filename: 'personalPosts-cancelFollow-layout.html',
+      template: 'jand/personalPosts-cancelFollow-layout.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),

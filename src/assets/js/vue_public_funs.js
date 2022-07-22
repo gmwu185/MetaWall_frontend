@@ -22,7 +22,7 @@ const checkLogIn = function () {
     return;
   } else {
     if (isHaveCokieToken == '') {
-      alert('未正常登入或 Token 過期，點按確定按鈕後導回登入頁，請重新登入！');
+      alert('Token 過期或登出，點按確定按鈕後導回登入頁，請重新登入！');
       document.location.href = noTokenKickPatch;
     }
   }

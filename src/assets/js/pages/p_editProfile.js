@@ -85,7 +85,10 @@ const VueAPP = new Vue({
         .then(function (res) {
           console.log('axios ajax res.data', res.data);
           alert('重設密碼更新成功！');
+          vm.updatePassword.newPassword = '';
+          vm.updatePassword.confirmNewPassword = '';
           vm.isLoading = false;
+          document.location.href = 'editProfile.html';
         })
         .catch(function (error) {
           const errorObj = error.response.data;
