@@ -1,0 +1,64 @@
+extends extends/_layoutTemplate_innerPage.jade
+
+block app_inner
+  include ./components/_stickyNavMain.jade
+  
+block bodyMainPush
+  .col-lg
+    include ./components/_postSearchBar.jade
+    ul.list-unstyled.row.gy-4.mb-lg-0
+      li.col.col-lg-12
+        .card.bg-white.u-solidShadow-b
+          .card-header.pb-0.border-bottom-0.bg-white
+            .row.g-4
+              .col-auto
+                a.d-block(href="#")
+                  .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user(
+                    style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
+                  )
+              .col.d-flex.align-items-center
+                p.mb-0
+                  a.fw-bold(href="#") 邊緣小杰
+                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2.fw-light
+                    | 2022/1/10 12:00
+          .card-body.pt-4.pb-2
+            p
+              | 外面看起來就超冷....
+              br 
+              | 我決定回被窩繼續睡....#{`>.<`}
+            .c-minHightPhoto
+              img.c-minHightPhoto__img(src="~assets/images/post--01.png")
+      li.col-12
+        .card.bg-white.u-solidShadow-b
+          .card-header.pb-0.border-bottom-0.bg-white
+            .row.g-4
+              .col-auto
+                a(href="#")
+                  .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user(
+                    style=`background-image: url(assets/static-images/user--波吉.png)`
+                  )
+              .col.d-flex.align-items-center
+                p.mb-0
+                  a.fw-bold(href="#") 波吉
+                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2 2022/1/10 12:00
+          .card-body.pt-4.pb-2
+            p
+              | 我一定要成為很棒棒的國王！
+      li.col-12
+        .card.bg-white.u-solidShadow-b
+          .card-header.pb-0.border-bottom-0.bg-white
+            .row.g-4
+              .col-auto
+                a(href="#")
+                  .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user(
+                    style=`background-image: url(assets/static-images/user--阿爾敏.png)`
+                  )
+              .col.d-flex.align-items-center
+                p.mb-0
+                  a.fw-bold(href="#") 阿爾敏
+                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2 2022/1/10 12:00
+          .card-body.pt-4.pb-2
+            p
+              | 各位我有一個作戰計畫
+
+  include ./components/_stickyNavSub.jade

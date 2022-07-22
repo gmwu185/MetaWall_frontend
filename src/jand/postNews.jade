@@ -1,0 +1,29 @@
+extends extends/_layoutTemplate_innerPage.jade
+
+block app_inner
+  include ./components/_stickyNavMain.jade
+
+block bodyMainPush
+  .col-lg
+    h1.h5.text-center.fw-bold.bg-white.border.border-2.border-dark.rounded-0.u-solidDoubShadow-lb.py-4.mb-4
+      | 張貼動態
+    .card
+      .card-body.p-md-8
+        .mb-4
+          label.form-label.mb-1(for='exampleFormControlTextarea1') 貼文內容
+          textarea#exampleFormControlTextarea1.form-control.u-form-control--textareaResizeNone(
+            rows='4',
+            placeholder="輸入您的貼文內容"
+          )
+        .mb-4
+          .btn.btn-dark.c-btnFile.rounded-1.px-8.py-1.shadow-none
+            span 上傳圖片
+            input.c-btnFile__input(type='file')
+        .c-minHightPhoto.mb-8
+          img.c-minHightPhoto__img(src="~assets/images/post--01.png")
+        .mx-md-18
+          button.btn.btn-warning.border.d-block.w-100(
+            type="button",
+            disabled
+          ) 送出貼文
+  include ./components/_stickyNavSub.jade

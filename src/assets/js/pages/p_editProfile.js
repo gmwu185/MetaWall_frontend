@@ -19,22 +19,7 @@ const VueAPP = new Vue({
     getCookieToken: vue_public_funs.getCookieToken,
     checkLogIn: vue_public_funs.checkLogIn,
     signout: vue_public_funs.signout,
-    getProfile() {
-      const profileApi = `${this.apiUrl}/user/profile`;
-      axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
-      axios
-        .get(profileApi)
-        .then((response) => {
-          this.userData = response.data.data;
-          this.isLoading = false;
-        })
-        .catch((error) => {
-          console.log('error.request', error.request);
-          const errorObj = JSON.parse(error.request.response);
-          console.log('profileApi error.request.response', errorObj);
-          alert(`讀取個人資料發生錯誤，原因：${error.response.data.message}`);
-        });
-    },
+    getProfile: vue_public_funs.getProfile,
     patchProfile() {
       const profileApi = `${this.apiUrl}/user/profile`;
       console.log('this.userData', this.userData);

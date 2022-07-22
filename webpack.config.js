@@ -293,6 +293,13 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 3.全體動態牆 / allDynamicWall (vue)
+    new HtmlWebpackPlugin({
+      filename: 'allDynamicWall.html',
+      template: 'jand/allDynamicWall.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     // 3.全體動態牆 / allDynamicWall
     new HtmlWebpackPlugin({
       filename: 'allDynamicWall-layout.html',
@@ -311,6 +318,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'allDynamicWall-empty-layout.html',
       template: 'jand/allDynamicWall-empty-layout.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 4.追蹤名單 / followList (vue)
+    new HtmlWebpackPlugin({
+      filename: 'followList.html',
+      template: 'jand/followList.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
@@ -358,6 +372,13 @@ module.exports = {
     }),
     // 7.張貼動態 / postNews
     new HtmlWebpackPlugin({
+      filename: 'postNews.html',
+      template: 'jand/postNews.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 7.張貼動態 / postNews
+    new HtmlWebpackPlugin({
       filename: 'postNews-layout.html',
       template: 'jand/postNews-layout.jade',
       chunks: ['vendor', 'main'],
@@ -370,10 +391,24 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
+    // 8.我按讚的貼文 / myLike (vue)
+    new HtmlWebpackPlugin({
+      filename: 'myLike.html',
+      template: 'jand/myLike.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
     // 8.我按讚的貼文 / myLike
     new HtmlWebpackPlugin({
       filename: 'myLike-layout.html',
       template: 'jand/myLike-layout.jade',
+      chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 9.個人牆 / personalPosts (vue)
+    new HtmlWebpackPlugin({
+      filename: 'personalPosts.html',
+      template: 'jand/personalPosts.jade',
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),

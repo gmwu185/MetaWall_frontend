@@ -7,8 +7,9 @@ const getCookieToken = function () {
   );
 };
 
+const noTokenKickPatch = 'login.html';
+
 const checkLogIn = function () {
-  const noTokenKickPatch = 'login.html';
   const isHaveCokieToken = this.cookieToken;
   const locationPathnameSplit = location.pathname.split('/');
   const isKick =
@@ -35,4 +36,22 @@ const signout = function () {
   this.checkLogIn();
 };
 
-export default { apiUrl, getCookieToken, checkLogIn, signout };
+const getProfile = function () {
+  const profileApi = `${this.apiUrl}/user/profile`;
+  axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
+  axios
+    .get(profileApi)
+    .then((response) => {
+      this.userData = response.data.data;
+      this.isLoading = false;
+    })
+    .catch((error) => {
+      console.log('error.request', error.request);
+      const errorObj = JSON.parse(error.request.response);
+      console.log('profileApi error.request.response', errorObj);
+      alert(`讀取個人資料發生錯誤，原因：${error.response.data.message}`);
+      document.location.href = noTokenKickPatch;
+    });
+}
+
+export default { apiUrl, getCookieToken, checkLogIn, signout, getProfile };
