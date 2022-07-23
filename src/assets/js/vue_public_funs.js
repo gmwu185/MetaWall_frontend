@@ -1,4 +1,5 @@
 const apiUrl = '//damp-shore-91853.herokuapp.com';
+const noTokenKickPatch = 'login.html';
 
 const getCookieToken = function () {
   this.cookieToken = document.cookie.replace(
@@ -6,8 +7,6 @@ const getCookieToken = function () {
     '$1'
   );
 };
-
-const noTokenKickPatch = 'login.html';
 
 const checkLogIn = function () {
   const isHaveCokieToken = this.cookieToken;

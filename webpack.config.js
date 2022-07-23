@@ -31,6 +31,11 @@ module.exports = {
     p_login: 'assets/js/pages/p_login',
     p_editProfile: 'assets/js/pages/p_editProfile',
     p_register: 'assets/js/pages/p_register',
+    p_allDynamicWall: 'assets/js/pages/p_allDynamicWall',
+    p_followList: 'assets/js/pages/p_followList',
+    p_postNews: 'assets/js/pages/p_postNews',
+    p_myLike: 'assets/js/pages/p_myLike',
+    p_personalPosts: 'assets/js/pages/p_personalPosts',
   },
   devtool: NODE_ENV === 'development' ? 'cheap-module-source-map' : 'false',
   output: {
@@ -297,7 +302,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'allDynamicWall.html',
       template: 'jand/allDynamicWall.jade',
-      chunks: ['vendor', 'main'],
+      chunks: ['vendor', 'main', 'p_allDynamicWall'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 3.全體動態牆 / allDynamicWall
@@ -325,7 +330,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'followList.html',
       template: 'jand/followList.jade',
-      chunks: ['vendor', 'main'],
+      chunks: ['vendor', 'main', 'p_followList'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 4.追蹤名單 / followList
@@ -370,11 +375,11 @@ module.exports = {
       chunks: ['vendor', 'main'],
       minify: HtmlWebpackPluginMinifySets,
     }),
-    // 7.張貼動態 / postNews
+    // 7.張貼動態 / postNews (vue)
     new HtmlWebpackPlugin({
       filename: 'postNews.html',
       template: 'jand/postNews.jade',
-      chunks: ['vendor', 'main'],
+      chunks: ['vendor', 'main', 'p_postNews'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 7.張貼動態 / postNews
@@ -395,7 +400,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'myLike.html',
       template: 'jand/myLike.jade',
-      chunks: ['vendor', 'main'],
+      chunks: ['vendor', 'main', 'p_myLike'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 8.我按讚的貼文 / myLike
@@ -409,7 +414,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'personalPosts.html',
       template: 'jand/personalPosts.jade',
-      chunks: ['vendor', 'main'],
+      chunks: ['vendor', 'main', 'p_personalPosts'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 9.個人牆 / personalPosts

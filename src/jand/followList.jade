@@ -1,7 +1,13 @@
 extends extends/_layoutTemplate_innerPage.jade
 
 block app_inner
-  include ./components/_stickyNavMain.jade
+  Loading(:active.sync="isLoading")
+  
+  sticky-nav-main(
+    :user-data='userData',
+    @push-signout='signout',
+  )
+  //- include ./components/_stickyNavMain.jade
 
 block bodyMainPush
   .col-lg

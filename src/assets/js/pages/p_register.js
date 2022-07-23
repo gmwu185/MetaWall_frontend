@@ -15,8 +15,6 @@ const VueAPP = new Vue({
     errorMessage: '',
   },
   methods: {
-    // getCookieToken: vue_public_funs.getCookieToken,
-    // checkLogIn: vue_public_funs.checkLogIn,
     sign_up() {
       const profileApi = `${this.apiUrl}/user/sign-up`;
       this.isLoading = true;
@@ -75,9 +73,5 @@ const VueAPP = new Vue({
     setTimeout(() => {
       this.isLoading = false;
     }, 1500);
-    // this.signUp();
-    // this.getCookieToken();
-    // this.checkLogIn();
-    // this.getProfileApiData();
   },
 });
