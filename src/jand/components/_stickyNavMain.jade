@@ -8,10 +8,6 @@ nav.p-stickyNavMain.border.border-3.border-top-0.border-start-0.border-end-0.bor
           a.text-decoration-none.d-flex.align-items-center(
             href="#" data-bs-toggle='dropdown' data-bs-display='static' aria-expanded='false'
           )
-            //- user-avatar.me-2(
-            //-   :img-url='userData.avatarUrl',
-            //-   :incom-class='"c-pseudoOneToOne--xs"'
-            //- )
             span.c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--xs.c-pseudoOneToOne--user.me-2(
               style=`background-image: url(assets/static-images/user--邊緣小杰.png)`
             )
@@ -21,12 +17,12 @@ nav.p-stickyNavMain.border.border-3.border-top-0.border-start-0.border-end-0.bor
             li.border.border-dark.border-2.border-top-0.border-start-0.border-end-0
               button.dropdown-item.py-2(
                 type='button',
-                onClick='document.location.href = "personalPosts.html"'
+                onClick='document.location.href = "personalPosts-layout.html"'
               ) 我的貼文牆
             li.border.border-dark.border-2.border-top-0.border-start-0.border-end-0
               button.dropdown-item.py-2(
                 type='button',
-                onClick='document.location.href = "editProfile.html"'
+                onClick='document.location.href = "editProfile-layout.html"'
               ) 修改個人資料
             li.border.border-dark.border-0
               button.dropdown-item.py-2(type='button', @click='signout') 登出

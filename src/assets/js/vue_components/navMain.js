@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-export default Vue.component('sticky-nav-main', {
+export default Vue.component('nav-main', {
   methods: {
     componentSignout() {
       if (confirm('請確任是否登出')) {

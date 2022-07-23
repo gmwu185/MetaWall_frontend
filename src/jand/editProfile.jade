@@ -3,14 +3,14 @@ extends extends/_layoutTemplate_innerPage.jade
 block app_inner
   Loading(:active.sync="isLoading")
   
-  sticky-nav-main(
+  nav-main(
     :user-data='userData',
     @push-signout='signout',
   )
   //- include ./components/_stickyNavMain.jade
 
 block bodyMainPush
-  .col-lg
+  article.col-lg
     h1.h5.text-center.fw-bold.bg-white.border.border-2.border-dark.rounded-0.u-solidDoubShadow-lb.py-4.mb-8
       | 修改個人資料
     .nav.nav-tabs.border-bottom-0.mx-4
@@ -128,4 +128,8 @@ block bodyMainPush
               :disabled='invalid'
               @click='update_password'
             ) 重設密碼
-  include ./components/_stickyNavSub.jade
+  
+  nav-sub(
+    :user-data='userData',
+  )
+  //- include ./components/_stickyNavSub.jade

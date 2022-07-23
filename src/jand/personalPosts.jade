@@ -3,14 +3,14 @@ extends extends/_layoutTemplate_innerPage.jade
 block app_inner
   Loading(:active.sync="isLoading")
   
-  sticky-nav-main(
+  nav-main(
     :user-data='userData',
     @push-signout='signout',
   )
   //- include ./components/_stickyNavMain.jade
 
 block bodyMainPush
-  .col-lg
+  article.col-lg
     .bg-white.border.border-2.border-dark.rounded-2.overflow-hidden.u-solidDoubShadow-lb.mb-4
       .row.g-0
         .col-auto
@@ -65,4 +65,7 @@ block bodyMainPush
             p
               | 各位我有一個作戰計畫
 
-  include ./components/_stickyNavSub.jade
+  nav-sub(
+    :user-data='userData',
+  )
+  //- include ./components/_stickyNavSub.jade

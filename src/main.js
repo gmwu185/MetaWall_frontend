@@ -22,6 +22,7 @@ set_veeValidate();
 
 // vue 自定義全域元件
 import userAvatar from 'assets/js/vue_components/userAvatar';
-import stickyNavMain from 'assets/js/vue_components/stickyNavMain';
+import navMain from 'assets/js/vue_components/navMain';
+import navSub from 'assets/js/vue_components/navSub';
 
 import 'scss/main.scss';
