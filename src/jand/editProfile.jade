@@ -32,58 +32,71 @@ block bodyMainPush
         aria-labelledby='nav-profile-tab'
       )
         //- include ./components/_edit_profile_inner.jade
-        // edit_profile_inner
-        .d-flex.flex-wrap.justify-content-center.mb-3
-          user-avatar.mx-auto.mb-4(
-            :img-url='userData.avatarUrl',
-            :incom-class='"c-pseudoOneToOne--xl"'
-          )
-          //- .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--xl.c-pseudoOneToOne--user.mx-auto.mb-4( 
-          //-   :style='{ backgroundImage: userData.avatarUrl ? `url(${ userData.avatarUrl })` : "" }',
-          //- )
-          .w-100.text-center
-            .btn.btn-dark.c-btnFile.rounded-0.px-6.py-1.shadow-none
-              span 上傳大頭照
-              input.c-btnFile__input(type='file')
-        .mb-4
-          label.form-label.mb-1(for='profile_name') 暱稱
-          input#profile_name.form-control.px-6(
-            type='text',
-            placeholder='請輸入暱稱',
-            v-model='userData.userName'
-          )
-        .mb-8
-          label.form-label.mb-1(for='profile_gender') 性別
-          div
-            .form-check.form-check-inline
-              input#profile_gender_male.form-check-input(
-                type='radio',
-                name='profile_gender',
-                value='male',
-                v-model="userData.gender"
+        validation-observer(v-slot="{ invalid }" slim)
+          form(@submit.prevent="patchProfile")
+            // edit_profile_inner
+            .d-flex.flex-wrap.justify-content-center.mb-3
+              user-avatar.mx-auto.mb-4(
+                :img-url='updataUserData.avatarUrl',
+                :incom-class='"c-pseudoOneToOne--xl"'
               )
-              label.form-check-label(for='profile_gender_male') 男性
-            .form-check.form-check-inline
-              input#profile_gender_woman.form-check-input(
-                type='radio',
-                name='profile_gender',
-                value='woman',
-                v-model="userData.gender"
+              //- .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--xl.c-pseudoOneToOne--user.mx-auto.mb-4( 
+              //-   :style='{ backgroundImage: userData.avatarUrl ? `url(${ userData.avatarUrl })` : "" }',
+              //- )
+              .w-100.text-center
+                .btn.btn-dark.c-btnFile.rounded-0.px-6.py-1.shadow-none
+                  span 上傳大頭照
+                  input.c-btnFile__input(
+                    type='file',
+                    @change='selectPreviewImageFile',
+                    ref='btn_selectImg'
+                  )
+            validation-provider.mb-4(
+              tag="div",
+              rules="required|min:2",
+              v-slot="{ errors, classes, passed }"
+            )
+              label.form-label.mb-1(for='profile_name') 暱稱
+              input#profile_name.form-control.px-6(
+                type='text',
+                placeholder='請輸入暱稱',
+                v-model='updataUserData.userName',
+                name="暱稱",
+                :class="classes"
               )
-              label.form-check-label(for='profile_gender_woman') 女性
-            .form-check.form-check-inline
-              input#profile_gender_unknown.form-check-input(
-                type='radio',
-                name='profile_gender',
-                value='',
-                v-model="userData.gender"
-              )
-              label.form-check-label(for='profile_gender_unknown') 未知
-        // /edit_profile_inner
-        button.btn.btn-warning.btn-lg.d-block.w-100.fw-bold(
-          type='button',
-          @click='patchProfile',
-        ) 送出更新
+              .w-100.invalid-feedback {{ errors[0] }}
+            .mb-8
+              label.form-label.mb-1(for='profile_gender') 性別
+              div
+                .form-check.form-check-inline
+                  input#profile_gender_male.form-check-input(
+                    type='radio',
+                    name='profile_gender',
+                    value='male',
+                    v-model="updataUserData.gender"
+                  )
+                  label.form-check-label(for='profile_gender_male') 男性
+                .form-check.form-check-inline
+                  input#profile_gender_woman.form-check-input(
+                    type='radio',
+                    name='profile_gender',
+                    value='woman',
+                    v-model="updataUserData.gender"
+                  )
+                  label.form-check-label(for='profile_gender_woman') 女性
+                .form-check.form-check-inline
+                  input#profile_gender_unknown.form-check-input(
+                    type='radio',
+                    name='profile_gender',
+                    value='',
+                    v-model="updataUserData.gender"
+                  )
+                  label.form-check-label(for='profile_gender_unknown') 未知
+            // /edit_profile_inner
+            button.btn.btn-warning.btn-lg.d-block.w-100.fw-bold(
+              type='submit',
+              :disabled="invalid"
+            ) 送出更新
       #nav-changePassword.tab-pane.card-body.p-4.py-md-8.px-md-26.fade(
         role='tabpanel',
         aria-labelledby='nav-changePassword-tab'

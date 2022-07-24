@@ -17,10 +17,17 @@ const VueAPP = new Vue({
     signout: vue_public_funs.signout,
     getProfile: vue_public_funs.getProfile,
   },
-  created() {
+  created: async function () {
     this.isLoading = true;
     this.getCookieToken();
     this.checkLogIn();
-    this.getProfile();
+    
+    const getProfileData = await this.getProfile();
+    if (getProfileData) {
+      const { _id, avatarUrl, email, gender, userName } = getProfileData.data;
+      const getUserData = { _id, avatarUrl, email, gender, userName };
+      this.userData = getUserData;
+      this.isLoading = false;
+    }
   },
 });

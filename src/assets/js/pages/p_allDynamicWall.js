@@ -17,10 +17,19 @@ const VueAPP = new Vue({
     signout: vue_public_funs.signout,
     getProfile: vue_public_funs.getProfile,
   },
-  created() {
+  created: async function () {
     this.isLoading = true;
     this.getCookieToken();
     this.checkLogIn();
-    this.getProfile();
+    
+    const getProfileData = await this.getProfile();
+    if (getProfileData) {
+      const { _id, avatarUrl, email, gender, userName } = getProfileData.data;
+      const getUserData = { _id, avatarUrl, email, gender, userName };
+      this.userData = getUserData;
+      const updataUserData = { avatarUrl, gender, userName }; // 由 API 取得使用者資訊，分別用不同物件包裝處理物件傳參考特性
+      this.updataUserData = updataUserData;
+      this.isLoading = false;
+    }
   },
 });
