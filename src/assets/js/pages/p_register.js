@@ -1,9 +1,9 @@
-import vue_public_funs from '../vue_public_funs.js';
+import API_behavior from '../vue_controllers/API_behavior';
 
 const VueAPP = new Vue({
   el: '#app',
   data: {
-    apiUrl: vue_public_funs.apiUrl,
+    apiUrl: API_behavior.apiUrl,
     isLoading: false,
     cookieToken: '',
     userData: {

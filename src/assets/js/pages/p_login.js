@@ -1,9 +1,9 @@
-import vue_public_funs from '../vue_public_funs.js';
+import API_behavior from '../vue_controllers/API_behavior';
 
 const VueAPP = new Vue({
   el: '#app',
   data: {
-    apiUrl: vue_public_funs.apiUrl,
+    apiUrl: API_behavior.apiUrl,
     isLoading: false,
     cookieToken: '',
     longInData: {
@@ -14,9 +14,9 @@ const VueAPP = new Vue({
     errorMessage: '',
   },
   methods: {
-    getCookieToken: vue_public_funs.getCookieToken,
-    checkLogIn: vue_public_funs.checkLogIn,
-    signout: vue_public_funs. signout,
+    getCookieToken: API_behavior.getCookieToken,
+    checkLogIn: API_behavior.checkLogIn,
+    signout: API_behavior. signout,
     sign_in() {
       const sign_inApi = `${this.apiUrl}/user/sign-in`;
 

@@ -44,7 +44,7 @@ const getProfile = function () {
     axios
       .get(profileApi)
       .then((res) => {
-        resolve(res.data)
+        resolve(res.data);
       })
       .catch((err) => {
         reject(err);
@@ -59,50 +59,10 @@ const getProfile = function () {
   });
 };
 
-const upload_img = async function ({
-  ref_file,
-  imageType = '',
-  formData = new FormData(),
-}) {
-  const uploadAvatarImgApi = `${this.apiUrl}/upload/image`;
-  let ApiReturnImgUrl = '';
-
-  /**
-   * (KEY): image 欄位名稱 為後端定義需正確帶上
-   * (VALUE): 通過 append 向 form 物件新增資料
-   */
-  if (ref_file) {
-    formData.append('image', ref_file, ref_file.name);
-    for (const value of formData.values()) {
-      /** 印出所有 formData 所加入的值
-       * https://developer.mozilla.org/en-US/docs/Web/API/FormData/values
-       */
-      console.log('formData value -> ', value);
-    }
-  } else {
-    console.log('ref_file', ref_file);
-  }
-
-  return new Promise((resolve, reject) => {
-    axios({
-      method: 'post',
-      url: uploadAvatarImgApi + `?type=${imageType}`,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${this.cookieToken}`,
-      },
-      data: formData,
-    })
-      .then((res) => resolve(res.data))
-      .catch((err) => reject(err))
-  });
-};
-
 export default {
   apiUrl,
   getCookieToken,
   checkLogIn,
   signout,
   getProfile,
-  upload_img,
 };
