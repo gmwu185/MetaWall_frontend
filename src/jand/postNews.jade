@@ -15,23 +15,42 @@ block bodyMainPush
       | 張貼動態
     .card
       .card-body.p-md-8
-        .mb-4
-          label.form-label.mb-1(for='exampleFormControlTextarea1') 貼文內容
-          textarea#exampleFormControlTextarea1.form-control.u-form-control--textareaResizeNone(
-            rows='4',
-            placeholder="輸入您的貼文內容"
-          )
-        .mb-4
-          .btn.btn-dark.c-btnFile.rounded-1.px-8.py-1.shadow-none
-            span 上傳圖片
-            input.c-btnFile__input(type='file')
-        .c-minHightPhoto.mb-8
-          img.c-minHightPhoto__img(src="~assets/images/post--01.png")
-        .mx-md-18
-          button.btn.btn-warning.border.d-block.w-100(
-            type="button",
-            disabled
-          ) 送出貼文
+        validation-observer(v-slot="{ invalid }" slim)
+          form(@submit.prevent="createdPost")
+            .row.gy-4.mb-4
+              validation-provider.col-12(
+                tag="div",
+                rules="required",
+                v-slot="{ errors, classes, passed }"
+              )
+                label.form-label.mb-1(for='postContent') 貼文內容
+                textarea#postContent.form-control.u-form-control--textareaResizeNone(
+                  rows='4',
+                  name="貼文內容",
+                  placeholder="輸入您的貼文內容",
+                  v-model='post.content'
+                  :class="classes"
+                )
+                .w-100.invalid-feedback {{ errors[0] }}
+              .col-12
+                btn-file-preview-img(
+                  :incom-btn-str='"上傳圖片"',
+                  :incom-class='["rounded-1", "px-8", "py-1"]',
+                  @change-preview-emit='choosePostImage',
+                )
+                //- .btn.btn-dark.c-btnFile.rounded-1.px-8.py-1.shadow-none
+                //-   span 上傳圖片
+                //-   input.c-btnFile__input(type='file')
+              .col-12
+                .c-minHightPhoto(v-if='post.preview_img.file')
+                  img.c-minHightPhoto__img(:src="post.preview_img.url")
+                  //- img.c-minHightPhoto__img(src="~assets/images/post--01.png")
+            .mx-md-18
+              button.btn.btn-warning.border.d-block.w-100(
+                type="button",
+                :disabled="invalid"
+                @click="createdPost"
+              ) 送出貼文
   
   nav-sub(
     :user-data='userData',

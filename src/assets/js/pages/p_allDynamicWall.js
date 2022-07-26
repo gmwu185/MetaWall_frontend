@@ -6,7 +6,9 @@ const VueAPP = new Vue({
     apiUrl: API_behavior.apiUrl,
     isLoading: false,
     cookieToken: '',
-    userData: {},
+    userData: {
+      userName: 'Member',
+    },
     errorMessage: {
       updatePassword: '',
     },
