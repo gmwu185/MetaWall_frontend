@@ -25,15 +25,22 @@ const VueAPP = new Vue({
     signout: API_behavior.signout,
     getProfile: API_behavior.getProfile,
     upload_img: fileUpload.upload_img,
-    selectPreviewImageFile: fileUpload.selectPreviewImageFile,
+    change_avatar(new_data) {
+      const { imgUrl, imageType, file } = new_data;
+      this.updataUserData.avatarUrl = imgUrl;
+      this.updataUserData.imageType = imageType;
+      this.updataUserData.file = file;
+    },
     patchProfile: async function () {
       try {
         const profileApi = `${this.apiUrl}/user/profile`;
+        
         let vm = this;
         vm.isLoading = true;
-        const ref_btn_selectImg = this.$refs.btn_selectImg.files[0];
 
-        const { avatarUrl, gender, userName } = this.updataUserData;
+        const { avatarUrl, gender, userName, imageType, file } =
+          this.updataUserData;
+        
         let profileDataObj = {};
         profileDataObj = {
           gender,
@@ -41,20 +48,26 @@ const VueAPP = new Vue({
         };
 
         let avatar_upload_img = null;
-
         if (avatarUrl !== vm.userData.avatarUrl) {
           /** 比對 updataUserData 的預覽大頭照圖片
            * 與原本 API 取得大頭照圖片 是否一樣
            * 不同透過 imgUrl 圖床建立圖片連結回傳
            */
           avatar_upload_img = await this.upload_img({
-            imageType: 'avatar',
-            ref_file: ref_btn_selectImg,
+            imageType: imageType,
+            file: file, // 選取的檔案，做為 formData
           });
-          console.log('有使用 imgUrl 服務取得結果的 avatar_upload_img', avatar_upload_img)
+          console.log(
+            '有使用 imgUrl 服務取得結果的 avatar_upload_img',
+            avatar_upload_img
+          );
           profileDataObj.avatarUrl = avatar_upload_img.data;
-          console.log('有使用 imgUrl 服務取得結果的 profileDataObj ->', profileDataObj);
+          console.log(
+            '有使用 imgUrl 服務取得結果的 profileDataObj ->',
+            profileDataObj
+          );
         } else {
+          alert('選取新的圖片與原先的圖片一樣，不上傳圖片');
           profileDataObj.avatarUrl = avatarUrl;
         }
 
@@ -72,7 +85,7 @@ const VueAPP = new Vue({
                 );
                 resolve(res.data.data);
               })
-              .catch(err => {
+              .catch((err) => {
                 reject(err.response.data);
               });
           });
@@ -81,7 +94,8 @@ const VueAPP = new Vue({
 
         const getProfileData = await vm.getProfile();
         if (getProfileData) {
-          const { _id, avatarUrl, email, gender, userName } = getProfileData.data;
+          const { _id, avatarUrl, email, gender, userName } =
+            getProfileData.data;
           const getUserData = { _id, avatarUrl, email, gender, userName };
           vm.userData = getUserData;
           vm.isLoading = false;
@@ -127,7 +141,7 @@ const VueAPP = new Vue({
     this.isLoading = true;
     this.getCookieToken();
     this.checkLogIn();
-    
+
     const getProfileData = await this.getProfile();
     if (getProfileData) {
       const { _id, avatarUrl, email, gender, userName } = getProfileData.data;

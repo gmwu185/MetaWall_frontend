@@ -44,13 +44,19 @@ block bodyMainPush
               //-   :style='{ backgroundImage: userData.avatarUrl ? `url(${ userData.avatarUrl })` : "" }',
               //- )
               .w-100.text-center
-                .btn.btn-dark.c-btnFile.rounded-0.px-6.py-1.shadow-none
-                  span 上傳大頭照
-                  input.c-btnFile__input(
-                    type='file',
-                    @change='selectPreviewImageFile',
-                    ref='btn_selectImg'
-                  )
+                btn-file-preview-img(
+                  :incom-img-type='"avatar"',
+                  :incom-btn-str='"上傳大頭照"',
+                  :incom-class='["rounded-0", "px-6", "py-1"]',
+                  @change-preview-emit='change_avatar',
+                )
+                //- .btn.btn-dark.c-btnFile.rounded-0.px-6.py-1.shadow-none
+                //-   span 上傳大頭照
+                //-   input.c-btnFile__input(
+                //-     type='file',
+                //-     @change='selectPreviewImageFile',
+                //-     ref='btn_selectImg'
+                //-   )
             validation-provider.mb-4(
               tag="div",
               rules="required|min:2",
