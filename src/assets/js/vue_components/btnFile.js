@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import fileUpload from '../vue_controllers/fileUpload'
+import fileUpload from '../vue_controllers/fileUpload';
 
 export default Vue.component('btn-file-preview-img', {
   methods: {
@@ -27,6 +27,7 @@ export default Vue.component('btn-file-preview-img', {
         newImg.src = base64_or_path;
       });
     },
+    returnFileSize: (fileSize) => Number((fileSize / 1048576).toFixed(2)), // 換算圖檔 mb
     previewFile: async function (e) {
       // console.log('this.imgType', this.imgType);
       try {
@@ -34,14 +35,19 @@ export default Vue.component('btn-file-preview-img', {
         const file = input.files[0];
         // console.log('file', file)
 
-        /* 下自定錯誤 */
+        /* 以下驗証自定錯誤 */
         if (!this.isValid_img_type(file.type)) {
           const fileName = file.type.split('/').pop();
-          let errorMsgStr = `${fileName} 格式檔，這不是圖片檔，中斷操作請重選檔案`;
+          let errorMsgStr = `${fileName} 格式檔，圖片格式錯誤，僅限 JPG、PNG 圖片`;
           alert(errorMsgStr);
           this.fileThrowError({ msgStr: errorMsgStr });
         }
-        /* /下自定錯誤 */
+        if (this.returnFileSize(file.size) > 1) {
+          let errorMsgStr = `圖片檔案過大，僅限 1 mb 以下檔案`;
+          alert(errorMsgStr);
+          this.fileThrowError({ msgStr: errorMsgStr });
+        }
+        /* /以下驗証自定錯誤 */
 
         const imgFileReadFile = await this.readFile(file);
         const imgFileToBase64 = imgFileReadFile.result;
@@ -52,7 +58,7 @@ export default Vue.component('btn-file-preview-img', {
         // const previewImg = await this.createImg("example.com/house.jpg");
         // console.log('previewImg', previewImg);
 
-        /* 下自定錯誤 */
+        /* 以下驗証自定錯誤 */
         let errMsgStr = '';
         if (previewImg.width > 1024) {
           errMsgStr = `圖片寬度 ${previewImg.width} px，超過 1024 px`;
@@ -71,7 +77,7 @@ export default Vue.component('btn-file-preview-img', {
             fileThrowError({ msgStr: errMsgStr });
           }
         }
-        /* /下自定錯誤 */
+        /* /以下驗証自定錯誤 */
 
         // 以上錯誤條件判斷都通過，才將 JS 產生的圖片的 src 值傳向 DOM 產生在畫面
         this.$emit('change-preview-emit', {
