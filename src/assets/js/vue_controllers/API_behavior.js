@@ -37,8 +37,6 @@ const signout = function () {
 
 const getProfile = function () {
   const profileApi = `${this.apiUrl}/user/profile`;
-  let getApiData;
-
   return new Promise((resolve, reject) => {
     axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
     axios
@@ -61,6 +59,7 @@ const getProfile = function () {
 
 export default {
   apiUrl,
+  noTokenKickPatch,
   getCookieToken,
   checkLogIn,
   signout,
