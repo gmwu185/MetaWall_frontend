@@ -9,6 +9,7 @@ const VueAPP = new Vue({
     userData: {
       userName: 'Member',
     },
+    posts: [],
     errorMessage: {
       updatePassword: '',
     },
@@ -20,7 +21,6 @@ const VueAPP = new Vue({
     getProfile: API_behavior.getProfile,
     getPosts({ timeSortStr = '', queryStr = '' }) {
       console.log('getPosts()');
-      // const postsApi = `${this.apiUrl}/posts`;
       const postsApi = `${this.apiUrl}/posts?timeSort=${timeSortStr}&q=${queryStr}`;
       return new Promise((resolve, reject) => {
         axios
@@ -51,7 +51,8 @@ const VueAPP = new Vue({
         timeSortStr: timeSortStr,
         queryStr: queryStr,
       });
-      console.log('newPosts', newPosts);
+      console.log('newPosts', newPosts.data);
+      this.posts = newPosts.data;
     },
   },
   created() {
@@ -63,11 +64,7 @@ const VueAPP = new Vue({
         const { _id, avatarUrl, email, gender, userName } = res.data;
         const getUserData = { _id, avatarUrl, email, gender, userName };
         this.userData = getUserData;
-
-        await this.getPosts({}).then((res) => {
-          console.log('created this.getPosts() res', res);
-        });
-
+        await this.getPosts({}).then((res) => this.posts = res.data);
         this.isLoading = false;
       });
     } catch (error) {

@@ -14,7 +14,10 @@ block bodyMainPush
     //- include ./components/_postSearchBar.jade
     search-bar(@send-search-emit='sendSearch')
     ul.list-unstyled.row.gy-4.mb-lg-0
-      li.col.col-lg-12
+      li.col-12(
+        v-if='posts.length > 0'
+        v-for='(post, index) in posts' :key='post.id'
+      )
         .card.bg-white.u-solidShadow-b
           .card-header.pb-0.border-bottom-0.bg-white
             .row.g-4
@@ -25,49 +28,28 @@ block bodyMainPush
                   )
               .col.d-flex.align-items-center
                 p.mb-0
-                  a.fw-bold(href="#") 邊緣小杰
+                  a.fw-bold(href="#") {{ post.userData.userName }}
                   small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2.fw-light
-                    | 2022/1/10 12:00
+                    | {{ new Date(post.createAt).toLocaleString('zh-TW', {hour12: false, year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric"}) }}
+                  //- 2022-07-26T12:01:53.466Z -> 2022/1/10 12:00
+                  //- 參考資料：
+                    - 各國語言(語系)代碼表(zh-tw, zh-cn,en-us...) json 格式 [繁中/簡中/英文格式] (https://hoohoo.top/blog/national-language-code-table-zh-tw-zh-cn-en-us-json-format/)
+                    - [JS] Date Time Method 日期時間 (https://pjchender.dev/javascript/js-date-time/)
+                    - MDN - Date.prototype.toLocaleString() (https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString)
           .card-body.pt-4.pb-2
-            p
-              | 外面看起來就超冷....
-              br 
-              | 我決定回被窩繼續睡....#{`>.<`}
-            .c-minHightPhoto
-              img.c-minHightPhoto__img(src="~assets/images/post--01.png")
-      li.col-12
+            p {{ post.content }}
+            .c-minHightPhoto(v-if="post.image")
+              img.c-minHightPhoto__img(:src="post.image")
+      li.col-12( v-if='posts.length == 0')
         .card.bg-white.u-solidShadow-b
-          .card-header.pb-0.border-bottom-0.bg-white
-            .row.g-4
-              .col-auto
-                a(href="#")
-                  .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user(
-                    style=`background-image: url(assets/static-images/user--波吉.png)`
-                  )
-              .col.d-flex.align-items-center
-                p.mb-0
-                  a.fw-bold(href="#") 波吉
-                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2 2022/1/10 12:00
-          .card-body.pt-4.pb-2
-            p
-              | 我一定要成為很棒棒的國王！
-      li.col-12
-        .card.bg-white.u-solidShadow-b
-          .card-header.pb-0.border-bottom-0.bg-white
-            .row.g-4
-              .col-auto
-                a(href="#")
-                  .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user(
-                    style=`background-image: url(assets/static-images/user--阿爾敏.png)`
-                  )
-              .col.d-flex.align-items-center
-                p.mb-0
-                  a.fw-bold(href="#") 阿爾敏
-                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2 2022/1/10 12:00
-          .card-body.pt-4.pb-2
-            p
-              | 各位我有一個作戰計畫
-
+          .card-header.bg-white.p-4
+            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-danger
+            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-warning.ms-2
+            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-success.ms-2
+          .card-body.py-8
+            p.text-center.text-pastel.mb-0
+              span.d-inline-block 目前尚無動態，
+              span.d-inline-block 新增一則貼文吧！
   nav-sub(
     :user-data='userData',
   )
