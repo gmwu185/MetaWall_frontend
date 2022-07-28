@@ -9,7 +9,10 @@ const VueAPP = new Vue({
     userData: {
       userName: 'Member',
     },
-    posts: [],
+    posts: {
+      data: [],
+      isLoad: true,
+    },
     errorMessage: {
       updatePassword: '',
     },
@@ -44,16 +47,18 @@ const VueAPP = new Vue({
           });
       });
     },
-    sendSearch: async function (getData) {
+    sendSearch: function (getData) {
       console.log('sendSearch', getData);
-      this.posts = []; // 使用區塊內讀取元件，另外設計
       const { timeSortStr, queryStr } = getData;
-      const newPosts = await this.getPosts({
+
+      this.posts.isLoad = true;
+      this.getPosts({
         timeSortStr: timeSortStr,
         queryStr: queryStr,
+      }).then((res) => {
+        this.posts.data = res.data;
+        this.posts.isLoad = false;
       });
-      console.log('newPosts', newPosts.data);
-      this.posts = newPosts.data;
     },
   },
   created() {
@@ -65,7 +70,13 @@ const VueAPP = new Vue({
         const { _id, avatarUrl, email, gender, userName } = res.data;
         const getUserData = { _id, avatarUrl, email, gender, userName };
         this.userData = getUserData;
-        await this.getPosts({}).then((res) => this.posts = res.data);
+
+        this.posts.isLoad = true;
+        await this.getPosts({}).then((res) => {
+          this.posts.data = res.data;
+          this.posts.isLoad = false;
+        });
+
         this.isLoading = false;
       });
     } catch (error) {

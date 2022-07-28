@@ -33,8 +33,8 @@ export default Vue.component('search-bar', {
           @change="sortMode"
         >
           <option value="" disabled>請選擇</option>
-          <option value="asc">最新貼文</option>
-          <option value="desc">最舊貼文</option>
+          <option value="desc">最新貼文</option>
+          <option value="asc">最舊貼文</option>
         </select>
       </div>
       <div class="col">
