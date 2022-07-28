@@ -46,6 +46,7 @@ const VueAPP = new Vue({
     },
     sendSearch: async function (getData) {
       console.log('sendSearch', getData);
+      this.posts = []; // 使用區塊內讀取元件，另外設計
       const { timeSortStr, queryStr } = getData;
       const newPosts = await this.getPosts({
         timeSortStr: timeSortStr,
