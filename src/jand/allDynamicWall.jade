@@ -52,7 +52,7 @@ block bodyMainPush
                   small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2.fw-light
                     | {{ post.createAt | databaseTimeConvert }}
           .card-body.pt-4.pb-2
-            p {{ post.content }}
+            p.text-preLine {{ post.content }}
             .c-minHightPhoto(v-if="post.image")
               img.c-minHightPhoto__img(:src="post.image")
   nav-sub(
