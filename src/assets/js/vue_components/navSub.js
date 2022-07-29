@@ -32,7 +32,9 @@ export default Vue.component('nav-sub', {
             </a>
           </li>
           <li class="p-stickyNavSubMenu__item d-none d-lg-block">
-            <a class="w-100 p-stickyNavSubBtns" href="personalPosts.html">
+            <a class="w-100 p-stickyNavSubBtns"
+            :href="('personalPosts.html?user_id=' + userData['_id'])"
+            >
               <user-avatar class="me-lg-4"
                 :incom-class="'c-pseudoOneToOne--m'"
                 :img-url='userData.avatarUrl'

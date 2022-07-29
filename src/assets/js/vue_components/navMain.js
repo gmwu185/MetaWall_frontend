@@ -52,7 +52,7 @@ export default Vue.component('nav-main', {
                   <button
                     class="dropdown-item py-2"
                     type="button"
-                    onclick='document.location.href = "personalPosts.html"'
+                    @click='this.window.location = "personalPosts.html?user_id=" + userData["_id"]'
                   >
                     我的貼文牆
                   </button>

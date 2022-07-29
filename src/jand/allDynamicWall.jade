@@ -13,48 +13,24 @@ block bodyMainPush
   article.col-lg
     //- include ./components/_postSearchBar.jade
     search-bar(@send-search-emit='sendSearch')
-    ul.list-unstyled.row.gy-4.mb-lg-0
-      li.col-12(v-if='posts.isLoad')
-        .card.bg-white.u-solidShadow-b
-          .card-header.bg-white.p-4
-            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-danger
-            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-warning.ms-2
-            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-success.ms-2
-          .card-body.py-8
-            p.text-center.text-pastel.mb-0
-              span.d-inline-block
-                | 資料讀取中 ...
-      li.col-12(v-if='!posts.isLoad && posts.data.length == 0')
-        .card.bg-white.u-solidShadow-b
-          .card-header.bg-white.p-4
-            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-danger
-            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-warning.ms-2
-            span.d-inline-block.p-1.rounded-circle.border.border-pasteltTrbidity.bg-success.ms-2
-          .card-body.py-8
-            p.text-center.text-pastel.mb-0
-              span.d-inline-block 目前尚無動態，
-              span.d-inline-block 新增一則貼文吧！
+    ul.list-unstyled.row.gy-4.mb-lg-0(v-if='posts.isLoad')
+      li.col-12
+        card-status(
+          :inter-tag='`<span class="d-inline-block">資料讀取中 ...</span>`'
+        )
+    ul.list-unstyled.row.gy-4.mb-lg-0(
+      v-else-if='!posts.isLoad && posts.data.length === 0'
+    )
+      li.col-12
+        card-status(:inter-tag='`<span class="d-inline-block">目前尚無動態，</span><span class="d-inline-block">新增一則貼文吧！</span>`')
+    ul.list-unstyled.row.gy-4.mb-lg-0(
+      v-if='!posts.isLoad && posts.data.length > 0'
+    )
       li.col-12(
-        v-if='!posts.isLoad && posts.data.length > 0'
-        v-for='(post, index) in posts.data' :key='post.id'
+        v-for='(post, index) in posts.data'
+        :key='post.id'
       )
-        .card.bg-white.u-solidShadow-b
-          .card-header.pb-0.border-bottom-0.bg-white
-            .row.g-4
-              .col-auto
-                a.d-block(href="#")
-                  .c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.c-pseudoOneToOne--user(
-                    :style='{"background-image" : `url( ${post.userData.avatarUrl} )`}'  
-                  )
-              .col.d-flex.align-items-center
-                p.mb-0
-                  a.fw-bold(href="#") {{ post.userData.userName }}
-                  small.d-block.text-pastel.lh-lg.u-fontFamily--BalooDa2.fw-light
-                    | {{ post.createAt | databaseTimeConvert }}
-          .card-body.pt-4.pb-2
-            p.text-preLine {{ post.content }}
-            .c-minHightPhoto(v-if="post.image")
-              img.c-minHightPhoto__img(:src="post.image")
+        card-post(:post-data='post')
   nav-sub(
     :user-data='userData',
   )
