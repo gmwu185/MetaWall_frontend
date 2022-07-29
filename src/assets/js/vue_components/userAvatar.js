@@ -1,7 +1,12 @@
 import Vue from 'vue';
 
 export default Vue.component('user-avatar', {
-  props: ['imgUrl', 'incomClass'],
+  props: {
+    'imgUrl': {
+      type: String,
+    },
+    'incomClass': Array,
+  },
   template: `
     <div
       class="c-pseudoOneToOne c-pseudoOneToOne--round c-pseudoOneToOne--user"

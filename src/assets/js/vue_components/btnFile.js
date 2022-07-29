@@ -97,7 +97,6 @@ export default Vue.component('btn-file-preview-img', {
       componentClass: this.incomClass,
     };
   },
-  // props: ['btnIncom'],
   props: {
     'incom-img-type': {
       type: String,

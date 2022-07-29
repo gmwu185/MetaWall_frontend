@@ -16,7 +16,7 @@ export default Vue.component('card-post', {
             :href="('personalPosts.html?user_id=' + post.userData['_id'])"
           >
             <user-avatar
-              :incomClass="'c-pseudoOneToOne--m'"
+              :incomClass="['c-pseudoOneToOne--m']"
               :imgUrl="post.userData.avatarUrl"
             ></user-avatar>
           </a>

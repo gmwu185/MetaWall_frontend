@@ -29,13 +29,11 @@ export default Vue.component('nav-main', {
                 data-bs-display="static"
                 aria-expanded="false"
               >
-
                 <user-avatar
                   class="mx-auto me-2"
                   :img-url="userData.avatarUrl"
-                  :incom-class="'c-pseudoOneToOne--xs'"
+                  :incom-class="['c-pseudoOneToOne--xs']"
                 ></user-avatar>
-
                 <span
                   class="u-fontFamily--AzeretMono fw-bold text-dark lh-19 px-1 pb-1 border-dark border-bottom"
                 >
@@ -52,7 +50,7 @@ export default Vue.component('nav-main', {
                   <button
                     class="dropdown-item py-2"
                     type="button"
-                    @click='this.window.location = "personalPosts.html?user_id=" + userData["_id"]'
+                    @click='this.location = "personalPosts.html?user_id=" + userData["_id"]'
                   >
                     我的貼文牆
                   </button>
@@ -63,7 +61,7 @@ export default Vue.component('nav-main', {
                   <button
                     class="dropdown-item py-2"
                     type="button"
-                    onclick='document.location.href = "editProfile.html"'
+                    @click='this.location.href = "editProfile.html"'
                   >
                     修改個人資料
                   </button>
