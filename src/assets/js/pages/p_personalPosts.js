@@ -10,10 +10,14 @@ const VueAPP = new Vue({
       userName: 'Member',
     },
     personalUser: {
-      userData: {},
+      userData: {
+        userName: 'Member',
+        followers: [],
+      },
       //- following：登入使用者 -> 加入追踨對象列表
       //- followers：追踨對象 -> 被多少使用者加入追踨
-      isFollow: true,
+      isFollow: Boolean,
+      isLoad: false,
     },
     urlParaObj: {},
     posts: {
@@ -31,6 +35,7 @@ const VueAPP = new Vue({
     signout: API_behavior.signout,
     getProfile: API_behavior.getProfile,
     clickFollow: async function () {
+      this.personalUser.isLoad = true;
       const userID = this.personalUser.userData._id;
       const followApi = `${this.apiUrl}/user/${userID}/follow`;
       axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`;
@@ -42,6 +47,7 @@ const VueAPP = new Vue({
           (res) => (this.personalUser.userData = res.data[0].userData)
         );
         alert(delFollowData.message);
+        this.personalUser.isLoad = false;
       } else {
         const addFollow = await axios.post(followApi);
         const addFollowData = addFollow.data.data;
@@ -49,7 +55,9 @@ const VueAPP = new Vue({
           (res) => (this.personalUser.userData = res.data[0].userData)
         );
         alert(addFollowData.message);
+        this.personalUser.isLoad = false;
       }
+      
       this.personalUser.isFollow = !this.personalUser.isFollow;
     },
     getPersonalPosts(pg_urlParaUserID) {

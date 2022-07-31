@@ -31,5 +31,6 @@ import cardPost from 'assets/js/vue_components/cardPost';
 
 // vue 自定義全域 filter
 import databaseTimeConvert from 'assets/js/vue_filters/databaseTimeConvert';
+import currencyChange from 'assets/js/vue_filters/currencyChange';
 
 import 'scss/main.scss';
