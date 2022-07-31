@@ -39,25 +39,14 @@ const VueAPP = new Vue({
       const userID = this.personalUser.userData._id;
       const followApi = `${this.apiUrl}/user/${userID}/follow`;
       axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`;
-      if (this.personalUser.isFollow) {
-        // 目前使用者被追踨，取消追踨朋友
-        const delFollow = await axios.delete(followApi);
-        const delFollowData = delFollow.data.data;
-        await this.getPersonalPosts(userID).then(
-          (res) => (this.personalUser.userData = res.data[0].userData)
-        );
-        alert(delFollowData.message);
-        this.personalUser.isLoad = false;
-      } else {
-        const addFollow = await axios.post(followApi);
-        const addFollowData = addFollow.data.data;
-        await this.getPersonalPosts(userID).then(
-          (res) => (this.personalUser.userData = res.data[0].userData)
-        );
-        alert(addFollowData.message);
-        this.personalUser.isLoad = false;
-      }
-      
+      const httpMethod = this.personalUser.isFollow ? 'delete' : 'post';
+      const delFollow = await axios[httpMethod](followApi);
+      const delFollowData = delFollow.data.data;
+      await this.getPersonalPosts(userID).then(
+        (res) => (this.personalUser.userData = res.data[0].userData)
+      );
+      alert(delFollowData.message);
+      this.personalUser.isLoad = false;
       this.personalUser.isFollow = !this.personalUser.isFollow;
     },
     getPersonalPosts(pg_urlParaUserID) {
@@ -93,7 +82,6 @@ const VueAPP = new Vue({
         const getUserData = { _id, avatarUrl, email, gender, userName };
         this.userData = getUserData;
         this.urlParaObj = this.pg_urlParaObj(); // 網址參數物件賦予實體變數上
-
         const pg_urlPara_userID = this.urlParaObj?.user_id; // 有無網址使用者 id
         const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
         await this.getPersonalPosts(userID)
