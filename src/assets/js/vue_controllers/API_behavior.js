@@ -1,6 +1,24 @@
 const apiUrl = '//damp-shore-91853.herokuapp.com';
 const noTokenKickPatch = 'login.html';
 
+const pg_urlParaObj = () => {
+  // 取網址參數 user_id
+  const url = location;
+  console.log('url', url)
+  const urlSearch = location.search; // 網址含 ? 後段
+  const urlParasObj = {};
+  if (urlSearch !== "") {
+    console.log('urlSearch', urlSearch)
+    const urlParas = urlSearch.split('?')[1]; // 取 ? 後面的參數字符串
+    const urlParamArr = urlParas.split('&'); // 所有參數都分割
+    urlParamArr.forEach((item) => {
+      // 網址中多參數，會賦予物件中 { key1:value1, key2:value2, ...}
+      urlParasObj[item.split('=')[0]] = item.split('=')[1];
+    })
+  }
+  return urlParasObj
+}
+
 const getCookieToken = function () {
   this.cookieToken = document.cookie.replace(
     /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
@@ -59,6 +77,7 @@ const getProfile = function () {
 
 export default {
   apiUrl,
+  pg_urlParaObj,
   noTokenKickPatch,
   getCookieToken,
   checkLogIn,
