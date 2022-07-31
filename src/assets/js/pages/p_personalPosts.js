@@ -30,7 +30,26 @@ const VueAPP = new Vue({
     checkLogIn: API_behavior.checkLogIn,
     signout: API_behavior.signout,
     getProfile: API_behavior.getProfile,
-    clickFollow() {
+    clickFollow: async function () {
+      const userID = this.personalUser.userData._id;
+      const followApi = `${this.apiUrl}/user/${userID}/follow`;
+      axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`;
+      if (this.personalUser.isFollow) {
+        // 目前使用者被追踨，取消追踨朋友
+        const delFollow = await axios.delete(followApi);
+        const delFollowData = delFollow.data.data;
+        await this.getPersonalPosts(userID).then(
+          (res) => (this.personalUser.userData = res.data[0].userData)
+        );
+        alert(delFollowData.message);
+      } else {
+        const addFollow = await axios.post(followApi);
+        const addFollowData = addFollow.data.data;
+        await this.getPersonalPosts(userID).then(
+          (res) => (this.personalUser.userData = res.data[0].userData)
+        );
+        alert(addFollowData.message);
+      }
       this.personalUser.isFollow = !this.personalUser.isFollow;
     },
     getPersonalPosts(pg_urlParaUserID) {
@@ -65,8 +84,8 @@ const VueAPP = new Vue({
         const { _id, avatarUrl, email, gender, userName } = res.data;
         const getUserData = { _id, avatarUrl, email, gender, userName };
         this.userData = getUserData;
-
         this.urlParaObj = this.pg_urlParaObj(); // 網址參數物件賦予實體變數上
+
         const pg_urlPara_userID = this.urlParaObj?.user_id; // 有無網址使用者 id
         const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
         await this.getPersonalPosts(userID)
@@ -81,7 +100,8 @@ const VueAPP = new Vue({
              * 列表 id 中沒對象 -1、有回 0
              * 列表回應結果轉義：!-1 = false / !0 = true
              */
-            const isFollower = this.personalUser.userData.followers.findIndex(
+            const personalFollowers = this.personalUser.userData.followers;
+            const isFollower = personalFollowers.findIndex(
               (personal) => personal.userData == getUserData._id
             );
             console.log('isFollower', isFollower);

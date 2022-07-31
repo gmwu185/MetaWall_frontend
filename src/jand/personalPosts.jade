@@ -13,17 +13,17 @@ block bodyMainPush
     .bg-white.border.border-2.border-dark.rounded-2.overflow-hidden.u-solidDoubShadow-lb.mb-4(v-if='posts.data.length > 0')
       .row.g-0
         .col-auto
-          a.h-100.d-flex.align-items-center.border.border-2.border-dark.border-top-0.border-start-0.border-bottom-0(href="#")
+          .h-100.d-flex.align-items-center.border.border-2.border-dark.border-top-0.border-start-0.border-bottom-0
             .c-pseudoOneToOne.c-pseudoOneToOne--l.c-pseudoOneToOne--user.border-top-0.border-start-0.border-bottom-0(
-              :style='{ backgroundImage: `url(${posts.data[0].userData.avatarUrl})` }'
+              :style='{ backgroundImage: `url(${personalUser.userData.avatarUrl})` }'
             )
         .col
           .h-100.p-4.d-flex.justify-content-between.align-items-center
             p.mb-0
-              span.d-block.fw-bold {{ posts.data[0].userData.userName }}
+              span.d-block.fw-bold {{ personalUser.userData.userName }}
               span.d-block 
                 span.d-inline-block.u-fontFamily--Lato.me-1
-                  | {{ posts.data[0].userData.followers.length}}
+                  | {{ personalUser.userData.followers.length}}
                 span.d-inline-block.me-1 人追蹤
             a.btn.btn-sm.fw-bold.text-nowrap.u-solidShadow-b.py-1.px-md-8(
               v-if='personalUser.userData._id !== userData._id',
