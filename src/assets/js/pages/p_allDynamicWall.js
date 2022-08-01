@@ -60,6 +60,11 @@ const VueAPP = new Vue({
         this.posts.isLoad = false;
       });
     },
+    // toggleLike(emitData) {
+    //   const toggleLikeApi = `${this.apiUrl}/post/${emitData.postID}/likes`;
+    //   axios.patch(toggleLikeApi)
+    //     .then(res => console.log('toggleLike res', res))
+    // },
   },
   created() {
     try {

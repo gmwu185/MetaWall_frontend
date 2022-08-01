@@ -52,7 +52,6 @@ const VueAPP = new Vue({
       this.userData = getUserData;
     }
     const followingList = await this.getFollowing();
-    // console.log('followingList', followingList)
     this.followList = followingList.data;
 
     this.isLoading = false;

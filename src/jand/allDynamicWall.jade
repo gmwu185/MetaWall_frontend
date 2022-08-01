@@ -30,8 +30,9 @@ block bodyMainPush
         v-for='(post, index) in posts.data'
         :key='post.id'
       )
-        card-post(:post-data='post')
-  nav-sub(
-    :user-data='userData',
-  )
+        card-post(
+          :post-data='post',
+          :incom-api-info='{cookieToken, apiUrl}'
+        )
+  nav-sub(:user-data='userData')
   //- include ./components/_stickyNavSub.jade
