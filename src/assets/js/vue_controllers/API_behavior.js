@@ -6,6 +6,7 @@ const pg_urlParaObj = () => {
   const url = location;
   console.log('url', url)
   const urlSearch = location.search; // 網址含 ? 後段
+  console.log('urlSearch', urlSearch)
   const urlParasObj = {};
   if (urlSearch !== "") {
     console.log('urlSearch', urlSearch)

@@ -12,7 +12,7 @@ block app_inner
 block bodyMainPush
   article.col-lg
     //- include ./components/_postSearchBar.jade
-    search-bar(@send-search-emit='sendSearch')
+    search-bar(@send-search-emit='sendPostsSearch')
     ul.list-unstyled.row.gy-4.mb-lg-0(v-if='posts.isLoad')
       li.col-12
         card-status(

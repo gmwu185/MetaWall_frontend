@@ -37,21 +37,37 @@ const VueAPP = new Vue({
     clickFollow: async function () {
       this.personalUser.isLoad = true;
       const userID = this.personalUser.userData._id;
+      console.log('userID', userID)
       const followApi = `${this.apiUrl}/user/${userID}/follow`;
       axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`;
       const httpMethod = this.personalUser.isFollow ? 'delete' : 'post';
-      const delFollow = await axios[httpMethod](followApi);
-      const delFollowData = delFollow.data.data;
-      await this.getPersonalPosts(userID).then(
+      const changeFollow = await axios[httpMethod](followApi);
+      const changeFollowData = changeFollow.data.data;
+      await this.getPersonalPosts({userID}).then(
         (res) => (this.personalUser.userData = res.data[0].userData)
       );
-      alert(delFollowData.message);
+      alert(changeFollowData.message);
       this.personalUser.isLoad = false;
       this.personalUser.isFollow = !this.personalUser.isFollow;
     },
-    getPersonalPosts(pg_urlParaUserID) {
+    sendPersonalPostsSearch(param) {
+      console.log('sendPersonalPostsSearch()', param);
+      const pg_urlPara_userID = this.urlParaObj?.user_id; // 有無網址使用者 id
+      const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
+      const { timeSortStr, queryStr } = param;
+      this.posts.isLoad = true;
+      this.getPersonalPosts({
+        userID: userID,
+        timeSortStr: timeSortStr,
+        queryStr: queryStr,
+      }).then((res) => {
+        this.posts.data = res.data;
+        this.posts.isLoad = false;
+      });
+    },
+    getPersonalPosts({ userID, timeSortStr = '', queryStr = '' }) {
       // API controller 函式 getMyPostList
-      const myPostListApi = `${this.apiUrl}/posts/user/${pg_urlParaUserID}`;
+      const myPostListApi = `${this.apiUrl}/posts/user/${userID}?timeSort=${timeSortStr}&q=${queryStr}`;
       return new Promise((resolve, reject) => {
         axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
         axios
@@ -61,7 +77,6 @@ const VueAPP = new Vue({
           })
           .catch((err) => {
             reject(err);
-
             console.log('err.request', err.request);
             const errObj = JSON.parse(err.request.response);
             console.log('myPostListApi err.request.response', errObj);
@@ -84,7 +99,7 @@ const VueAPP = new Vue({
         this.urlParaObj = this.pg_urlParaObj(); // 網址參數物件賦予實體變數上
         const pg_urlPara_userID = this.urlParaObj?.user_id; // 有無網址使用者 id
         const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
-        await this.getPersonalPosts(userID)
+        await this.getPersonalPosts({ userID })
           .then((res) => {
             console.log('getPersonalPosts res.data', res.data);
             this.posts.data = res.data;
