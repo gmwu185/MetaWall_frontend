@@ -47,9 +47,9 @@ const VueAPP = new Vue({
           });
       });
     },
-    sendPostsSearch: function (getData) {
-      console.log('sendPostsSearch', getData);
-      const { timeSortStr, queryStr } = getData;
+    sendPostsSearch: function (param) {
+      console.log('sendPostsSearch', param);
+      const { timeSortStr, queryStr } = param;
 
       this.posts.isLoad = true;
       this.getPosts({
