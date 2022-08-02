@@ -54,6 +54,9 @@ block bodyMainPush
         v-for='(post, index) in posts.data'
         :key='post.id'
       )
-        card-post(:post-data='post')
+        card-post(
+          :post-data='post',
+          :incom-api-info='{cookieToken, apiUrl}'
+        )
 
   nav-sub(:user-data='userData')
