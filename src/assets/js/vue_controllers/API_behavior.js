@@ -1,4 +1,5 @@
 const apiUrl = '//damp-shore-91853.herokuapp.com';
+// const apiUrl = '//localhost:3000';
 const noTokenKickPatch = 'login.html';
 
 const pg_urlParaObj = () => {

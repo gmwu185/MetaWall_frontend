@@ -29,6 +29,7 @@ import searchBar from 'assets/js/vue_components/searchBar';
 import cardStatus from 'assets/js/vue_components/cardStatus';
 import cardPost from 'assets/js/vue_components/cardPost';
 import cardFollow from 'assets/js/vue_components/cardFollow';
+import cardLike from 'assets/js/vue_components/cardLike';
 
 // vue 自定義全域 filter
 import databaseTimeConvert from 'assets/js/vue_filters/databaseTimeConvert';

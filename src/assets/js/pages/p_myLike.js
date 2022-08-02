@@ -9,6 +9,7 @@ const VueAPP = new Vue({
     userData: {
       userName: 'Member',
     },
+    likeList: [],
     errorMessage: {
       updatePassword: '',
     },
@@ -18,6 +19,27 @@ const VueAPP = new Vue({
     checkLogIn: API_behavior.checkLogIn,
     signout: API_behavior.signout,
     getProfile: API_behavior.getProfile,
+    getLikeList: function() {
+      const likeListApi = `${this.apiUrl}/user/like-list`;
+      return new Promise((resolve, reject) => {
+        axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
+        axios
+          .get(likeListApi)
+          .then((res) => {
+            resolve(res.data);
+          })
+          .catch((err) => {
+            reject(err);
+    
+            console.log('err.request', err.request);
+            const errObj = JSON.parse(err.request.response);
+            console.log('myLikeApi err.request.response', errObj);
+            alert(`讀取個人資料發生錯誤，原因：${err.response.data.message}`);
+    
+            document.location.href = noTokenKickPatch;
+          });
+      });
+    },
   },
   created: async function () {
     this.isLoading = true;
@@ -29,7 +51,11 @@ const VueAPP = new Vue({
       const { _id, avatarUrl, email, gender, userName } = getProfileData.data;
       const getUserData = { _id, avatarUrl, email, gender, userName };
       this.userData = getUserData;
-      this.isLoading = false;
     }
+
+    const likes = await this.getLikeList();
+    this.likeList = likes.data;
+
+    this.isLoading = false;
   },
 });

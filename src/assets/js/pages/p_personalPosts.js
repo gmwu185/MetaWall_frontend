@@ -41,7 +41,9 @@ const VueAPP = new Vue({
       const followApi = `${this.apiUrl}/user/${userID}/follow`;
       axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`;
       const httpMethod = this.personalUser.isFollow ? 'delete' : 'post';
+      // console.log('httpMethod', httpMethod)
       const changeFollow = await axios[httpMethod](followApi);
+      // console.log('changeFollow', changeFollow)
       const changeFollowData = changeFollow.data.data;
       await this.getPersonalPosts({userID}).then(
         (res) => (this.personalUser.userData = res.data[0].userData)
@@ -109,7 +111,7 @@ const VueAPP = new Vue({
             /** 目前查使用者有無在追踨列表中 (followers)
              * followers 下的物件，資料庫沒處理關聯，取使用者 id 是對 userData 屬性
              * 列表 id 中沒對象 -1、有回 0
-             * 列表回應結果轉義：!-1 = false / !0 = true
+             * (!isFollower) 處理列表回應結果轉義：!-1 = false / !0 = true
              */
             const personalFollowers = this.personalUser.userData.followers;
             const isFollower = personalFollowers.findIndex(
