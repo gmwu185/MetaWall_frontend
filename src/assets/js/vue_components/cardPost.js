@@ -1,10 +1,19 @@
 import Vue from 'vue';
 
 export default Vue.component('card-post', {
-  props: ['postData', 'incomApiInfo'],
+  props: ['postData', 'incomApiInfo', 'login-user-data'],
   data() {
     return {
+      loginUser: {
+        userData: this.loginUserData,
+        comment: {
+          isLoad: false,
+          msg: '',
+        }
+        
+      },
       post: this.postData,
+      comments: JSON.parse(JSON.stringify( this.postData.comments.reverse() )),
       apiInfo: this.incomApiInfo,
       likeIsLoad: false,
     };
@@ -23,6 +32,35 @@ export default Vue.component('card-post', {
         })
         .catch(err => {
           console.log('toggleLike catch error', error);
+        });
+    },
+    sendLoginUserComment() {
+      const vm = this;
+      console.log('sendLoginUserComment post._id -> ', this.post._id);
+      const commentApi = `${this.apiInfo.apiUrl}/post/${this.post._id}/comment`;
+      this.loginUser.comment.isLoad = true;
+      const newCommentObj = {
+        comment: this.loginUser.comment.msg,
+      };
+      axios
+        .post(commentApi, newCommentObj, {
+          Authorization: `Bearer ${this.apiInfo.cookieToken}`,
+        })
+        .then((res) => {
+          console.log('res.data.data.comments', res.data.data);
+          if(res.data.data.commentUser._id == this.loginUser.userData._id) {
+            const newComment = res.data.data;
+            this.comments = [newComment, ...this.comments];
+            this.loginUser.comment.msg = '';
+          } else {
+            alert('更新對象無法查明，請重讀頁面！');
+          }
+          this.loginUser.comment.isLoad = false;
+        })
+        .catch(err => {
+          console.log('err', err.response.data.message);
+          alert('發生錯誤，原因：' + err.response.data.message);
+          this.loginUser.comment.isLoad = false;
         });
     },
   },
@@ -91,43 +129,25 @@ export default Vue.component('card-post', {
         </span>
       </div>
       <div class="w-100 d-flex align-items-center mb-4">
-        <span
-          class="c-pseudoOneToOne c-pseudoOneToOne--round c-pseudoOneToOne--s c-pseudoOneToOne--user me-2"
-          style="
-            background-image: url(assets/static-images/user--邊緣小杰.png);
-          "
-        ></span>
+        <user-avatar
+          :incomClass="['c-pseudoOneToOne--s', 'me-2']"
+          :imgUrl="loginUser.userData.avatarUrl"
+        ></user-avatar>
         <div class="input-group input-group-sm">
           <input
             class="form-control"
-            value=""
+            v-model="loginUser.comment.msg"
             placeholder="留言..."
           />
-          <button class="btn btn-primary py-2 px-4 px-md-12">
-            <span class="position-relative">
-              <span>留言</span>
-            </span>
-          </button>
-        </div>
-      </div>
-      <div class="w-100 d-flex align-items-center mb-4">
-        <span
-          class="c-pseudoOneToOne c-pseudoOneToOne--round c-pseudoOneToOne--s c-pseudoOneToOne--user me-2"
-          style="
-            background-image: url(assets/static-images/user--邊緣小杰.png);
-          "
-        ></span>
-        <div class="input-group input-group-sm">
-          <input
-            class="form-control"
-            value="好羨慕ㄛ！！"
-            placeholder="留言..."
-          />
-          <button class="btn btn-warning py-2 px-4 px-md-12">
+          <button class="btn py-2 px-4 px-md-12"
+            :class="{'btn-warning': loginUser.comment.isLoad, 'btn-primary': !loginUser.comment.isLoad}"
+            @click.pervent="sendLoginUserComment"
+          >
             <span class="position-relative">
               <span>留言</span>
               <span
                 class="position-md-absolute start-md-100 top-md-50 translate-middle-md-y ms-md-1"
+                v-if="loginUser.comment.isLoad"
               >
                 <i
                   class="fas fa-spinner c-spinner--radiation"
@@ -138,25 +158,31 @@ export default Vue.component('card-post', {
         </div>
       </div>
       <ul class="list-unstyled">
-        <li class="card bg-light bg-opacity-30 border-0 mb-4">
+        <li class="card bg-light bg-opacity-30 border-0 mb-4"
+          v-for="(comment, index) in comments" :key="comment._id"
+        >
           <div class="card-body p-4">
             <div class="w-100 d-flex align-items-center mb-1">
-              <div
-                class="c-pseudoOneToOne c-pseudoOneToOne--round c-pseudoOneToOne--s c-pseudoOneToOne--user me-3"
-                style="
-                  background-image: url(assets/static-images/post--01__user--希琳.png);
-                "
-              ></div>
+              <a :href="'personalPosts.html?user_id=' + comment.commentUser._id">
+                <user-avatar
+                  :incomClass="['c-pseudoOneToOne--s', 'me-3']"
+                  :imgUrl="comment.commentUser.avatarUrl"
+                ></user-avatar>
+              </a>
               <p class="mb-0">
-                <a class="fw-bold" href="#">希琳</a>
+                <a class="fw-bold" :href="'personalPosts.html?user_id=' + comment.commentUser._id">
+                  {{ comment.commentUser.userName }}
+                </a>
                 <small
                   class="d-block text-pastel u-fontFamily--BalooDa2 lh-19 fw-light"
                 >
-                  2022/1/10 12:00
+                  {{ comment.createAt | databaseTimeConvert }}
                 </small>
               </p>
             </div>
-            <p class="ps-md-13 mb-0">真的～我已經準備冬眠了</p>
+            <p class="ps-md-13 mb-0">
+              {{ comment.comment }}
+            </p>
           </div>
         </li>
       </ul>

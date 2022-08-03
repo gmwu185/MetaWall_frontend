@@ -32,7 +32,8 @@ block bodyMainPush
       )
         card-post(
           :post-data='post',
-          :incom-api-info='{cookieToken, apiUrl}'
+          :incom-api-info='{cookieToken, apiUrl}',
+          :login-user-data='userData',
         )
   nav-sub(:user-data='userData')
   //- include ./components/_stickyNavSub.jade

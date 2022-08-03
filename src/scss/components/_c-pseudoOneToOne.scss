@@ -17,22 +17,32 @@
   &--xs {
     width: 30px;
     height: 30px;
+    min-width: 30px;
+    min-height: 30px;
   }
   &--s {
     width: 40px;
     height: 40px;
+    min-width: 40px;
+    min-height: 40px;
   }
   &--m {
     width: 50px;
     height: 50px;
+    min-width: 50px;
+    min-height: 50px;
   }
   &--l {
     width: 82px;
     height: 82px;
+    min-width: 82px;
+    min-height: 82px;
   }
   &--xl {
     width: 127px;
     height: 127px;
+    min-width: 127px;
+    min-height: 127px;
   }
 
   &--round {
