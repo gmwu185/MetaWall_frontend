@@ -74,7 +74,9 @@ export default Vue.component('card-like', {
               ></i>
               <span class="d-block h6 lh-20 mb-0">取消</span>
             </a>
-            <a class="d-inline-block text-center" href="#">
+            <a class="d-inline-block text-center"
+              :href="'personalPosts.html?user_id=' + likePost.userData._id + '&post_id=' + likePost._id"
+            >
               <i
                 class="far fa-arrow-alt-circle-right text-primary h5 mb-1"
               ></i>

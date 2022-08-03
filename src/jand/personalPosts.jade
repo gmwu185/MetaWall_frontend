@@ -35,8 +35,11 @@ block bodyMainPush
                 span(v-else) 追蹤
                 span.position-md-absolute.start-md-100.top-md-50.translate-middle-md-y.ms-md-1(v-if='personalUser.isLoad')
                   i.fas.fa-spinner.c-spinner--radiation
-    //- include ./components/_postSearchBar.jade
-    search-bar(@send-search-emit='sendPersonalPostsSearch')
+    
+    search-bar(
+      @send-search-emit='sendPersonalPostsSearch',
+      v-if='!urlParaObj.post_id',
+    )
     ul.list-unstyled.row.gy-4.mb-lg-0(v-if='posts.isLoad')
       li.col-12
         card-status(

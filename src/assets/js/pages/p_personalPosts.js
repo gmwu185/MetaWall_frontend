@@ -67,9 +67,9 @@ const VueAPP = new Vue({
         this.posts.isLoad = false;
       });
     },
-    getPersonalPosts({ userID, timeSortStr = '', queryStr = '' }) {
+    getPersonalPosts({ userID,  timeSortStr = '', queryStr = '', postID = '' }) {
       // API controller 函式 getMyPostList
-      const myPostListApi = `${this.apiUrl}/posts/user/${userID}?timeSort=${timeSortStr}&q=${queryStr}`;
+      const myPostListApi = `${this.apiUrl}/posts/user/${userID}?timeSort=${timeSortStr}&q=${queryStr}&post_id=${postID}`;
       return new Promise((resolve, reject) => {
         axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
         axios
@@ -99,11 +99,15 @@ const VueAPP = new Vue({
         const getUserData = { _id, avatarUrl, email, gender, userName };
         this.userData = getUserData;
         this.urlParaObj = this.pg_urlParaObj(); // 網址參數物件賦予實體變數上
-        const pg_urlPara_userID = this.urlParaObj?.user_id; // 有無網址使用者 id
+        const pg_urlPara_userID = (this.urlParaObj?.user_id) ? this.urlParaObj.user_id : ''; // 有無網址使用者 id
         const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
-        await this.getPersonalPosts({ userID })
+        await this.getPersonalPosts({ userID, postID: this.urlParaObj?.post_id || '' })
           .then((res) => {
             console.log('getPersonalPosts res.data', res.data);
+            if (!res.data) {
+              alert('遠端資料取得不完全，請重新操作先前動作。')
+            }
+
             this.posts.data = res.data;
             // 回傳陣列資料，其中的 userData 下的 id 都是相同，取其中一筆
             this.personalUser.userData = res.data[0].userData;
@@ -124,11 +128,18 @@ const VueAPP = new Vue({
             this.isLoading = false;
           })
           .catch((err) => {
+            // console.dir(
+            //   'p_personalPosts getProfile() getPersonalPosts() err',
+            //   err
+            // );
             console.log(
               'p_personalPosts getProfile() getPersonalPosts() err',
               err
             );
-            this.isLoading = false;
+            // const parseError = JSON.stringify(err);
+            // console.log('parseError', parseError)
+            alert('發生錯誤');
+            // this.isLoading = false;
           });
       })
       .catch((err) => {
