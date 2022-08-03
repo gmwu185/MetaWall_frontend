@@ -20,6 +20,7 @@ const VueAPP = new Vue({
     signout: API_behavior.signout,
     getProfile: API_behavior.getProfile,
     getLikeList: function() {
+      console.log('getLikeList')
       const likeListApi = `${this.apiUrl}/user/like-list`;
       return new Promise((resolve, reject) => {
         axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
@@ -40,6 +41,12 @@ const VueAPP = new Vue({
           });
       });
     },
+    renderLikeList: async function () {
+      this.isLoading = true;
+      const likes = await this.getLikeList();
+      this.likeList = likes.data;
+      this.isLoading = false;
+    },
   },
   created: async function () {
     this.isLoading = true;
@@ -53,9 +60,6 @@ const VueAPP = new Vue({
       this.userData = getUserData;
     }
 
-    const likes = await this.getLikeList();
-    this.likeList = likes.data;
-
-    this.isLoading = false;
+    await this.renderLikeList();
   },
 });

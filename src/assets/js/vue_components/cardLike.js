@@ -1,18 +1,42 @@
 import Vue from 'vue';
 
 export default Vue.component('card-like', {
-  props: ['like-item', 'user-data'],
+  props: ['like-item', 'user-data', 'incom-api-info'],
   data() {
     return {
+      apiInfo: this.incomApiInfo,
       likePost: this.likeItem,
       logInUser: this.userData,
       theLikePost: {
         follower: {},
         isLogInUser: Boolean,
       },
+      isLikeCancelLoad: false,
     };
   },
-  methods: {},
+  methods: {
+    emitUpdataLikeList() {
+      console.log('emitUpdataLikeList()')
+      this.$emit('emit-updata-like-list');
+    },
+    cancelLike(likeID) {
+      console.log('cancelLike() likeID', likeID);
+      const toggleLikeApi = `${this.incomApiInfo.apiUrl}/post/${likeID}/likes`;
+      axios.defaults.headers.common.Authorization = `Bearer ${this.incomApiInfo.cookieToken}`;
+
+      this.isLikeCancelLoad = true;
+      axios
+        .patch(toggleLikeApi)
+        .then((res) => {
+          alert('取消按讚成功！');
+          this.isLikeCancelLoad = false;
+          this.emitUpdataLikeList();
+        })
+        .catch(err => {
+          console.log('toggleLike catch error', error);
+        });
+    }
+  },
   created() {
     /** 卡片組件
      * this.likePost.userData.followers 陣列資料，比對此文章所有的追蹤 user
@@ -68,11 +92,13 @@ export default Vue.component('card-like', {
             <a
               class="d-inline-block text-center me-6 me-md-9"
               href="#"
+              @click.prevent="cancelLike(likePost._id)"
             >
               <i
                 class="far fa-thumbs-up text-primary h5 mb-1"
               ></i>
-              <span class="d-block h6 lh-20 mb-0">取消</span>
+              <span class="d-block h6 lh-20 mb-0" v-if="isLikeCancelLoad">讀取中 ...</span>
+              <span class="d-block h6 lh-20 mb-0" v-else>取消</span>
             </a>
             <a class="d-inline-block text-center"
               :href="'personalPosts.html?user_id=' + likePost.userData._id + '&post_id=' + likePost._id"
