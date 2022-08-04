@@ -107,23 +107,25 @@ const VueAPP = new Vue({
             if (!res.data) {
               alert('遠端資料取得不完全，請重新操作先前動作。')
             }
-
+            
             this.posts.data = res.data;
-            // 回傳陣列資料，其中的 userData 下的 id 都是相同，取其中一筆
-            this.personalUser.userData = res.data[0].userData;
-
-            /** 目前查使用者有無在追踨列表中 (followers)
-             * followers 下的物件，資料庫沒處理關聯，取使用者 id 是對 userData 屬性
-             * 列表 id 中沒對象 -1、有回 0
-             * (!isFollower) 處理列表回應結果轉義：!-1 = false / !0 = true
-             */
-            const personalFollowers = this.personalUser.userData.followers;
-            const isFollower = personalFollowers.findIndex(
-              (personal) => personal.userData == getUserData._id
-            );
-            console.log('isFollower', isFollower);
-            this.personalUser.isFollow = !isFollower;
-
+            if (this.posts.data > 0) {
+              // 回傳陣列資料，其中的 userData 下的 id 都是相同，取其中一筆
+              this.personalUser.userData = res.data[0].userData;
+  
+              /** 目前查使用者有無在追踨列表中 (followers)
+               * followers 下的物件，資料庫沒處理關聯，取使用者 id 是對 userData 屬性
+               * 列表 id 中沒對象 -1、有回 0
+               * (!isFollower) 處理列表回應結果轉義：!-1 = false / !0 = true
+               */
+              const personalFollowers = this.personalUser.userData.followers;
+              const isFollower = personalFollowers.findIndex(
+                (personal) => personal.userData == getUserData._id
+              );
+              console.log('isFollower', isFollower);
+              this.personalUser.isFollow = !isFollower;
+            };
+            
             this.posts.isLoad = false;
             this.isLoading = false;
           })

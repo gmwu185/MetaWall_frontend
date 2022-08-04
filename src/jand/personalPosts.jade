@@ -15,7 +15,7 @@ block bodyMainPush
         .col-auto
           .h-100.d-flex.align-items-center.border.border-2.border-dark.border-top-0.border-start-0.border-bottom-0
             .c-pseudoOneToOne.c-pseudoOneToOne--l.c-pseudoOneToOne--user.border-top-0.border-start-0.border-bottom-0(
-              :style='{ backgroundImage: `url(${personalUser.userData.avatarUrl})` }'
+              :style='{ backgroundImage: (personalUser.userData.avatarUrl) ? `url(${personalUser.userData.avatarUrl})` : "" }'
             )
         .col
           .h-100.p-4.d-flex.justify-content-between.align-items-center
