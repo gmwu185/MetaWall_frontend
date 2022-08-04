@@ -10,7 +10,7 @@ block app_inner
 
 block bodyMainPush
   article.col-lg
-    .bg-white.border.border-2.border-dark.rounded-2.overflow-hidden.u-solidDoubShadow-lb.mb-4(v-if='personalUser.userData.followers')
+    .bg-white.border.border-2.border-dark.rounded-2.overflow-hidden.u-solidDoubShadow-lb.mb-4
       .row.g-0
         .col-auto
           .h-100.d-flex.align-items-center.border.border-2.border-dark.border-top-0.border-start-0.border-bottom-0
@@ -21,12 +21,14 @@ block bodyMainPush
           .h-100.p-4.d-flex.justify-content-between.align-items-center
             p.mb-0
               span.d-block.fw-bold {{ personalUser.userData.userName }}
-              span.d-block 
+              span.d-block(v-if="personalUser.userData.followers")
                 span.d-inline-block.u-fontFamily--Lato.me-1
                   | {{ personalUser.userData.followers.length | currencyChange}}
                 span.d-inline-block.me-1 人追蹤
+              span.d-block(v-else)
+                span.d-inline-block.me-1 此使用者無貼文，無法追蹤！
             a.btn.btn-sm.fw-bold.text-nowrap.u-solidShadow-b.py-1.px-md-8(
-              v-if='personalUser.userData._id !== userData._id',
+              v-if='personalUser.userData._id !== userData._id && personalUser.userData.followers',
               :class='{ "btn-warning": !personalUser.isFollow, "btn-light": personalUser.isFollow }'
               @click.prevent='clickFollow'
             ) 
@@ -38,7 +40,7 @@ block bodyMainPush
     
     search-bar(
       @send-search-emit='sendPersonalPostsSearch',
-      v-if='!urlParaObj.post_id',
+      v-if='!urlParaObj.post_id && posts.length == 0',
     )
     ul.list-unstyled.row.gy-4.mb-lg-0(v-if='posts.isLoad')
       li.col-12

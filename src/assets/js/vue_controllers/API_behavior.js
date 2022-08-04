@@ -55,8 +55,8 @@ const signout = function () {
   this.checkLogIn();
 };
 
-const getProfile = function () {
-  const profileApi = `${this.apiUrl}/user/profile`;
+const getProfile = function (queryUser = '') {
+  const profileApi = `${this.apiUrl}/user/profile?queryUser=${queryUser}`;
   return new Promise((resolve, reject) => {
     axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`; // 將 Token 加入到 Headers 內
     axios
