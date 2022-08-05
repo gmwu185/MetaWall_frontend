@@ -155,6 +155,14 @@ const VueAPP = new Vue({
 
             this.posts.isLoad = false;
             this.isLoading = false;
+            this.$bus.$emit(
+              "bus-toasts:push",
+              {
+                message: "personalPosts 頁面觸發 tost",
+                // status: "danger",
+                delay: '3000',
+              },
+            );
           })
           .catch((err) => {
             console.log(
