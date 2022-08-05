@@ -1,4 +1,10 @@
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import API_behavior from '../vue_controllers/API_behavior';
+import { LoadingInit, ReportInit, NotifyInit } from '../init_notiflix';
+LoadingInit(Loading), ReportInit(Report), NotifyInit(Notify);
 
 const VueAPP = new Vue({
   el: '#app',
@@ -92,7 +98,7 @@ const VueAPP = new Vue({
     },
   },
   created: function () {
-    this.isLoading = true;
+    Loading.custom('讀取中 ...');
     this.getCookieToken();
     this.checkLogIn();
     this.getProfile()
@@ -154,22 +160,20 @@ const VueAPP = new Vue({
             }
 
             this.posts.isLoad = false;
-            this.isLoading = false;
-            this.$bus.$emit(
-              "bus-toasts:push",
-              {
-                message: "personalPosts 頁面觸發 tost",
-                // status: "danger",
-                delay: '3000',
-              },
-            );
+            Loading.remove();
           })
           .catch((err) => {
             console.log(
               'p_personalPosts getProfile() getPersonalPosts() err',
               err
             );
-            alert('發生錯誤');
+            Loading.remove();
+            // alert('發生錯誤');
+            Report.failure(
+              '產生錯誤',
+              `<p class="mb-0 text-center mt-n2">原因：${err.response.data.message}</p>`,
+              '確定'
+            );
           });
       })
       .catch((err) => {

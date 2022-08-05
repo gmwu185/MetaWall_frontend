@@ -44,6 +44,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.0.1",
     "jquery": "^3.6.0",
+    "notiflix": "^3.2.5",
     "vee-validate": "^3.3.11",
     "vue": "^2.6.14",
     "vue-axios": "^2.1.5",
