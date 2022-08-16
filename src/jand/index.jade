@@ -1,66 +1,59 @@
-extends extends/_layoutTemplate_innerPage.jade
+extends extends/_layoutTemplate_into.jade
+
+block app_inner
+
 block bodyMainPush
-  .col
-    ul
-      li 
-        a(href='doc-guide.html', target='new') 元件樣式文件
-      li 
-        a(href='login.html', target='new') 1.登入 (vue)
-        ul
-          li 
-            a(href='login-layout.html', target='new') 1.登入
-          li 
-            a(href='login-1-layout.html', target='new') 1-1.登入 – 1
-          li 
-            a(href='login-error-layout.html', target='new') 1-2.登入（錯誤訊息）
-      li 
-        a(href='register.html', target='new') 2.註冊 (vue)
-        ul
-          li 
-            a(href='register-layout.html', target='new') 2.註冊
-          li 
-            a(href='register-error-layout.html', target='new') 2-2.註冊（錯誤訊息）
-      li 
-        a(href='allDynamicWall.html', target='new') 3.全體動態牆 (vue)
-        ul
-          li 
-            a(href='allDynamicWall-layout.html', target='new') 3.全體動態牆
-          li 
-            a(href='allDynamicWall-message-layout.html', target='new') 3-2.全體動態牆-有留言
-          li 
-            a(href='allDynamicWall-empty-layout.html', target='new') 3-3.全體動態牆-沒有動態
-      li 
-        a(href='followList.html', target='new') 4.追蹤名單 (vue)
-        ul
-          li 
-            a(href='followList-layout.html', target='new') 4.追蹤名單
-      li 
-        a(href='editProfile.html', target='new') 5.修改個人資料 (vue)
-        ul
-          li 
-            a(href='editProfile-layout.html', target='new') 5.修改個人資料
-          li 
-            a(href='editProfile-name-layout.html', target='new') 5-1.修改個人資料-暱稱修改
-          li 
-            a(href='editProfile-name-error-layout.html', target='new') 5-2.修改個人資料-暱稱修改（錯誤訊息）
-          li 
-            a(href='changePassword-layout.html', target='new') 5-3.修改個人資料-重設密碼
-      li 
-        a(href='postNews.html', target='new') 7.張貼動態 (vue)
-        ul
-          li 
-            a(href='postNews-layout.html', target='new') 7.張貼動態
-          li 
-            a(href='postNews-error-layout.html', target='new') 7-2.張貼動態（錯誤訊息）
-      li 
-        a(href='myLike.html', target='new') 8.我按讚的貼文 (vue)
-        ul
-          li 
-            a(href='myLike-layout.html', target='new') 8.我按讚的貼文
-      li 
-        a(href='personalPosts.html', target='new') 9.個人牆 (vue)
-        ul
-          li 
-            a(href='personalPosts-layout.html', target='new') 9.個人牆
-          li 
-            a(href='personalPosts-cancelFollow-layout.html', target='new') 9-2.個人牆-取消追蹤
+  main.row
+    .container
+      .row
+        .col
+          .card.p-login.rounded-0.border.border-dark.border-2.bg-light.u-opacityShadow-lb.my-4
+            .card-body.px-4.px-md-9.px-lg-12.pt-12.pb-8.pt-lg-17.pb-lg-13
+              .row.gx-md-12
+                .col-md-6.col-lg-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
+                  img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
+                .col-md
+                  .text-center.mb-9
+                    h1.c-logo.c-logo--xl.text-primary.mb-0(title="MetaWall logo") MetaWall
+                    h2.h4.mb-0
+                      span.d-inline-block 到元宇宙
+                      span.d-inline-block 展開全新社交圈
+                  validation-observer(v-slot="{ invalid }" slim)
+                    form(@submit.prevent="sign_in")
+                      .row.mb-4
+                        validation-provider.col-12.mb-4(
+                          tag="div",
+                          rules="required|email",
+                          v-slot="{ errors, classes, passed }"
+                        )
+                          input.form-control(
+                            type="email",
+                            name="Email"
+                            placeholder="Email",
+                            v-model='longInData.email',
+                            :class="classes"
+                          )
+                          .w-100.invalid-feedback {{ errors[0] }}
+                        validation-provider.col-12.mb-4(
+                          tag="div",
+                          rules="required|min:9",
+                          v-slot="{ errors, classes, passed }"
+                        )
+                          input.form-control(
+                            type="password",
+                            placeholder="Password",
+                            name="password",
+                            v-model='longInData.password',
+                            :class="classes"
+                          )
+                          .w-100.invalid-feedback {{ errors[0] }}
+                        .col-12(v-if='errorMessage')
+                          p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage }}
+                      button.w-100.btn.btn-primary.btn-lg.d-block(
+                        type="submit",
+                        :disabled="invalid"
+                      ) 登入
+                      button.w-100.btn.btn-link.btn-lg.d-block(
+                        type="button",
+                        onClick='document.location.href = "register.html"'
+                      ) 註冊帳號

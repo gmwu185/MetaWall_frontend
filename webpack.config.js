@@ -27,8 +27,8 @@ module.exports = {
   context: path.resolve(__dirname, './src'),
   entry: {
     main: 'main',
+    p_pageLists: 'assets/js/pages/p_pageLists',
     p_index: 'assets/js/pages/p_index',
-    p_login: 'assets/js/pages/p_login',
     p_editProfile: 'assets/js/pages/p_editProfile',
     p_register: 'assets/js/pages/p_register',
     p_allDynamicWall: 'assets/js/pages/p_allDynamicWall',
@@ -244,16 +244,16 @@ module.exports = {
 
     /* HTML 樣版 ------------------------------------------------------------------ */
     new HtmlWebpackPlugin({
+      filename: 'pageLists.html',
+      template: 'jand/pageLists.jade',
+      chunks: ['vendor', 'main', 'p_pageLists'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 1.登入 / login (vue -> index)
+    new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'jand/index.jade',
       chunks: ['vendor', 'main', 'p_index'],
-      minify: HtmlWebpackPluginMinifySets,
-    }),
-    // 1.登入 / login (vue)
-    new HtmlWebpackPlugin({
-      filename: 'login.html',
-      template: 'jand/login.jade',
-      chunks: ['vendor', 'main', 'p_login'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     // 1.登入 / login

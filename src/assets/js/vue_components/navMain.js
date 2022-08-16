@@ -30,7 +30,7 @@ export default Vue.component('nav-main', {
           <div
             class="navbar navbar-expand-lg navbar-light justify-content-between py-3"
           >
-            <a class="c-logo" href="index.html" title="MetaWall logo">
+            <a class="c-logo" href="allDynamicWall.html" title="MetaWall logo">
               MetaWall
             </a>
             <div class="btn-group">

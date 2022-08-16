@@ -2,7 +2,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const apiUrl = '//damp-shore-91853.herokuapp.com';
 // const apiUrl = '//localhost:3000';
-const noTokenKickPatch = 'login.html';
+const noTokenKickPatch = 'index.html';
 
 const pg_urlParaObj = () => {
   // 取網址參數 user_id
