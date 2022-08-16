@@ -8,6 +8,7 @@
 
 const statusColor = {
   primary: {
+    hex: "#03438D",
     overlay: 'rgba(3, 67, 141, 0.9)',
   },
   success: {
@@ -30,6 +31,13 @@ const LoadingInit = (Loading) =>
     backgroundColor: statusColor.primary.overlay,
     messageFontSize: '14px',
     customSvgUrl: 'assets/static-images/MetaWall_logo.png',
+  });
+const ConfirmInit = (Confirm) =>
+  Confirm.init({
+    titleColor: statusColor.primary.hex,
+    okButtonBackground: statusColor.primary.hex,
+    borderRadius: '8px',
+    plainText: false,
   });
 const ReportInit = (Report) =>
   Report.init({
@@ -77,11 +85,11 @@ const NotifyInit = (Notify) =>
       backOverlayColor: statusColor.failure.overlayColor,
     },
     warning: {
-      notiflixIconColor: 'rgba(255, 255, 255, .7)',
+      notiflixIconColor: 'rgba(0, 0, 0, .7)',
       background: statusColor.warning.hex,
-      textColor: '#fff',
+      textColor: '#000',
       backOverlayColor: statusColor.warning.overlayColor,
     },
   });
 
-export { LoadingInit, ReportInit, NotifyInit };
+export { LoadingInit, ConfirmInit, ReportInit, NotifyInit };

@@ -1,11 +1,23 @@
 import Vue from 'vue';
+import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
+import { ConfirmInit } from '../init_notiflix';
+ConfirmInit(Confirm);
 
 export default Vue.component('nav-main', {
   methods: {
     componentSignout() {
-      if (confirm('請確任是否登出')) {
-        this.$emit('push-signout');
-      }
+      Confirm.show(
+        '登出確認',
+        '請確任是否登出',
+        '是的',
+        '取消',
+        () => {
+          this.$emit('push-signout');
+        },
+        () => {
+          return
+        },
+        );
     },
   },
   props: ['userData'],

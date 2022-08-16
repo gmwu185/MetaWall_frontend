@@ -1,3 +1,9 @@
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { LoadingInit, ReportInit, NotifyInit } from '../init_notiflix';
+LoadingInit(Loading), ReportInit(Report), NotifyInit(Notify);
+
 import API_behavior from '../vue_controllers/API_behavior';
 import fileUpload from '../vue_controllers/fileUpload';
 
@@ -5,7 +11,6 @@ const VueAPP = new Vue({
   el: '#app',
   data: {
     apiUrl: API_behavior.apiUrl,
-    isLoading: false,
     cookieToken: '',
     userData: {
       userName: 'Member',
@@ -34,10 +39,8 @@ const VueAPP = new Vue({
     patchProfile: async function () {
       try {
         const profileApi = `${this.apiUrl}/user/profile`;
-        
         let vm = this;
-        vm.isLoading = true;
-
+        Loading.custom('讀取中 ...');
         const { avatarUrl, gender, userName, imageType, file } =
           this.updataUserData;
         
@@ -98,7 +101,7 @@ const VueAPP = new Vue({
             getProfileData.data;
           const getUserData = { _id, avatarUrl, email, gender, userName };
           vm.userData = getUserData;
-          vm.isLoading = false;
+          Loading.remove();
         }
       } catch (error) {
         console.log('patchProfile error', error);
@@ -108,7 +111,7 @@ const VueAPP = new Vue({
       console.log('update_password');
       const update_passwordApi = `${this.apiUrl}/user/update-password`;
       let vm = this;
-      vm.isLoading = true;
+      Loading.custom('讀取中 ...')
       const { newPassword, confirmNewPassword } = this.updatePassword;
       axios
         .patch(
@@ -122,26 +125,31 @@ const VueAPP = new Vue({
           }
         )
         .then(function (res) {
-          console.log('axios ajax res.data', res.data);
-          alert('重設密碼更新成功！');
+          console.log('res', res)
           vm.updatePassword.newPassword = '';
           vm.updatePassword.confirmNewPassword = '';
-          vm.isLoading = false;
-          document.location.href = 'editProfile.html';
+          Loading.remove();
+          Report.success(
+            '設定成功',
+            `<p class="mb-0 text-center mt-n2">
+              重設密碼設定成功！
+            </p>`,
+            '確定'
+          );
+          // document.location.href = 'editProfile.html';
         })
         .catch(function (error) {
           const errorObj = error.response.data;
-          console.log('errorObj', errorObj);
           vm.errorMessage.updatePassword = errorObj.message;
-          vm.isLoading = false;
+          Notify.failure(vm.errorMessage.updatePassword);
+          Loading.remove();
         });
     },
   },
   created: async function () {
-    this.isLoading = true;
+    Loading.custom('讀取中 ...')
     this.getCookieToken();
     this.checkLogIn();
-
     const getProfileData = await this.getProfile();
     if (getProfileData) {
       const { _id, avatarUrl, email, gender, userName } = getProfileData.data;
@@ -149,7 +157,7 @@ const VueAPP = new Vue({
       this.userData = getUserData;
       const updataUserData = { avatarUrl, gender, userName }; // 由 API 取得使用者資訊，分別用不同物件包裝處理物件傳參考特性
       this.updataUserData = updataUserData;
-      this.isLoading = false;
+      Loading.remove();
     }
   },
 });

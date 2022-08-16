@@ -1,4 +1,7 @@
 import Vue from 'vue';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { NotifyInit } from '../init_notiflix';
+NotifyInit(Notify);
 
 export default Vue.component('card-like', {
   props: ['like-item', 'user-data', 'incom-api-info'],
@@ -16,11 +19,9 @@ export default Vue.component('card-like', {
   },
   methods: {
     emitUpdataLikeList() {
-      console.log('emitUpdataLikeList()')
       this.$emit('emit-updata-like-list');
     },
     cancelLike(likeID) {
-      console.log('cancelLike() likeID', likeID);
       const toggleLikeApi = `${this.incomApiInfo.apiUrl}/post/${likeID}/likes`;
       axios.defaults.headers.common.Authorization = `Bearer ${this.incomApiInfo.cookieToken}`;
 
@@ -28,14 +29,18 @@ export default Vue.component('card-like', {
       axios
         .patch(toggleLikeApi)
         .then((res) => {
-          alert('取消按讚成功！');
+          Notify.success('取消按讚成功！');
           this.isLikeCancelLoad = false;
           this.emitUpdataLikeList();
         })
-        .catch(err => {
-          console.log('toggleLike catch error', error);
+        .catch((error) => {
+          Report.failure(
+            '發生錯誤',
+            `<p class="mb-0 text-center">${error.message}</p>`,
+            '確定'
+          );
         });
-    }
+    },
   },
   created() {
     /** 卡片組件

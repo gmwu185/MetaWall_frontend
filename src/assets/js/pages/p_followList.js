@@ -1,10 +1,15 @@
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { LoadingInit, ReportInit, NotifyInit } from '../init_notiflix';
+LoadingInit(Loading), ReportInit(Report), NotifyInit(Notify);
+
 import API_behavior from '../vue_controllers/API_behavior';
 
 const VueAPP = new Vue({
   el: '#app',
   data: {
     apiUrl: API_behavior.apiUrl,
-    isLoading: false,
     cookieToken: '',
     userData: {
       userName: 'Member',
@@ -28,32 +33,29 @@ const VueAPP = new Vue({
           .then((res) => {
             resolve(res.data);
           })
-          .catch((err) => {
-            reject(err);
-            console.log('err.request', err.request);
-            const errObj = JSON.parse(err.request.response);
-            console.log('followingApi err.request.response', errObj);
-            alert(
-              `取得個人追蹤名單資料發生錯誤，原因：${err.response.data.message}`
+          .catch((error) => {
+            reject(error);
+            Report.failure(
+              '發生錯誤',
+              `<p class="mb-0 text-center">${error.response.data.message}</p>`,
+              '確定'
             );
           });
       });
     },
   },
-  created: async function () {
-    this.isLoading = true;
+  created() {
+    Loading.custom('讀取中 ...');
     this.getCookieToken();
     this.checkLogIn();
-    
-    const getProfileData = await this.getProfile();
-    if (getProfileData) {
-      const { _id, avatarUrl, email, gender, userName } = getProfileData.data;
+    this.getProfile().then((res) => {
+      const { _id, avatarUrl, email, gender, userName } = res.data;
       const getUserData = { _id, avatarUrl, email, gender, userName };
       this.userData = getUserData;
-    }
-    const followingList = await this.getFollowing();
-    this.followList = followingList.data;
-
-    this.isLoading = false;
+    });
+    this.getFollowing().then((res) => {
+      this.followList = res.data;
+      Loading.remove();
+    });
   },
 });

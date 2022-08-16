@@ -1,8 +1,6 @@
 extends extends/_layoutTemplate_innerPage.jade
 
 block app_inner
-  Loading(:active.sync="isLoading")
-  
   nav-main(
     :user-data='userData',
     @push-signout='signout',

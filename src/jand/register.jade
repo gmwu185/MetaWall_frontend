@@ -1,7 +1,6 @@
 extends extends/_layoutTemplate_into.jade
 
 block app_inner
-  Loading(:active.sync="isLoading")
 
 block bodyMainPush
   main.row
@@ -33,7 +32,7 @@ block bodyMainPush
                             v-model='userData.userName',
                             :class='classes'
                           )
-                          .w-100.invalid-invalid {{ errors[0] }}
+                          .w-100.invalid-feedback {{ errors[0] }}
                         validation-provider.col-12.mb-4(
                           tag='div',
                           rules='required|email',

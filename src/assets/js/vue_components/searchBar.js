@@ -9,7 +9,6 @@ export default Vue.component('search-bar', {
       });
     },
     sendSearch() {
-      console.log('component sendSearch')
       // 以上錯誤條件判斷都通過，才將 JS 產生的圖片的 src 值傳向 DOM 產生在畫面
       this.$emit('send-search-emit', {
         timeSortStr: this.timeSortStr,

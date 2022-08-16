@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Vue from 'vue';
-import Loading from 'vue-loading-overlay';
+// import Loading from 'vue-loading-overlay';
 import VueAxios from 'vue-axios';
 import {
   ValidationProvider,
@@ -16,7 +16,7 @@ const set_Vue = () => {
   window.Vue = Vue; // 將 Vue 物件掛到全域 window 下
 };
 const set_VueAxios = () => Vue.use(VueAxios, axios);
-const set_Loading = () => Vue.component('Loading', Loading);
+// const set_Loading = () => Vue.component('Loading', Loading);
 const set_veeValidate = () => {
   /** VeeValidate 3 與 語系設定資料
    * ! 竹白記事本 - Vue筆記 - 表單驗證套件 VeeValidate
@@ -46,4 +46,9 @@ const set_veeValidate = () => {
   /*----------  /註冊於全域元件  ----------*/
 };
 
-export { set_Vue, set_VueAxios, set_Loading, set_veeValidate };
+export {
+  set_Vue,
+  set_VueAxios,
+  // set_Loading,
+  set_veeValidate,
+};

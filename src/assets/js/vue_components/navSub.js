@@ -1,13 +1,6 @@
 import Vue from 'vue';
 
 export default Vue.component('nav-sub', {
-  methods: {
-    // componentSignout() {
-    //   if (confirm('請確任是否登出')) {
-    //     this.$emit('push-signout');
-    //   }
-    // },
-  },
   props: ['userData'],
   template: `
   <aside class="col-lg-auto w-lg-35 ms-lg-7 p-stickyNavSub">

@@ -6,6 +6,8 @@ import API_behavior from '../vue_controllers/API_behavior';
 import { LoadingInit, ReportInit, NotifyInit } from '../init_notiflix';
 LoadingInit(Loading), ReportInit(Report), NotifyInit(Notify);
 
+import { isThrowError } from '../helpers/errors';
+
 const VueAPP = new Vue({
   el: '#app',
   data: {
@@ -41,39 +43,59 @@ const VueAPP = new Vue({
     signout: API_behavior.signout,
     getProfile: API_behavior.getProfile,
     clickFollow: async function () {
-      this.personalUser.isLoad = true;
-      const userID = this.personalUser.userData._id;
-      console.log('userID', userID);
-      const followApi = `${this.apiUrl}/user/${userID}/follow`;
-      axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`;
-      const httpMethod = this.personalUser.isFollow ? 'delete' : 'post';
-      console.log('httpMethod', httpMethod);
-      const changeFollow = await axios[httpMethod](followApi);
-      console.log('changeFollow', changeFollow);
-      const changeFollowData = changeFollow.data.data;
-
-      await this.getPersonalPosts({ userID }).then((res) => {
-        console.log('clickFollow getPersonalPosts res', res);
-        return (this.personalUser.userData = res.data[0].userData);
-      });
-      alert(changeFollowData.message);
-      this.personalUser.isLoad = false;
-      this.personalUser.isFollow = !this.personalUser.isFollow;
+      try {
+        this.personalUser.isLoad = true;
+        const userID = this.personalUser.userData._id;
+        const followApi = `${this.apiUrl}/user/${userID}/follow`;
+        axios.defaults.headers.common.Authorization = `Bearer ${this.cookieToken}`;
+        const httpMethod = this.personalUser.isFollow ? 'delete' : 'post';
+        const changeFollow = await axios[httpMethod](followApi);
+        const changeFollowData = changeFollow.data.data;
+        Notify.success(changeFollowData.message);
+        const changeFolloPosts = await this.getPersonalPosts({ userID });
+        if (!changeFolloPosts) {
+          const errorObj = {
+            title: '發生錯誤',
+            message: '無法將更新追蹤使用者資訊，請重新載入頁面。',
+          };
+          Report.failure(
+            errorObj.title,
+            `<p class="mb-0 text-center">${errorObj.message}</p>`,
+            '確定'
+          );
+          isThrowError({ msgStr: errorObj.message });
+        }
+        this.personalUser.userData = changeFolloPosts.data[0].userData;
+        this.personalUser.isLoad = false;
+        this.personalUser.isFollow = !this.personalUser.isFollow;
+      } catch (error) {
+        Report.failure(
+          '發生錯誤',
+          `<p class="mb-0 text-center">${error.response.data.message}</p>`,
+          '確定'
+        );
+      }
     },
-    sendPersonalPostsSearch(param) {
-      console.log('sendPersonalPostsSearch()', param);
-      const pg_urlPara_userID = this.urlParaObj?.user_id; // 有無網址使用者 id
-      const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
-      const { timeSortStr, queryStr } = param;
-      this.posts.isLoad = true;
-      this.getPersonalPosts({
-        userID: userID,
-        timeSortStr: timeSortStr,
-        queryStr: queryStr,
-      }).then((res) => {
-        this.posts.data = res.data;
+    sendPersonalPostsSearch: async function (param) {
+      try {
+        const pg_urlPara_userID = this.urlParaObj?.user_id; // 有無網址使用者 id
+        const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
+        const { timeSortStr, queryStr } = param;
+        this.posts.isLoad = true;
+        const personalPost = await this.getPersonalPosts({
+          userID: userID,
+          timeSortStr: timeSortStr,
+          queryStr: queryStr,
+        });
+        this.posts.data = personalPost.data;
         this.posts.isLoad = false;
-      });
+      } catch (error) {
+        Report.failure(
+          '發生錯誤',
+          `<p class="mb-0 text-center">${error.response.data.message}</p>`,
+          '確定'
+        );
+      }
     },
     getPersonalPosts({ userID, timeSortStr = '', queryStr = '', postID = '' }) {
       // API controller 函式 getMyPostList
@@ -87,12 +109,6 @@ const VueAPP = new Vue({
           })
           .catch((err) => {
             reject(err);
-            console.log('err.request', err.request);
-            const errObj = JSON.parse(err.request.response);
-            console.log('myPostListApi err.request.response', errObj);
-            alert(
-              `取得個人所有貼文列表資料發生錯誤，原因：${err.response.data.message}`
-            );
           });
       });
     },
@@ -101,83 +117,62 @@ const VueAPP = new Vue({
     Loading.custom('讀取中 ...');
     this.getCookieToken();
     this.checkLogIn();
-    this.getProfile()
-      .then(async (res) => {
-        const { _id, avatarUrl, email, gender, userName } = res.data;
-        const getUserData = { _id, avatarUrl, email, gender, userName };
-        console.log('getUserData', getUserData);
-        this.userData = getUserData;
-        this.urlParaObj = this.pg_urlParaObj(); // 網址參數物件賦予實體變數上
-        const pg_urlPara_userID = this.urlParaObj?.user_id
-          ? this.urlParaObj.user_id
-          : ''; // 有無網址使用者 id
-        const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
+    this.getProfile().then(async (res) => {
+      const { _id, avatarUrl, email, gender, userName } = res.data;
+      const getUserData = { _id, avatarUrl, email, gender, userName };
+      this.userData = getUserData;
+      this.urlParaObj = this.pg_urlParaObj(); // 網址參數物件賦予實體變數上
+      const pg_urlPara_userID = this.urlParaObj?.user_id
+        ? this.urlParaObj.user_id
+        : ''; // 有無網址使用者 id
+      const userID = pg_urlPara_userID || this.userData._id; // 不是網址傳參數使用者就是登入者本人
 
-        await this.getPersonalPosts({
-          userID,
-          postID: this.urlParaObj?.post_id || '',
-        })
-          .then(async (res) => {
-            console.log('getPersonalPosts res.data', res.data);
-            this.posts.data = res.data;
-
-            /** 判斷個人 post 取得筆數
-             * 有資料取得的陣列資料中，每筆的 userData 下的 id 都是相同
-             * 沒 post 取得空陣列，裡面沒有 userData 與 id。
-             */
-            if (this.posts.data.length == 0) {
-              const theUserProfile = await this.getProfile(userID);
-              console.log('theUserProfile.data', theUserProfile.data);
-              this.personalUser.userData = theUserProfile.data;
-            } else {
-              // 回傳陣列資料，每筆 userData 下的 id 都是相同，取其第一筆
-              this.personalUser.userData =
-                this.posts.data[0]?.userData || this.userData;
-            }
-
-            // 判斷取得 user 對象追蹤的 followers
-            if (this.personalUser.userData.followers) {
-              /** 目前查使用者有無在追踨列表中 (followers)
-               * followers 下的物件，資料庫沒處理關聯，取使用者 id 是對 userData 屬性
-               * 列表 id 中沒對象 -1、有回 0
-               */
-              const personalFollowers = this.personalUser.userData.followers;
-              const isFollower = personalFollowers.findIndex((personal) => {
-                console.log('getUserData._id', getUserData._id);
-                console.log('personal.userData', personal.userData);
-                return personal.userData == getUserData._id;
-              });
-              console.log('isFollower', isFollower);
-              this.personalUser.isFollow = !isFollower;
-              // (!isFollower) 處理列表回應結果轉義：!-1 = false / !0 = true
-              console.log(
-                'this.personalUser.isFollow | -1 = false',
-                this.personalUser.isFollow
-              );
-            } else {
-              this.personalUser.userData.followers = [];
-              this.personalUser.isFollow = false;
-            }
-
-            this.posts.isLoad = false;
-            Loading.remove();
-          })
-          .catch((err) => {
-            console.log(
-              'p_personalPosts getProfile() getPersonalPosts() err',
-              err
-            );
-            Loading.remove();
-            // alert('發生錯誤');
-            Report.failure(
-              '產生錯誤',
-              `<p class="mb-0 text-center mt-n2">原因：${err.response.data.message}</p>`,
-              '確定'
-            );
-          });
+      await this.getPersonalPosts({
+        userID,
+        postID: this.urlParaObj?.post_id || '',
       })
-      .catch((err) => {
-        console.log('p_personalPosts getProfile() err', err);
-      });
+        .then(async (res) => {
+          this.posts.data = res.data;
+          /** 判斷個人 post 取得筆數
+           * 有資料取得的陣列資料中，每筆的 userData 下的 id 都是相同
+           * 沒 post 取得空陣列，裡面沒有 userData 與 id。
+           */
+          if (this.posts.data.length == 0) {
+            const theUserProfile = await this.getProfile(userID);
+            this.personalUser.userData = theUserProfile.data;
+          } else {
+            // 回傳陣列資料，每筆 userData 下的 id 都是相同，取其第一筆
+            this.personalUser.userData =
+              this.posts.data[0]?.userData || this.userData;
+          }
+
+          // 判斷取得 user 對象追蹤的 followers
+          if (this.personalUser.userData.followers) {
+            /** 目前查使用者有無在追踨列表中 (followers)
+             * followers 下的物件，資料庫沒處理關聯，取使用者 id 是對 userData 屬性
+             * 列表 id 中沒對象 -1、有回 0
+             */
+            const personalFollowers = this.personalUser.userData.followers;
+            const isFollower = personalFollowers.findIndex((personal) => {
+              return personal.userData == getUserData._id;
+            });
+            this.personalUser.isFollow = !isFollower;
+            // (!isFollower) 處理列表回應結果轉義：!-1 = false / !0 = true
+          } else {
+            this.personalUser.userData.followers = [];
+            this.personalUser.isFollow = false;
+          }
+          this.posts.isLoad = false;
+          Loading.remove();
+        })
+        .catch((error) => {
+          Loading.remove();
+          Report.failure(
+            '產生錯誤',
+            `<p class="mb-0 text-center mt-n2">原因：${error.response.data.message}</p>`,
+            '確定'
+          );
+        });
+    });
   },
 });

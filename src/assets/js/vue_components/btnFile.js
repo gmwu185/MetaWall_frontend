@@ -1,4 +1,9 @@
 import Vue from 'vue';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { ReportInit, NotifyInit } from '../init_notiflix';
+ReportInit(Report), NotifyInit(Notify);
+
 import fileUpload from '../vue_controllers/fileUpload';
 
 export default Vue.component('btn-file-preview-img', {
@@ -15,7 +20,6 @@ export default Vue.component('btn-file-preview-img', {
         freader.readAsDataURL(file);
         freader.onload = (e) => resolve(freader);
         freader.onerror = reject;
-        // console.log('freader', freader);
       });
     },
     fileThrowError: fileUpload.fileThrowError,
@@ -29,52 +33,66 @@ export default Vue.component('btn-file-preview-img', {
     },
     returnFileSize: (fileSize) => Number((fileSize / 1048576).toFixed(2)), // 換算圖檔 mb
     previewFile: async function (e) {
-      // console.log('this.imgType', this.imgType);
       try {
         const input = e.target;
         const file = input.files[0];
-        // console.log('file', file)
 
         /* 以下驗証自定錯誤 */
         if (!this.isValid_img_type(file.type)) {
           const fileName = file.type.split('/').pop();
           let errorMsgStr = `${fileName} 格式檔，圖片格式錯誤，僅限 JPG、PNG 圖片`;
-          alert(errorMsgStr);
+          Report.failure(
+            '發生錯誤',
+            `<p class="mb-0 text-center">${errorMsgStr}，中斷操作請重新選擇圖檔。</p>`,
+            '確定'
+          );
           this.fileThrowError({ msgStr: errorMsgStr });
         }
         if (this.returnFileSize(file.size) > 1) {
           let errorMsgStr = `圖片檔案過大，僅限 1 mb 以下檔案`;
-          alert(errorMsgStr);
+          Report.failure(
+            '發生錯誤',
+            `<p class="mb-0 text-center">${errorMsgStr}，中斷操作請重新選擇圖檔。</p>`,
+            '確定'
+          );
           this.fileThrowError({ msgStr: errorMsgStr });
         }
         /* /以下驗証自定錯誤 */
 
         const imgFileReadFile = await this.readFile(file);
         const imgFileToBase64 = imgFileReadFile.result;
-        // console.log('imgFileToBase64', imgFileToBase64);
-
         const previewImg = await this.createImg(imgFileToBase64);
         // 刻意使用錯誤圖片路徑取不到圖片檔，錯誤在最外層 catch 補捉
-        // const previewImg = await this.createImg("example.com/house.jpg");
-        // console.log('previewImg', previewImg);
 
         /* 以下驗証自定錯誤 */
-        let errMsgStr = '';
+        let errorMsgStr = '';
         if (previewImg.width > 1024) {
-          errMsgStr = `圖片寬度 ${previewImg.width} px，超過 1024 px`;
-          alert(errMsgStr);
-          fileThrowError({ msgStr: errMsgStr });
+          errorMsgStr = `圖片寬度 ${previewImg.width} px，超過 1024 px`;
+          Report.failure(
+            '發生錯誤',
+            `<p class="mb-0 text-center">${errorMsgStr}，中斷操作請重新選擇圖檔。</p>`,
+            '確定'
+          );
+          fileThrowError({ msgStr: errorMsgStr });
         }
         if (previewImg.height > 1024) {
-          errMsgStr = `圖片高度 ${previewImg.width} px，超過 1024 px`;
-          alert(errMsgStr);
-          fileThrowError({ msgStr: errMsgStr });
+          errorMsgStr = `圖片高度 ${previewImg.width} px，超過 1024 px`;
+          Report.failure(
+            '發生錯誤',
+            `<p class="mb-0 text-center">${errorMsgStr}，中斷操作請重新選擇圖檔。</p>`,
+            '確定'
+          );
+          fileThrowError({ msgStr: errorMsgStr });
         }
         if (this.imgType == 'avatar') {
           if (previewImg.width !== previewImg.height) {
-            errMsgStr = `圖片高度 ${previewImg.width} 寬度 ${previewImg.width}，比例不是一比一`;
-            alert(errMsgStr);
-            fileThrowError({ msgStr: errMsgStr });
+            errorMsgStr = `圖片高度 ${previewImg.width} 寬度 ${previewImg.width}，比例不是一比一`;
+            Report.failure(
+              '發生錯誤',
+              `<p class="mb-0 text-center">${errorMsgStr}，中斷操作請重新選擇圖檔。</p>`,
+              '確定'
+            );
+            fileThrowError({ msgStr: errorMsgStr });
           }
         }
         /* /以下驗証自定錯誤 */
@@ -86,7 +104,9 @@ export default Vue.component('btn-file-preview-img', {
           file: file,
         });
       } catch (error) {
-        console.log('error', error);
+        Notify.failure(
+          '操作選取預覽圖片過程中發生錯誤，請重新查驗圖檔或操作流程！'
+        );
       }
     },
   },

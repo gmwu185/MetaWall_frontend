@@ -1,9 +1,8 @@
 import Vue from 'vue';
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { LoadingInit, ReportInit, NotifyInit } from '../init_notiflix';
-LoadingInit(Loading), ReportInit(Report), NotifyInit(Notify);
+import { ReportInit, NotifyInit } from '../init_notiflix';
+ReportInit(Report), NotifyInit(Notify);
 
 import { isThrowError } from '../helpers/errors';
 
@@ -32,14 +31,12 @@ export default Vue.component('card-post', {
       axios
         .patch(toggleLikeApi)
         .then((res) => {
-          console.log('res', res)
           const { likes } = res.data.data;
           this.post.likes = likes;
           this.likeIsLoad = false;
           Notify.success('按讚或取消按讚已操作成功！');
         })
         .catch((error) => {
-          // console.log('toggleLike catch error', error);
           Report.failure(
             '錯誤',
             `<p class="mb-0 text-center">${error.response.data.message}</p>`,
@@ -48,21 +45,19 @@ export default Vue.component('card-post', {
         });
     },
     sendLoginUserComment() {
-      const vm = this;
-      console.log('sendLoginUserComment post._id -> ', this.post._id);
       const commentApi = `${this.apiInfo.apiUrl}/post/${this.post._id}/comment`;
 
       if (!this.loginUser.comment.msg) {
         const errorObj = {
           title: '發生錯誤',
-          message: '內容需填入'
-        }
+          message: '內容需填入',
+        };
         Report.failure(
           errorObj.title,
           `<p class="mb-0 text-center">${errorObj.message}</p>`,
           '確定'
         );
-        isThrowError({ msgStr: errorObj.message, });
+        isThrowError({ msgStr: errorObj.message });
       }
 
       this.loginUser.comment.isLoad = true;
@@ -74,20 +69,26 @@ export default Vue.component('card-post', {
           Authorization: `Bearer ${this.apiInfo.cookieToken}`,
         })
         .then((res) => {
-          console.log('res.data.data.comments', res.data.data);
           if (res.data.data.commentUser._id == this.loginUser.userData._id) {
             const newComment = res.data.data;
             this.comments = [newComment, ...this.comments];
             this.loginUser.comment.msg = '';
             Notify.success('已留言成功！');
           } else {
-            alert('更新對象無法查明，請重讀頁面！');
+            Report.failure(
+              '發生錯誤',
+              `<p class="mb-0 text-center">更新對象無法查明，請重讀頁面！</p>`,
+              '確定'
+            );
           }
           this.loginUser.comment.isLoad = false;
         })
         .catch((err) => {
-          console.log('err', err.response.data.message);
-          alert('發生錯誤，原因：' + err.response.data.message);
+          Report.failure(
+            '發生錯誤',
+            `<p class="mb-0 text-center">${err.response.data.message}</p>`,
+            '確定'
+          );
           this.loginUser.comment.isLoad = false;
         });
     },

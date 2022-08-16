@@ -1,8 +1,6 @@
 extends extends/_layoutTemplate_innerPage.jade
 
 block app_inner
-  Loading(:active.sync="isLoading")
-  tosast
   nav-main(
     :user-data='userData',
     @push-signout='signout',
@@ -40,7 +38,7 @@ block bodyMainPush
     
     search-bar(
       @send-search-emit='sendPersonalPostsSearch',
-      v-if='!urlParaObj.post_id && posts.length == 0',
+      v-if='!urlParaObj.post_id && posts.data.length > 0',
     )
     ul.list-unstyled.row.gy-4.mb-lg-0(v-if='posts.isLoad')
       li.col-12
