@@ -43,10 +43,8 @@ const VueAPP = new Vue({
       });
     },
     renderLikeList: async function () {
-      Loading.custom('讀取中 ...');
       const likes = await this.getLikeList();
       this.likeList = likes.data;
-      Loading.remove();
     },
   },
   created: async function () {
@@ -60,5 +58,6 @@ const VueAPP = new Vue({
       this.userData = getUserData;
     }
     await this.renderLikeList();
+    Loading.remove();
   },
 });
