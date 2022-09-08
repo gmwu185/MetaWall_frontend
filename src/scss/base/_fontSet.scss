@@ -1,14 +1,15 @@
 /* Font Awesome 5 ----------------------------------------------------------- */
 /** 圖示列表
- * - https://fontawesome.com/v5.15/icons?d=gallery&p=2&q=you&m=free
+ * - https://fontawesome.com/v6/search?o=r&m=free
  */
-@import '../vendors/fontawesome5/variables';
-@import '../vendors/fontawesome5/brands';
-@import '../vendors/fontawesome5/regular';
-@import '../vendors/fontawesome5/solid';
+@import 'node_modules/@fortawesome/fontawesome-free/scss/functions';
+@import '../vendors/fontawesome6/variables';
+@import '../vendors/fontawesome6/brands';
+@import '../vendors/fontawesome6/solid';
+@import '../vendors/fontawesome6/regular';
 @import 'node_modules/@fortawesome/fontawesome-free/scss/mixins';
 @import 'node_modules/@fortawesome/fontawesome-free/scss/core';
-@import 'node_modules/@fortawesome/fontawesome-free/scss/larger';
+@import 'node_modules/@fortawesome/fontawesome-free/scss/sizing';
 @import 'node_modules/@fortawesome/fontawesome-free/scss/fixed-width';
 @import 'node_modules/@fortawesome/fontawesome-free/scss/list';
 @import 'node_modules/@fortawesome/fontawesome-free/scss/bordered-pulled';

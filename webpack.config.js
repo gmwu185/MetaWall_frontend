@@ -224,7 +224,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: '../node_modules/@fortawesome/fontawesome-free/webfonts',
-        to: '../src/assets/fonts/fontawesome-free',
+        to: 'assets/fonts/fontawesome-free',
       },
     ]),
     /* /字體與 iconFont ---------------------------------------------------- */

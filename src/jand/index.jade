@@ -49,11 +49,23 @@ block bodyMainPush
                           .w-100.invalid-feedback {{ errors[0] }}
                         .col-12(v-if='errorMessage')
                           p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage }}
-                      button.w-100.btn.btn-primary.btn-lg.d-block(
-                        type="submit",
-                        :disabled="invalid"
-                      ) 登入
-                      button.w-100.btn.btn-link.btn-lg.d-block(
-                        type="button",
-                        onClick='document.location.href = "register.html"'
-                      ) 註冊帳號
+                      .mb-3
+                        button.w-100.btn.btn-primary.btn-lg.d-block(
+                          type="submit",
+                          :disabled="invalid"
+                        ) 登入
+                        button.w-100.btn.btn-link.btn-lg.d-block(
+                          type="button",
+                          onClick='document.location.href = "register.html"'
+                        ) 註冊帳號
+                      .w-100.d-flex.justify-content-center
+                        a.btn.btn-primaryLight.c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.d-flex.justify-content-center.align-items-center.p-0.mx-2(
+                          href="http://localhost:3000/user/google"
+                          title="Google 快速登入"
+                        )
+                          i.fa-brands.fa-google
+                        a.btn.btn-primaryLight.c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.d-flex.justify-content-center.align-items-center.p-0.mx-2(
+                          href="#"
+                          title="FB 快速登入"
+                        )
+                          i.fa-brands.fa-facebook-f
