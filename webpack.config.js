@@ -36,6 +36,7 @@ module.exports = {
     p_postNews: 'assets/js/pages/p_postNews',
     p_myLike: 'assets/js/pages/p_myLike',
     p_personalPosts: 'assets/js/pages/p_personalPosts',
+    p_thirdLogin: 'assets/js/pages/p_thirdLogin',
   },
   devtool: NODE_ENV === 'development' ? 'cheap-module-source-map' : 'false',
   output: {
@@ -429,6 +430,13 @@ module.exports = {
       filename: 'personalPosts-cancelFollow-layout.html',
       template: 'jand/personalPosts-cancelFollow-layout.jade',
       chunks: ['vendor', 'main'],
+      minify: HtmlWebpackPluginMinifySets,
+    }),
+    // 第三方登入轉跳頁
+    new HtmlWebpackPlugin({
+      filename: 'thirdLogin.html',
+      template: 'jand/thirdLogin.jade',
+      chunks: ['vendor', 'main', 'p_thirdLogin'],
       minify: HtmlWebpackPluginMinifySets,
     }),
     new HtmlWebpackPlugin({

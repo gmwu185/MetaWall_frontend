@@ -1,0 +1,20 @@
+extends extends/_layoutTemplate_into.jade
+
+block app_inner
+
+block bodyMainPush
+  main.row
+    .container
+      .row
+        .col
+          .card.p-login.rounded-0.border.border-dark.border-2.bg-light.u-opacityShadow-lb.my-4
+            .card-body.px-4.px-md-9.px-lg-12.pt-12.pb-8.pt-lg-17.pb-lg-13
+              .row.gx-md-12
+                .col-md-6.col-lg-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
+                  img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
+                .col-md.d-flex.align-items-center.justify-content-center
+                  .text-center.mb-9
+                    h1.c-logo.c-logo--xl.text-primary.mb-0(title="MetaWall logo") MetaWall
+                    h2.h4.mb-0
+                      span.d-inline-block 頁面讀取，轉跳中…
+                  
