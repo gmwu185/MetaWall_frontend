@@ -70,7 +70,8 @@ const VueAPP = new Vue({
             profileDataObj
           );
         } else {
-          alert('選取新的圖片與原先的圖片一樣，不上傳圖片');
+          Notify.warning('大頭照未更新。');
+          // alert('選取新的圖片與原先的圖片一樣，不上傳圖片');
           profileDataObj.avatarUrl = avatarUrl;
         }
 
@@ -81,7 +82,8 @@ const VueAPP = new Vue({
                 Authorization: `Bearer ${this.cookieToken}`,
               })
               .then((res) => {
-                alert(`修改個人資料更新成功！`);
+                Notify.success(`修改個人資料更新成功！`);
+                // alert(`修改個人資料更新成功！`);
                 console.log(
                   'patchUserData axios ajax res.data.data',
                   res.data.data
