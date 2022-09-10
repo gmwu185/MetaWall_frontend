@@ -1,6 +1,6 @@
 -----
 ## 相關連結
-- [登入首頁](https://gmwu185.github.io/MetaWall_frontend/)、[切版靜態結構與樣式模絰列表](https://gmwu185.github.io/MetaWall_frontend/pageLists.html)
+- [登入首頁](https://gmwu185.github.io/MetaWall_frontend/index.html)、[切版靜態結構與樣式模絰列表](https://gmwu185.github.io/MetaWall_frontend/pageLists.html)
 - [MetaWall 連結 - Adobe XD 設計稿](https://xd.adobe.com/view/c0763dbe-fc15-42e8-be0b-8956ed03e675-9525/grid)
 
 
