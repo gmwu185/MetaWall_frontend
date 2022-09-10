@@ -1,7 +1,8 @@
 import Vue from 'vue';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
-import { ConfirmInit } from '../init_notiflix';
-ConfirmInit(Confirm);
+import { LoadingInit, ConfirmInit } from '../init_notiflix';
+LoadingInit(Loading), ConfirmInit(Confirm);
 
 export default Vue.component('nav-main', {
   methods: {
@@ -13,6 +14,7 @@ export default Vue.component('nav-main', {
         '取消',
         () => {
           this.$emit('push-signout');
+          Loading.custom('讀取中 ...');
         },
         () => {
           return

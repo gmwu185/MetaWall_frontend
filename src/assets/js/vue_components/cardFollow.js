@@ -12,7 +12,7 @@ export default Vue.component('card-follow', {
     <div class="card-body p-4">
       <div class="row gx-4">
         <div class="col-auto d-md-flex align-items-md-center">
-          <a :href="'/personalPosts.html?user_id=' + follower.userData._id">
+          <a :href="'personalPosts.html?user_id=' + follower.userData._id">
             <user-avatar
               :incom-class="['c-pseudoOneToOne--s']"
               :img-url='follower.userData.avatarUrl'
@@ -21,7 +21,7 @@ export default Vue.component('card-follow', {
         </div>
         <div class="col">
           <p class="fw-bold mb-0">
-            <a :href="'/personalPosts.html?user_id=' + follower.userData._id">
+            <a :href="'personalPosts.html?user_id=' + follower.userData._id">
               <span class="d-inline-block">{{ follower.userData.userName }}</span>
             </a>
           </p>
