@@ -51,7 +51,7 @@ const VueAPP = new Vue({
           }
         })
         .catch((error) => {
-          this.errorMessage = error.response.data.message;
+          this.errorMessage = error.response.data.message.errorMessage;
           Notify.failure(this.errorMessage);
           Loading.remove();
         });

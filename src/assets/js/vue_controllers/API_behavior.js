@@ -1,9 +1,9 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const apiUrl = '//damp-shore-91853.herokuapp.com';
-// const apiUrl = '//localhost:3000';
-// const apiUrl = '//127.0.0.1:3000';
-
+const apiUrl =
+  process.env.NODE_ENV === 'development'
+    ? '//localhost:3000'
+    : '//damp-shore-91853.herokuapp.com';
 const noTokenKickPatch = 'index.html';
 
 const pg_urlParaObj = () => {
@@ -13,17 +13,17 @@ const pg_urlParaObj = () => {
   const urlSearch = location.search; // 網址含 ? 後段
   // console.log('urlSearch', urlSearch)
   const urlParasObj = {};
-  if (urlSearch !== "") {
+  if (urlSearch !== '') {
     // console.log('urlSearch', urlSearch)
     const urlParas = urlSearch.split('?')[1]; // 取 ? 後面的參數字符串
     const urlParamArr = urlParas.split('&'); // 所有參數都分割
     urlParamArr.forEach((item) => {
       // 網址中多參數，會賦予物件中 { key1:value1, key2:value2, ...}
       urlParasObj[item.split('=')[0]] = item.split('=')[1];
-    })
+    });
   }
-  return urlParasObj
-}
+  return urlParasObj;
+};
 
 const getCookieToken = function () {
   this.cookieToken = document.cookie.replace(
@@ -77,8 +77,8 @@ const getProfile = function (queryUser = '') {
         const errObj = JSON.parse(err.request.response);
         console.log('profileApi err.request.response', errObj);
         Notify.failure(
-          `讀取個人資料發生錯誤，${err.response.data.message}，將在五秒後導向登入頁面！`,
-        )
+          `讀取個人資料發生錯誤，${err.response.data.message}，將在五秒後導向登入頁面！`
+        );
         setTimeout(() => {
           document.location.href = noTokenKickPatch;
         }, 5000);

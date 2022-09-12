@@ -11,71 +11,67 @@ block bodyMainPush
             .card-body.px-4.px-md-9.px-lg-12.pt-12.pb-8.pt-lg-17.pb-lg-13
               .row.gx-md-12
                 .col-md-6.col-lg-auto.d-flex.align-items-center.justify-content-center.mb-4.mb-md-0
-                  img.p-loginMainImg.img-fluid(src="~images/MetaWall_img.svg")
+                  img.p-loginMainImg.img-fluid(src='~images/MetaWall_img.svg')
                 .col-md
                   .text-center.mb-9
-                    h1.c-logo.c-logo--xl.text-primary.mb-0(title="MetaWall logo") MetaWall
+                    h1.c-logo.c-logo--xl.text-primary.mb-0(
+                      title='MetaWall logo'
+                    ) MetaWall
                     h2.h4.mb-0
                       span.d-inline-block 到元宇宙
                       span.d-inline-block 展開全新社交圈
-                  validation-observer(v-slot="{ invalid }" slim)
-                    form(@submit.prevent="sign_in")
+                  validation-observer(v-slot='{ invalid }', slim)
+                    form(@submit.prevent='sign_in')
                       .row.mb-4
                         validation-provider.col-12.mb-4(
-                          tag="div",
-                          rules="required|email",
-                          v-slot="{ errors, classes, passed }"
+                          tag='div',
+                          rules='required|email',
+                          v-slot='{ errors, classes, passed }'
                         )
                           input.form-control(
-                            type="email",
-                            name="Email"
-                            placeholder="Email",
+                            type='email',
+                            name='Email',
+                            placeholder='Email',
                             v-model='longInData.email',
-                            :class="classes"
+                            :class='classes'
                           )
                           .w-100.invalid-feedback {{ errors[0] }}
                         validation-provider.col-12.mb-4(
-                          tag="div",
-                          rules="required|min:9",
-                          v-slot="{ errors, classes, passed }"
+                          tag='div',
+                          rules='required|min:9',
+                          v-slot='{ errors, classes, passed }'
                         )
                           input.form-control(
-                            type="password",
-                            placeholder="Password",
-                            name="password",
+                            type='password',
+                            placeholder='Password',
+                            name='password',
                             v-model='longInData.password',
-                            :class="classes"
+                            :class='classes'
                           )
                           .w-100.invalid-feedback {{ errors[0] }}
                         .col-12(v-if='errorMessage')
                           p.small.text-center.text-danger.mt-4.mb-0 {{ errorMessage }}
-                      .mb-3
-                        button.w-100.btn.btn-primary.btn-lg.d-block(
-                          type="submit",
-                          :disabled="invalid"
-                        ) 登入
+                      .row.g-2
+                        .col-12
+                          button.btn.btn-primary.btn-lg.w-100(
+                            type='submit',
+                            :disabled='invalid'
+                          ) 登入
+                        .col-sm-6
+                          a.btn.btn-outline-dark.btn-lg.w-100.shadow-none(
+                            href=`${process.env.NODE_ENV === 'development' ? '//localhost:3000' : '//damp-shore-91853.herokuapp.com'}/user/google`,
+                            title='Google 快速登入'
+                          ) 
+                            i.fa-brands.fa-google.h4.me-2.mb-0
+                            | Google 登入
+                        .col-sm-6
+                          a.btn.btn-outline-dark.btn-lg.w-100.shadow-none(
+                            href=`${process.env.NODE_ENV === 'development' ? '//localhost:3000' : '//damp-shore-91853.herokuapp.com'}/user/facebook`,
+                            title='FB 快速登入'
+                          ) 
+                            i.fa-brands.fa-facebook-f.h4.me-2.mb-0
+                            | Facebook 登入
                         button.w-100.btn.btn-link.btn-lg.d-block(
-                          type="button",
+                          type='button',
                           onClick='document.location.href = "register.html"'
                         ) 註冊帳號
-                      .w-100.d-flex.justify-content-center
-                        a.btn.btn-primaryLight.c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.u-solidDoubShadow-rb.shadow-none.d-flex.justify-content-center.align-items-center.p-0.mx-2(
-                          href="https://damp-shore-91853.herokuapp.com/user/google"
-                          title="Google 快速登入"
-                        )
-                          i.fa-brands.fa-google
-                        //- a.btn.btn-primaryLight.c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.u-solidDoubShadow-rb.shadow-none.d-flex.justify-content-center.align-items-center.p-0.mx-2(
-                        //-   href="http://localhost:3000/user/google"
-                        //-   title="Google 快速登入"
-                        //- )
-                        //-   i.fa-brands.fa-google
-                        a.btn.btn-primaryLight.c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.u-solidDoubShadow-rb.shadow-none.d-flex.justify-content-center.align-items-center.p-0.mx-2(
-                          href="https://damp-shore-91853.herokuapp.com/user/facebook"
-                          title="FB 快速登入"
-                        )
-                          i.fa-brands.fa-facebook-f
-                        //- a.btn.btn-primaryLight.c-pseudoOneToOne.c-pseudoOneToOne--round.c-pseudoOneToOne--m.u-solidDoubShadow-rb.shadow-none.d-flex.justify-content-center.align-items-center.p-0.mx-2(
-                        //-   href="http://localhost:3000/user/facebook"
-                        //-   title="FB 快速登入"
-                        //- )
-                        //-   i.fa-brands.fa-facebook-f
