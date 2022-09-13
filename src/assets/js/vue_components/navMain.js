@@ -4,6 +4,8 @@ import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
 import { LoadingInit, ConfirmInit } from '../init_notiflix';
 LoadingInit(Loading), ConfirmInit(Confirm);
 
+import API_behavior from '../vue_controllers/API_behavior';
+
 export default Vue.component('nav-main', {
   methods: {
     componentSignout() {
@@ -17,9 +19,40 @@ export default Vue.component('nav-main', {
           Loading.custom('讀取中 ...');
         },
         () => {
-          return
-        },
-        );
+          return;
+        }
+      );
+    },
+    memberPay() {
+      const payApiPath = `${API_behavior.apiUrl}/pay`;
+      const token = JSON.parse(localStorage.getItem('token'));
+      axios
+        .get(payApiPath)
+        .then((res) => {
+          if (res.status === 200) {
+            // 插入新的元素準對 AJAX 回來的 JSON Form 表單，動能插入內容
+            let EL_Body = document.querySelector('body');
+            let formNode = document.createElement('DIV');
+            formNode.id = '_form_aio_checkout_outSide';
+            formNode.style.display = 'none';
+            // console.log('formNode.id', formNode.id);
+            EL_Body.appendChild(formNode);
+            formNode.innerHTML = res.data.resHTML;
+            // 以 form #_form_aio_checkout 對象，使用 Array 原型以 .from 方法將相關名稱加入類陣列中
+            const elements = Array.from(
+              document.querySelectorAll('#_form_aio_checkout')
+            );
+            console.log('elements', elements);
+            // 比對 form 元素名稱一樣的為 _form_aio_checkout
+            const match = elements.find((el) =>
+              el.id.includes('_form_aio_checkout')
+            );
+            // 比對出來的元素加入屬性在觸發 submit() 時另開新視窅
+            match.setAttribute('target', '_blank');
+            match.submit();
+          }
+        })
+        .catch((err) => console.log(err));
     },
   },
   props: ['userData'],
@@ -58,6 +91,17 @@ export default Vue.component('nav-main', {
               <ul
                 class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start text-center u-solidDoubShadow-rb"
               >
+                <li
+                  class="border border-dark border-2 border-top-0 border-start-0 border-end-0"
+                >
+                  <button
+                    class="dropdown-item py-2"
+                    type="button"
+                    @click='memberPay'
+                  >
+                    會員儲值
+                  </button>
+                </li>
                 <li
                   class="border border-dark border-2 border-top-0 border-start-0 border-end-0"
                 >
