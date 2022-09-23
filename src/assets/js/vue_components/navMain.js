@@ -24,7 +24,7 @@ export default Vue.component('nav-main', {
       );
     },
     memberPay() {
-      const payApiPath = `${API_behavior.apiUrl}/pay`;
+      const payApiPath = `${API_behavior.apiUrl}/pay/ecpay`;
       const token = JSON.parse(localStorage.getItem('token'));
       axios
         .get(payApiPath)
