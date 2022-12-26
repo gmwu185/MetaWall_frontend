@@ -2,8 +2,8 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const apiUrl =
   process.env.NODE_ENV === 'development'
-    ? '//localhost:3000'
-    : '//damp-shore-91853.herokuapp.com';
+    ? `//${process.env.DOMAIN_SERVER_DEV}:${process.env.DOMAIN_SERVER_DEFAULTPORT}`  
+    : `//${process.env.DOMAIN_SERVER_PRODUCTION}`;
 const noTokenKickPatch = 'index.html';
 
 const pg_urlParaObj = () => {

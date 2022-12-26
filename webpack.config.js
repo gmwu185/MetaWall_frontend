@@ -1,4 +1,6 @@
 const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config({ path: '.env' });
 const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -6,11 +8,12 @@ const extractCSS = new ExtractTextPlugin('[name].css');
 
 const copyFileTaks = require('./webpackPluginSets/CopyWebpackPluginSet');
 const pageTemplasts = require('./webpackPluginSets/HtmlWebpackPluginSet');
+const Dotenv = require('dotenv-webpack');
 
 const NODE_ENV = process.env.NODE_ENV;
 if (NODE_ENV === 'development') {
   console.log(
-    `browser webServer => http://${process.env.HOST}:${process.env.PORT}`
+    `browser webServer => http://${process.env.HOST}:${process.env.PORT} or http://localhost:${process.env.PORT}`
   );
 }
 
@@ -122,6 +125,9 @@ module.exports = {
             loader: 'pug-html-loader',
             options: {
               pretty: true, // 美化 HTML 的編排 (不壓縮 HTML 的一種)
+              data: {
+                env: process.env
+              },
             },
           },
         ],
@@ -203,5 +209,7 @@ module.exports = {
     ],
   },
 
-  plugins: [extractCSS, ...copyFileTaks, ...pageTemplasts],
+  plugins: [new Dotenv({
+    systemvars: true,
+  }), extractCSS, ...copyFileTaks, ...pageTemplasts],
 };

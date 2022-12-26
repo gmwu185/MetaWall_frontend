@@ -47,8 +47,8 @@ export default Vue.component('nav-main', {
             const match = elements.find((el) =>
               el.id.includes('_form_aio_checkout')
             );
-            // 比對出來的元素加入屬性在觸發 submit() 時另開新視窅
-            match.setAttribute('target', '_blank');
+            // 比對出來的元素加入屬性在觸發 submit() 時於同視窗導向第三方支付
+            match.setAttribute('target', '_self');
             match.submit();
           }
         })

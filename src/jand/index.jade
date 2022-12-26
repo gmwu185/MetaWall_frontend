@@ -59,14 +59,14 @@ block bodyMainPush
                           ) 登入
                         .col-sm-6
                           a.btn.btn-outline-dark.btn-lg.w-100.shadow-none(
-                            href=`${process.env.NODE_ENV === 'development' ? '//localhost:3000' : '//damp-shore-91853.herokuapp.com'}/user/google`,
+                            href=`${process.env.NODE_ENV === 'development' ? '//'+env.DOMAIN_SERVER_DEV+':'+env.DOMAIN_SERVER_DEFAULTPORT : '//'+env.DOMAIN_SERVER_PRODUCTION}/user/google`,
                             title='Google 快速登入'
                           ) 
                             i.fa-brands.fa-google.h4.me-2.mb-0
                             | Google 登入
                         .col-sm-6
                           a.btn.btn-outline-dark.btn-lg.w-100.shadow-none(
-                            href=`${process.env.NODE_ENV === 'development' ? '//localhost:3000' : '//damp-shore-91853.herokuapp.com'}/user/facebook`,
+                            href=`${process.env.NODE_ENV === 'development' ? '//'+env.DOMAIN_SERVER_DEV+':'+env.DOMAIN_SERVER_DEFAULTPORT : '//'+env.DOMAIN_SERVER_PRODUCTION}/user/facebook`,
                             title='FB 快速登入'
                           ) 
                             i.fa-brands.fa-facebook-f.h4.me-2.mb-0
