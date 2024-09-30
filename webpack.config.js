@@ -1,17 +1,17 @@
-const path = require('path');
-const dotenv = require('dotenv');
-dotenv.config({ path: '.env' });
-const webpack = require('webpack');
+const path = require("path");
+const dotenv = require("dotenv");
+dotenv.config({ path: `./.env.${process.env.NODE_ENV}` });
+const webpack = require("webpack");
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractCSS = new ExtractTextPlugin('[name].css');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const extractCSS = new ExtractTextPlugin("[name].css");
 
-const copyFileTaks = require('./webpackPluginSets/CopyWebpackPluginSet');
-const pageTemplasts = require('./webpackPluginSets/HtmlWebpackPluginSet');
-const Dotenv = require('dotenv-webpack');
+const copyFileTaks = require("./webpackPluginSets/CopyWebpackPluginSet");
+const pageTemplasts = require("./webpackPluginSets/HtmlWebpackPluginSet");
+const Dotenv = require("dotenv-webpack");
 
 const NODE_ENV = process.env.NODE_ENV;
-if (NODE_ENV === 'development') {
+if (NODE_ENV === "development") {
   console.log(
     `browser webServer => http://${process.env.HOST}:${process.env.PORT} or http://localhost:${process.env.PORT}`
   );
@@ -19,32 +19,32 @@ if (NODE_ENV === 'development') {
 
 module.exports = {
   mode: NODE_ENV,
-  context: path.resolve(__dirname, './src'),
+  context: path.resolve(__dirname, "./src"),
   entry: {
-    main: 'main',
-    p_pageLists: 'assets/js/pages/p_pageLists',
-    p_index: 'assets/js/pages/p_index',
-    p_editProfile: 'assets/js/pages/p_editProfile',
-    p_register: 'assets/js/pages/p_register',
-    p_allDynamicWall: 'assets/js/pages/p_allDynamicWall',
-    p_followList: 'assets/js/pages/p_followList',
-    p_postNews: 'assets/js/pages/p_postNews',
-    p_myLike: 'assets/js/pages/p_myLike',
-    p_personalPosts: 'assets/js/pages/p_personalPosts',
-    p_thirdLogin: 'assets/js/pages/p_thirdLogin',
+    main: "main",
+    p_pageLists: "assets/js/pages/p_pageLists",
+    p_index: "assets/js/pages/p_index",
+    p_editProfile: "assets/js/pages/p_editProfile",
+    p_register: "assets/js/pages/p_register",
+    p_allDynamicWall: "assets/js/pages/p_allDynamicWall",
+    p_followList: "assets/js/pages/p_followList",
+    p_postNews: "assets/js/pages/p_postNews",
+    p_myLike: "assets/js/pages/p_myLike",
+    p_personalPosts: "assets/js/pages/p_personalPosts",
+    p_thirdLogin: "assets/js/pages/p_thirdLogin",
   },
-  devtool: NODE_ENV === 'development' ? 'cheap-module-source-map' : 'false',
+  devtool: NODE_ENV === "development" ? "cheap-module-source-map" : "false",
   output: {
-    path: path.resolve(__dirname, NODE_ENV === 'development' ? 'dist' : 'docs'),
-    filename: './assets/js/[name].js?[hash:8]',
+    path: path.resolve(__dirname, NODE_ENV === "development" ? "dist" : "docs"),
+    filename: "./assets/js/[name].js?[hash:8]",
   },
   optimization: {
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /node_modules/,
-          name: 'vendor',
-          chunks: 'initial',
+          name: "vendor",
+          chunks: "initial",
           enforce: true,
         },
       },
@@ -52,16 +52,16 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.resolve('src'),
-      path.resolve('src/js'),
-      path.resolve('src/scss'),
-      path.resolve('src/assets'),
-      path.resolve('node_modules'),
+      path.resolve("src"),
+      path.resolve("src/js"),
+      path.resolve("src/scss"),
+      path.resolve("src/assets"),
+      path.resolve("node_modules"),
     ],
     alias: {
-      vue$: 'vue/dist/vue.esm.js', // vue 指定別名找 node_module/vue/dist/vue.esm.js 文件進行編譯
+      vue$: "vue/dist/vue.esm.js", // vue 指定別名找 node_module/vue/dist/vue.esm.js 文件進行編譯
     },
-    extensions: ['.js'],
+    extensions: [".js"],
   },
   devServer: {
     host: process.env.HOST,
@@ -116,17 +116,17 @@ module.exports = {
         // use: ['html-loader', 'pug-html-loader'], // 預設壓單行
         use: [
           {
-            loader: 'html-loader',
+            loader: "html-loader",
             options: {
               // minimize: false, // 不壓縮 HTML
             },
           },
           {
-            loader: 'pug-html-loader',
+            loader: "pug-html-loader",
             options: {
               pretty: true, // 美化 HTML 的編排 (不壓縮 HTML 的一種)
               data: {
-                env: process.env
+                env: process.env,
               },
             },
           },
@@ -136,46 +136,46 @@ module.exports = {
         test: /\.(sass|scss)$/,
         use: extractCSS.extract([
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               sourceMap: true, // 開啟 sourcemap 支持
             },
           },
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
               sourceMap: true, // 開啟 sourcemap 支持
             },
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               sourceMap: true, // 開啟 sourcemap 支持
             },
           },
         ]),
-        include: path.resolve('src/scss'),
-        exclude: path.resolve('./node_modules'),
+        include: path.resolve("src/scss"),
+        exclude: path.resolve("./node_modules"),
       },
       {
         test: /\.(js)$/,
-        use: 'babel-loader',
-        include: path.resolve('.'),
+        use: "babel-loader",
+        include: path.resolve("."),
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 8192,
-              name: '[path][name].[ext]?[hash:8]',
+              name: "[path][name].[ext]?[hash:8]",
             },
           },
           {
-            loader: 'image-webpack-loader',
+            loader: "image-webpack-loader",
             options: {
-              disable: NODE_ENV === 'production' ? false : true,
+              disable: NODE_ENV === "production" ? false : true,
               mozjpeg: {
                 progressive: true,
                 quality: 65,
@@ -193,23 +193,33 @@ module.exports = {
             },
           },
         ],
-        include: path.resolve('src/assets/images'),
-        exclude: path.resolve('./node_modules'),
+        include: path.resolve("src/assets/images"),
+        exclude: path.resolve("./node_modules"),
       },
       {
         // 自定義安裝字型檔
         test: /\.(woff|woff2|ttf|eot)$/,
-        loader: 'file-loader',
+        loader: "file-loader",
         options: {
-          name: '[path][name].[ext]?[hash:8]',
+          name: "[path][name].[ext]?[hash:8]",
         },
-        include: path.resolve('src/assets'),
-        exclude: path.resolve('./node_modules'),
+        include: path.resolve("src/assets"),
+        exclude: path.resolve("./node_modules"),
       },
     ],
   },
 
-  plugins: [new Dotenv({
-    systemvars: true,
-  }), extractCSS, ...copyFileTaks, ...pageTemplasts],
+  plugins: [
+    new Dotenv({
+      /** dotenv-webpack 環境變數
+        * NODE_ENV 來決定取用 .env 檔
+        * 傳入 webpack 編譯的環境變數與 dotenv 環境變數不同
+      */
+      path: `./.env.${process.env.NODE_ENV}`,
+      systemvars: true, // 允許讀取 process.env 下的任意系統變量
+    }),
+    extractCSS,
+    ...copyFileTaks,
+    ...pageTemplasts,
+  ],
 };

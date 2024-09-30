@@ -1,9 +1,6 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const apiUrl =
-  process.env.NODE_ENV === 'development'
-    ? `//${process.env.DOMAIN_SERVER_DEV}:${process.env.DOMAIN_SERVER_DEFAULTPORT}`  
-    : `//${process.env.DOMAIN_SERVER_PRODUCTION}`;
+const apiUrl = process.env.DOMAIN_SERVER;
 const noTokenKickPatch = 'index.html';
 
 const pg_urlParaObj = () => {
